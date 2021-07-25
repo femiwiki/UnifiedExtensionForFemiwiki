@@ -45,7 +45,7 @@ class RelatedArticlesHandler implements
 	/**
 	 * @inheritDoc
 	 */
-	public function onOutputPageParserOutput( $out, $parserOutput ) : void {
+	public function onOutputPageParserOutput( $out, $parserOutput ): void {
 		if ( !$this->config->get( 'UnifiedExtensionForFemiwikiRelatedArticlesUseLinks' ) ) {
 			return;
 		}
