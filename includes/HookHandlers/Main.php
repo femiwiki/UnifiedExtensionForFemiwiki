@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\Hooks;
+namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\HookHandlers;
 
 use Config;
 use Html;
@@ -10,7 +10,7 @@ use Title;
 use Wikibase\Client\ClientHooks;
 use Wikibase\Client\WikibaseClient;
 
-class Handler implements
+class Main implements
 	\MediaWiki\Hook\LinkerMakeExternalLinkHook,
 	\MediaWiki\Hook\SidebarBeforeOutputHook,
 	\MediaWiki\Hook\SkinAddFooterLinksHook,
