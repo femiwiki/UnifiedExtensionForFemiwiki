@@ -5,6 +5,8 @@ Versions and bullets are arranged chronologically from latest to oldest.
 ## Unreleased
 
 - Disabled the additional pre-authentication step by default. Set `$wgUnifiedExtensionForFemiwikiPreAuth` to true to enable it again.
+- Introduces `$wgUnifiedExtensionForFemiwikiSoftDefaultOptions` which is used to change the default options only for the new users or reset options.
+- Makes HelpPanel and Homepage are set when after reset if configured for new users.
 
 ## v2.0.0
 

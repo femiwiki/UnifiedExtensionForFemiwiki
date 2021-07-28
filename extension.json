@@ -23,21 +23,27 @@
     }
   },
   "HookHandlers": {
-    "default": {
-      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\Hooks\\Handler",
+    "main": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\Main",
       "services": ["MainConfig"]
     },
     "RelatedArticles": {
-      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\Hooks\\RelatedArticlesHandler",
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\RelatedArticles",
       "services": ["MainConfig", "DBLoadBalancer"]
+    },
+    "DefaultOptions": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\DefaultOptions",
+      "services": ["MainConfig", "UserOptionsManager"]
     }
   },
   "Hooks": {
-    "HtmlPageLinkRendererBegin": "default",
-    "LinkerMakeExternalLink": "default",
+    "HtmlPageLinkRendererBegin": "main",
+    "LinkerMakeExternalLink": "main",
+    "LocalUserCreated": "DefaultOptions",
     "OutputPageParserOutput": "RelatedArticles",
-    "SidebarBeforeOutput": "default",
-    "SkinAddFooterLinks": "default"
+    "SidebarBeforeOutput": "main",
+    "SkinAddFooterLinks": "main",
+    "UserResetAllOptions": "DefaultOptions"
   },
   "SpecialPages": {
     "OrderedWhatlinkshere": {
@@ -66,6 +72,10 @@
     "UnifiedExtensionForFemiwikiRelatedArticlesTargetNamespaces": {
       "value": [],
       "description": "An array of namespaces which can be a target for RelatedArticles. Empty array means allowing all namespaces."
+    },
+    "UnifiedExtensionForFemiwikiSoftDefaultOptions": {
+      "value": [],
+      "description": "This options are applied to new users and set after reset, but not applied to signed-in users"
     }
   },
   "TestAutoloadNamespaces": {
