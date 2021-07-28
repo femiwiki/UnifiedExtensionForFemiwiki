@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\Hooks;
+namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\HookHandlers;
 
 use Config;
 use ExtensionRegistry;
@@ -10,7 +10,7 @@ use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
-class RelatedArticlesHandler implements
+class RelatedArticles implements
 	\MediaWiki\Hook\OutputPageParserOutputHook
 	{
 
