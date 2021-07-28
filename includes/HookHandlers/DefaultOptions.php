@@ -3,8 +3,6 @@
 namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\HookHandlers;
 
 use Config;
-use GrowthExperiments\HelpPanelHooks;
-use GrowthExperiments\HomepageHooks;
 use MediaWiki\User\UserOptionsManager;
 
 class DefaultOptions implements
@@ -47,12 +45,12 @@ class DefaultOptions implements
 		}
 
 		if ( $config->get( 'GEHelpPanelNewAccountEnablePercentage' ) == 100 ) {
-			$newOptions[HelpPanelHooks::HELP_PANEL_PREFERENCES_TOGGLE] = 1;
+			$newOptions['growthexperiments-help-panel-tog-help-panel'] = 1;
 		}
 
 		if ( $config->get( 'GEHomepageNewAccountEnablePercentage' ) == 100 ) {
-			$newOptions[HomepageHooks::HOMEPAGE_PREF_ENABLE] = 1;
-			$newOptions[HomepageHooks::HOMEPAGE_PREF_PT_LINK] = 1;
+			$newOptions['growthexperiments-homepage-enable'] = 1;
+			$newOptions['growthexperiments-homepage-pt-link'] = 1;
 		}
 	}
 
