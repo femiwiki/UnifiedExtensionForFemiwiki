@@ -2,15 +2,9 @@
 
 Versions and bullets are arranged chronologically from latest to oldest.
 
-## Unreleased
-
-ENHANCEMENTS:
+## v3.0.1
 
 - Localisations update from https://translatewiki.net.
-
-BUG FIXES:
-
--
 
 ## Previous Releases
 
