@@ -14,7 +14,7 @@ Breaking change가 모든 릴리즈에서 있을 수 있습니다. 페미위키�
 
 ## 설치
 
-1. 파일들을 다운로드 받아 `extensions/` 폴더 아래 `UnifiedExten시sionForFemiwiki` 디렉토리에 넣으십시오.
+1. 파일들을 다운로드 받아 `extensions/` 폴더 아래 `UnifiedExtensionForFemiwiki` 디렉토리에 넣으십시오.
 2. LocalSettings.php에 다음을 추가하십시오. `$wgGoogleAnalyticsTrackingID`을 설정하지 않으면 구글 태그 매니저는 활성화되지 않습니다.
 
 ```php
