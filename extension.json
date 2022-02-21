@@ -42,8 +42,7 @@
     "LocalUserCreated": "DefaultOptions",
     "OutputPageParserOutput": "RelatedArticles",
     "SidebarBeforeOutput": "main",
-    "SkinAddFooterLinks": "main",
-    "UserResetAllOptions": "DefaultOptions"
+    "SkinAddFooterLinks": "main"
   },
   "SpecialPages": {
     "OrderedWhatlinkshere": {
