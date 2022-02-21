@@ -3,8 +3,6 @@
 namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\HookHandlers;
 
 use Config;
-use GrowthExperiments\HelpPanelHooks;
-use GrowthExperiments\HomepageHooks;
 use MediaWiki\User\UserOptionsManager;
 
 class DefaultOptions implements
