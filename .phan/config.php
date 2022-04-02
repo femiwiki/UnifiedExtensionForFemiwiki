@@ -7,7 +7,6 @@ $cfg['directory_list'] = array_merge(
 	[
 		'../../extensions/CategoryTree',
 		'../../extensions/Disambiguator',
-		'../../extensions/GrowthExperiments',
 		'../../extensions/PageViewInfo',
 		'../../extensions/Wikibase',
 	]
@@ -18,7 +17,6 @@ $cfg['exclude_analysis_directory_list'] = array_merge(
 	[
 		'../../extensions/CategoryTree',
 		'../../extensions/Disambiguator',
-		'../../extensions/GrowthExperiments',
 		'../../extensions/PageViewInfo',
 		'../../extensions/Wikibase',
 	]
