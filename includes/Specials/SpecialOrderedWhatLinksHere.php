@@ -11,12 +11,13 @@ use NamespaceInfo;
 use SearchEngineFactory;
 use SpecialWhatLinksHere;
 use Title;
+use TitleFactory;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Xml;
 
 /**
- * Implement for https://phabricator.wikimedia.org/T4306
+ * Extended for https://phabricator.wikimedia.org/T4306
  */
 class SpecialOrderedWhatLinksHere extends SpecialWhatLinksHere {
 
@@ -25,12 +26,6 @@ class SpecialOrderedWhatLinksHere extends SpecialWhatLinksHere {
 
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
-
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var SearchEngineFactory */
-	private $searchEngineFactory;
 
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
@@ -43,19 +38,19 @@ class SpecialOrderedWhatLinksHere extends SpecialWhatLinksHere {
 		LinkBatchFactory $linkBatchFactory,
 		IContentHandlerFactory $contentHandlerFactory,
 		SearchEngineFactory $searchEngineFactory,
-		NamespaceInfo $namespaceInfo
+		NamespaceInfo $namespaceInfo,
+		TitleFactory $titleFactory
 	) {
 		parent::__construct(
 			$loadBalancer,
 			$linkBatchFactory,
 			$contentHandlerFactory,
 			$searchEngineFactory,
-			$namespaceInfo
+			$namespaceInfo,
+			$titleFactory
 		);
 		$this->loadBalancer = $loadBalancer;
 		$this->linkBatchFactory = $linkBatchFactory;
-		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->searchEngineFactory = $searchEngineFactory;
 		$this->namespaceInfo = $namespaceInfo;
 	}
 

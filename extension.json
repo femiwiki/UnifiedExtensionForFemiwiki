@@ -52,7 +52,8 @@
         "LinkBatchFactory",
         "ContentHandlerFactory",
         "SearchEngineFactory",
-        "NamespaceInfo"
+        "NamespaceInfo",
+        "TitleFactory"
       ]
     }
   },
