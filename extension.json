@@ -39,7 +39,6 @@
   "Hooks": {
     "HtmlPageLinkRendererBegin": "main",
     "LinkerMakeExternalLink": "main",
-    "LocalUserCreated": "DefaultOptions",
     "OutputPageParserOutput": "RelatedArticles",
     "SidebarBeforeOutput": "main",
     "SkinAddFooterLinks": "main"
@@ -72,10 +71,6 @@
     "UnifiedExtensionForFemiwikiRelatedArticlesTargetNamespaces": {
       "value": [],
       "description": "An array of namespaces which can be a target for RelatedArticles. Empty array means allowing all namespaces."
-    },
-    "UnifiedExtensionForFemiwikiSoftDefaultOptions": {
-      "value": [],
-      "description": "This options are applied to new users and set after reset, but not applied to signed-in users"
     }
   },
   "TestAutoloadNamespaces": {

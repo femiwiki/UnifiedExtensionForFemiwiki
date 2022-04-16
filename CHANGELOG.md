@@ -2,6 +2,10 @@
 
 Versions and bullets are arranged chronologically from latest to oldest.
 
+## v4.0.0
+
+- Dropped `$UnifiedExtensionForFemiwikiSoftDefaultOptions` configuration variable and the related feature.
+
 ## v3.0.1
 
 - Localisations update from https://translatewiki.net.
