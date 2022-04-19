@@ -180,7 +180,7 @@ class Main implements
 	 */
 	public function onUserMailerTransformContent( $to, $from, &$body, &$error ) {
 		if (
-			!$config->get( 'UnifiedExtensionForFemiwikiModifyEmailTheme' ) ||
+			!$this->config->get( 'UnifiedExtensionForFemiwikiModifyEmailTheme' ) ||
 			!ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ||
 			!is_array( $body ) ||
 			!isset( $body['html'] )
