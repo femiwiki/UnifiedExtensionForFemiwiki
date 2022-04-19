@@ -41,7 +41,8 @@
     "LinkerMakeExternalLink": "main",
     "OutputPageParserOutput": "RelatedArticles",
     "SidebarBeforeOutput": "main",
-    "SkinAddFooterLinks": "main"
+    "SkinAddFooterLinks": "main",
+    "UserMailerTransformContent": "main"
   },
   "SpecialPages": {
     "OrderedWhatlinkshere": {
@@ -67,6 +68,10 @@
     "UnifiedExtensionForFemiwikiRelatedArticlesUseLinks": {
       "value": true,
       "description": "If set to true, Related Articles on a page would show links from the page and links to the page."
+    },
+    "UnifiedExtensionForFemiwikiModifyEmailTheme": {
+      "value": false,
+      "description": "Modifies the email theme to use the femiwiki theme."
     },
     "UnifiedExtensionForFemiwikiRelatedArticlesTargetNamespaces": {
       "value": [],
