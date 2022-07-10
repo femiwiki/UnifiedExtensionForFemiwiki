@@ -2,6 +2,10 @@
 
 Versions and bullets are arranged chronologically from latest to oldest.
 
+## v3.0.2
+
+- Fixed the errors happened with RelatedArticlesUseLinks.
+
 ## v3.0.1
 
 - Localisations update from https://translatewiki.net.
