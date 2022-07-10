@@ -53,7 +53,8 @@
         "ContentHandlerFactory",
         "SearchEngineFactory",
         "NamespaceInfo",
-        "TitleFactory"
+        "TitleFactory",
+        "LinksMigration"
       ]
     }
   },
