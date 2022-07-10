@@ -5,6 +5,7 @@ namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\HookHandlers;
 use Config;
 use ExtensionRegistry;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageStoreRecord;
 use Title;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -138,19 +139,7 @@ class RelatedArticles implements
 				// Hide redirects
 				'rd_from' => null,
 			] )
-			->fields( [
-				'page_namespace',
-				'page_title',
-				'page_touched',
-				// Used by LinkCache::addGoodLinkObjFromRow()
-				'page_id',
-				'page_len',
-				'page_is_redirect',
-				'page_latest',
-				'page_content_model',
-				'page_lang',
-				'page_restrictions',
-			] )
+			->fields( self::getSelectFields() )
 			->getSQL();
 	}
 
@@ -184,19 +173,7 @@ class RelatedArticles implements
 				// Only redirects
 				'rd_from != 0',
 			] )
-			->fields( [
-				'page_namespace' => 'target.page_namespace',
-				'page_title' => 'target.page_title',
-				'page_touched' => 'target.page_touched',
-				// Used by LinkCache::addGoodLinkObjFromRow()
-				'page_id' => 'target.page_id',
-				'page_len' => 'target.page_len',
-				'page_is_redirect' => 'target.page_is_redirect',
-				'page_latest' => 'target.page_latest',
-				'page_content_model' => 'target.page_content_model',
-				'page_lang' => 'target.page_lang',
-				'page_restrictions' => 'target.page_restrictions',
-			] )
+			->fields( self::getSelectFields( 'target' ) )
 			->getSQL();
 	}
 
@@ -226,19 +203,7 @@ class RelatedArticles implements
 			->conds( $targetNamespaces ? [
 				'page_namespace' => $targetNamespaces,
 			] : [] )
-			->fields( [
-				'page_namespace',
-				'page_title',
-				'page_touched',
-				// Used by LinkCache::addGoodLinkObjFromRow()
-				'page_id',
-				'page_len',
-				'page_is_redirect',
-				'page_latest',
-				'page_content_model',
-				'page_lang',
-				'page_restrictions',
-			] )
+			->fields( self::getSelectFields() )
 			->getSQL();
 	}
 
@@ -276,19 +241,38 @@ class RelatedArticles implements
 			->conds( $targetNamespaces ? [
 				'redirect_from.page_namespace' => $targetNamespaces,
 			] : [] )
-			->fields( [
-				'page_namespace' => 'redirect_from.page_namespace',
-				'page_title' => 'redirect_from.page_title',
-				'page_touched' => 'redirect_from.page_touched',
-				// Used by LinkCache::addGoodLinkObjFromRow()
-				'page_id' => 'redirect_from.page_id',
-				'page_len' => 'redirect_from.page_len',
-				'page_is_redirect' => 'redirect_from.page_is_redirect',
-				'page_latest' => 'redirect_from.page_latest',
-				'page_content_model' => 'redirect_from.page_content_model',
-				'page_lang' => 'redirect_from.page_lang',
-				'page_restrictions' => 'redirect_from.page_restrictions',
-			] )
+			->fields( self::getSelectFields( 'redirect_from' ) )
 			->getSQL();
+	}
+
+	/**
+	 * @param string|null $table
+	 * @return array
+	 */
+	public static function getSelectFields( $table = null ) {
+		$pageLanguageUseDB = MediaWikiServices::getInstance()->getMainConfig()->get( 'PageLanguageUseDB' );
+
+		$fields = array_merge(
+			PageStoreRecord::REQUIRED_FIELDS,
+			[
+				'page_len',
+				'page_restrictions',
+				'page_content_model',
+			]
+		);
+
+		if ( $pageLanguageUseDB ) {
+			$fields[] = 'page_lang';
+		}
+
+		if ( $table ) {
+			$fieldMap = [];
+			foreach ( $fields as $f ) {
+				$fieldMap[$f] = "$table.$f";
+			}
+			return $fieldMap;
+		}
+
+		return $fields;
 	}
 }
