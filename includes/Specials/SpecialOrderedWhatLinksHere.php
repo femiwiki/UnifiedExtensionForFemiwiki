@@ -6,6 +6,7 @@ use FormOptions;
 use Html;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Linker\LinksMigration;
 use Message;
 use NamespaceInfo;
 use SearchEngineFactory;
@@ -39,7 +40,8 @@ class SpecialOrderedWhatLinksHere extends SpecialWhatLinksHere {
 		IContentHandlerFactory $contentHandlerFactory,
 		SearchEngineFactory $searchEngineFactory,
 		NamespaceInfo $namespaceInfo,
-		TitleFactory $titleFactory
+		TitleFactory $titleFactory,
+		LinksMigration $linksMigration
 	) {
 		parent::__construct(
 			$loadBalancer,
