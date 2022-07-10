@@ -49,7 +49,8 @@ class SpecialOrderedWhatLinksHere extends SpecialWhatLinksHere {
 			$contentHandlerFactory,
 			$searchEngineFactory,
 			$namespaceInfo,
-			$titleFactory
+			$titleFactory,
+			$linksMigration
 		);
 		$this->loadBalancer = $loadBalancer;
 		$this->linkBatchFactory = $linkBatchFactory;
