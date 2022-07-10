@@ -5,8 +5,8 @@ namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\HookHandlers;
 use Config;
 use ExtensionRegistry;
 use MediaWiki\MediaWikiServices;
-use Title;
 use MediaWiki\Page\PageStoreRecord;
+use Title;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -139,7 +139,7 @@ class RelatedArticles implements
 				// Hide redirects
 				'rd_from' => null,
 			] )
-			->fields(  self::getSelectFields() )
+			->fields( self::getSelectFields() )
 			->getSQL();
 	}
 
@@ -173,7 +173,7 @@ class RelatedArticles implements
 				// Only redirects
 				'rd_from != 0',
 			] )
-			->fields(  self::getSelectFields( 'target' ) )
+			->fields( self::getSelectFields( 'target' ) )
 			->getSQL();
 	}
 
@@ -203,7 +203,7 @@ class RelatedArticles implements
 			->conds( $targetNamespaces ? [
 				'page_namespace' => $targetNamespaces,
 			] : [] )
-			->fields(  self::getSelectFields() )
+			->fields( self::getSelectFields() )
 			->getSQL();
 	}
 
@@ -245,6 +245,10 @@ class RelatedArticles implements
 			->getSQL();
 	}
 
+	/**
+	 * @param string|null $table
+	 * @return array
+	 */
 	public static function getSelectFields( $table = null ) {
 		$pageLanguageUseDB = MediaWikiServices::getInstance()->getMainConfig()->get( 'PageLanguageUseDB' );
 
@@ -262,7 +266,8 @@ class RelatedArticles implements
 		}
 
 		if ( $table ) {
-			foreach( $fields as $f ) {
+			$fieldMap = [];
+			foreach ( $fields as $f ) {
 				$fieldMap[$f] = "$table.$f";
 			}
 			return $fieldMap;
