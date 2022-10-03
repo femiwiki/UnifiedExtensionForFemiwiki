@@ -6,7 +6,6 @@
 - 사이트 푸터에 이용약관과 권리 침해 신고를 추가
 - 문서 내용과 사이드바에서 `https://femiwiki.com`로 시작하는 링크, 혹은 사이트에 설정에 따라 같은 도메인으로 시작하는 링크를 내부 링크처럼 표시
 - 모든 문서에 구글 태그 매니저 스크립트 추가
-- [[특:가리키는문서]]의 문서들을 가나다순으로 표시
 - 모든 문서의 관련 항목으로 해당 문서에서 가리키는 문서와 해당 문서를 가리키는 문서 추가
 - 사용자 이메일을 페미위키 테마로 변경
 
@@ -19,16 +18,6 @@ Breaking change가 모든 릴리즈에서 있을 수 있습니다. 페미위키�
 
 ```php
 wfLoadExtension( 'UnifiedExtensionForFemiwiki' );
-$wgSpecialPages['Whatlinkshere'] = [
-	'class' => 'MediaWiki\Extension\UnifiedExtensionForFemiwiki\Specials\SpecialOrderedWhatLinksHere',
-	'services' => [
-		'DBLoadBalancer',
-		'LinkBatchFactory',
-		'ContentHandlerFactory',
-		'SearchEngineFactory',
-		'NamespaceInfo',
-	]
-];
 ```
 
 ## Contributing
