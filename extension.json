@@ -44,20 +44,6 @@
     "SkinAddFooterLinks": "main",
     "UserMailerTransformContent": "main"
   },
-  "SpecialPages": {
-    "OrderedWhatlinkshere": {
-      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\Specials\\SpecialOrderedWhatLinksHere",
-      "services": [
-        "DBLoadBalancer",
-        "LinkBatchFactory",
-        "ContentHandlerFactory",
-        "SearchEngineFactory",
-        "NamespaceInfo",
-        "TitleFactory",
-        "LinksMigration"
-      ]
-    }
-  },
   "MessagesDirs": {
     "UnifiedExtensionForFemiwiki": ["i18n"]
   },
