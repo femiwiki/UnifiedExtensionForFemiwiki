@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hamilton Abreu"
+		]
+	},
+	"unifiedextensionforfemiwiki-desc": "uma extensão para femiwiki. Expande as páginas especiais [[Special:UncategorizedCategories|Especial:Categorias não categorizadas]], [[Special:WhatLinksHere|Especial:Páginas afluentes]], etc.",
+	"femiwiki-terms-label": "Termos",
+	"femiwiki-terms-page": "Project:Termos",
+	"femiwiki-support-label": "Suporte",
+	"femiwiki-support-page": "Project:Support",
+	"unifiedextensionforfemiwiki-createaccount": "Escreva \"I am a feminist\" abaixo ([[Special:Captcha/help|mais informações]]):",
+	"unifiedextensionforfemiwiki-createaccount-fail": "Escreva \"I am a feminist\" no último formulário, por favor"
+}
