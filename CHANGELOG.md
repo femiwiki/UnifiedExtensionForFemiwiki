@@ -2,6 +2,10 @@
 
 Versions and bullets are arranged chronologically from latest to oldest.
 
+## v5.0.0
+
+- SpecialOrderedWhatLinksHere is now dropped.
+
 ## v4.0.0
 
 - Dropped `$UnifiedExtensionForFemiwikiSoftDefaultOptions` configuration variable and the related feature.

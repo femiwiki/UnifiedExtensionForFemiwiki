@@ -19,16 +19,6 @@ Breaking change가 모든 릴리즈에서 있을 수 있습니다. 페미위키�
 
 ```php
 wfLoadExtension( 'UnifiedExtensionForFemiwiki' );
-$wgSpecialPages['Whatlinkshere'] = [
-	'class' => 'MediaWiki\Extension\UnifiedExtensionForFemiwiki\Specials\SpecialOrderedWhatLinksHere',
-	'services' => [
-		'DBLoadBalancer',
-		'LinkBatchFactory',
-		'ContentHandlerFactory',
-		'SearchEngineFactory',
-		'NamespaceInfo',
-	]
-];
 ```
 
 ## Contributing
