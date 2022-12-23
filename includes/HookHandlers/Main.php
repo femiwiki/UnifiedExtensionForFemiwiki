@@ -95,7 +95,8 @@ class Main implements
 	 * @return void
 	 */
 	private function addWikibaseNewItemLink( $skin, &$sidebar ): void {
-		if ( ClientHooks::buildWikidataItemLink( $skin ) ) {
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'WikibaseClient' ) ||
+			ClientHooks::buildWikidataItemLink( $skin ) ) {
 			return;
 		}
 		$title = $skin->getTitle();
