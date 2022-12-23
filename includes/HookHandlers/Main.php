@@ -41,14 +41,23 @@ class Main implements
 			return true;
 		}
 
-		$footerItems =
-			// Prepend terms link
-			[ 'femiwiki-terms-label' => $skin->footerLink( 'femiwiki-terms-label', 'femiwiki-terms-page' ) ] +
-			$footerItems +
-			// Append Infringement Notification link
-			[ 'femiwiki-support-label' => $skin->footerLink( 'femiwiki-support-label', 'femiwiki-support-page' ) ];
+		$termsDestination = Skin::makeInternalOrExternalUrl(
+			$skin->msg( 'femiwiki-terms-page' )->inContentLanguage()->text()
+		);
+		$footerItems['femiwiki-terms'] = Html::element(
+			'a',
+			[ 'href' => $termsDestination ],
+			$skin->msg( 'femiwiki-terms-label' )->text()
+		);
 
-		return true;
+		$infringementDestination = Skin::makeInternalOrExternalUrl(
+			$skin->msg( 'femiwiki-support-page' )->inContentLanguage()->text()
+		);
+		$footerItems['femiwiki-support'] = Html::element(
+			'a',
+			[ 'href' => $infringementDestination ],
+			$skin->msg( 'femiwiki-support-label' )->text()
+		);
 	}
 
 	/**
