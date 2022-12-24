@@ -2,10 +2,10 @@
 
 Versions and bullets are arranged chronologically from latest to oldest.
 
-## v4.0.0 (Unreleased)
+## v4.0.0
 
-- Dropped SpecialOrderedWhatLinksHere because of the hardness of the maintaining. Please upvote https://phabricator.wikimedia.org/T4306 if you still want to the functionality.
-- Dropped `$UnifiedExtensionForFemiwikiSoftDefaultOptions` configuration variable and the related feature.
+- BREAKING CHANGE: Dropped SpecialOrderedWhatLinksHere because of the hardness of the maintaining. Please upvote https://phabricator.wikimedia.org/T4306 if you still want to the functionality.
+- BREAKING CHANGE: Dropped `$UnifiedExtensionForFemiwikiSoftDefaultOptions` configuration variable and the related feature.
 
 ## Previous Releases
 
