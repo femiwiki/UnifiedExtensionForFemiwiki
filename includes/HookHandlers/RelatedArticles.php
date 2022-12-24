@@ -256,7 +256,6 @@ class RelatedArticles implements
 			PageStoreRecord::REQUIRED_FIELDS,
 			[
 				'page_len',
-				'page_restrictions',
 				'page_content_model',
 			]
 		);
