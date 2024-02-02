@@ -39,8 +39,12 @@ class RelatedArticles implements
 	 * @return bool
 	 */
 	private static function isDisambiguationPage( Title $title ) {
-		return \ExtensionRegistry::getInstance()->isLoaded( 'Disambiguator' ) &&
-			\MediaWiki\Extension\Disambiguator\Hooks::isDisambiguationPage( $title );
+		$services = MediaWikiServices::getInstance();
+		if ( !$services->hasService( 'DisambiguatorLookup' ) ) {
+				return false;
+		}
+		return $services->getService( 'DisambiguatorLookup' )
+			->isDisambiguationPage( $title );
 	}
 
 	/**
