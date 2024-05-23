@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80"
+		]
+	},
+	"unifiedextensionforfemiwiki-desc": "הרחבה עבור femiwiki. מספקת הרחבה של [[Special:UncategorizedCategories]] ו־[[Special:WhatLinksHere]] וכו'.",
+	"femiwiki-terms-label": "תנאים",
+	"femiwiki-terms-page": "Project:תנאים",
+	"femiwiki-support-label": "דלפק תמיכה",
+	"femiwiki-support-page": "Project:תמיכה",
+	"unifiedextensionforfemiwiki-createaccount": "נא להזין \"I am a feminist\" למטה ([[Special:Captcha/help|מידע נוסף]]):",
+	"unifiedextensionforfemiwiki-createaccount-fail": "נא להזין \"I am a feminist\" בטופס האחרון"
+}
