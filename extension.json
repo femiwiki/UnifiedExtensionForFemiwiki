@@ -34,10 +34,15 @@
     "DefaultOptions": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\DefaultOptions",
       "services": ["MainConfig", "UserOptionsManager"]
+    },
+    "SpamEmail": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\SpamEmail",
+      "services": ["MainConfig", "DBLoadBalancer", "DatabaseBlockStore"]
     }
   },
   "Hooks": {
     "HtmlPageLinkRendererBegin": "main",
+    "isValidEmailAddr": "SpamEmail",
     "LinkerMakeExternalLink": "main",
     "OutputPageParserOutput": "RelatedArticles",
     "SidebarBeforeOutput": "main",
@@ -63,6 +68,10 @@
     "UnifiedExtensionForFemiwikiRelatedArticlesTargetNamespaces": {
       "value": [],
       "description": "An array of namespaces which can be a target for RelatedArticles. Empty array means allowing all namespaces."
+    },
+    "UnifiedExtensionForFemiwikiBlockByEmail": {
+      "value": true,
+      "description": "Block emails used by block users"
     }
   },
   "TestAutoloadNamespaces": {
