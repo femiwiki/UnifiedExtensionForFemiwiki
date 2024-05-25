@@ -37,7 +37,7 @@
     },
     "SpamEmail": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\SpamEmail",
-      "services": ["MainConfig", "DBLoadBalancer", "DatabaseBlockStore"]
+      "services": ["MainConfig", "DBLoadBalancer", "DatabaseBlockStore", "MainWANObjectCache"]
     }
   },
   "Hooks": {

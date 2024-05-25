@@ -6,6 +6,7 @@ use Config;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Extension\SpamBlacklist\BaseBlacklist;
 use MediaWiki\User\User;
+use WANObjectCache;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -22,19 +23,26 @@ class SpamEmail implements
 	/** @var DatabaseBlockStore */
 	private $databaseBlockStore;
 
+	/** @var WANObjectCache */
+	private $wanCache;
+
 	/**
 	 * @param Config $config
 	 * @param ILoadBalancer $loadBalancer
 	 * @param DatabaseBlockStore $databaseBlockStore
+	 * @param WANObjectCache $wanCache
+	 *
 	 */
 	public function __construct(
 		Config $config,
 		ILoadBalancer $loadBalancer,
-		DatabaseBlockStore $databaseBlockStore
+		DatabaseBlockStore $databaseBlockStore,
+		WANObjectCache $wanCache
 		) {
 		$this->config = $config;
 		$this->loadBalancer = $loadBalancer;
 		$this->databaseBlockStore = $databaseBlockStore;
+		$this->wanCache = $wanCache;
 	}
 
 	/** @inheritDoc */
@@ -61,17 +69,28 @@ class SpamEmail implements
 				static fn( $block ) => User::newFromIdentity( $block->getBlocker() )->getEmail()
 			) ) );
 		} else {
-			$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
-			$emails = $dbr->newSelectQueryBuilder()
-				->fields( [ 'user_email' ] )
-				->tables( [ 'ipblocks' ] )
-				->join( 'user', 'user_id = ipb_user' )
-				->conds( [
-					'ipb_user IS NOT NULL',
-					"ipb_expiry > " . $dbr->addQuotes( $dbr->timestamp() ),
-				] )
-				->fetchFieldValues();
-			$emails = array_filter(array_unique($emails));
+			$loadBalancer = $this->loadBalancer;
+			$emails = $this->wanCache->getWithSetCallback(
+				$this->wanCache->makeKey( 'unified-femiwiki-extension-blocked-email' ),
+				WANObjectCache::TTL_HOUR,
+				static function ( $old, &$ttl, array &$setOpts ) use ( $loadBalancer ) {
+					$dbr = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+					return $dbr->newSelectQueryBuilder()
+						->distinct()
+						->fields( [ 'user_email' ] )
+						->tables( [ 'ipblocks' ] )
+						->join( 'user', 'user_id = ipb_user' )
+						->conds( [
+							'ipb_user IS NOT NULL',
+							'user_email != ' . $dbr->addQuotes( '' ),
+							'ipb_expiry > ' . $dbr->addQuotes( $dbr->timestamp() ),
+						] )
+						->fetchFieldValues();
+				}
+			);
+			if ( !is_array( $emails ) ) {
+				$emails = [];
+			}
 		}
 		if ( in_array( $addr, $emails ) ) {
 			return false;
