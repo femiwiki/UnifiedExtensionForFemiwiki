@@ -65,8 +65,8 @@ class SpamEmail implements
 		// Check email addresses of block users
 		if ( version_compare( '1.42', MW_VERSION, '<=' ) ) {
 			$emails = array_filter( array_unique( array_map(
-				$this->databaseBlockStore->newListFromConds( [ 'bt_user IS NOT NULL' ] ),
 				static fn( $block ) => User::newFromIdentity( $block->getBlocker() )->getEmail()
+				$this->databaseBlockStore->newListFromConds( [ 'bt_user IS NOT NULL' ] ),
 			) ) );
 		} else {
 			$loadBalancer = $this->loadBalancer;
