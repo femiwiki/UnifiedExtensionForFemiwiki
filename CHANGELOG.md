@@ -6,6 +6,7 @@ Versions and bullets are arranged chronologically from latest to oldest.
 
 - Dropped SpecialOrderedWhatLinksHere because of the hardness of the maintaining. Please upvote https://phabricator.wikimedia.org/T4306 if you still want to the functionality.
 - Dropped `$UnifiedExtensionForFemiwikiSoftDefaultOptions` configuration variable and the related feature.
+- Added `$wgUnifiedExtensionForFemiwikiBlockByEmail` configuration variable (default is true) which provides various email blocking funtionalities.
 
 ## Previous Releases
 
