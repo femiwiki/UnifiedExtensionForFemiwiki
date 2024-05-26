@@ -63,35 +63,10 @@ class SpamEmail implements
 		}
 
 		// Check email addresses of block users
-		if ( version_compare( '1.42', MW_VERSION, '<=' ) ) {
-			$emails = array_filter( array_unique( array_map(
-				static fn( $block ) => User::newFromIdentity( $block->getBlocker() )->getEmail(),
-				$this->databaseBlockStore->newListFromConds( [ 'bt_user IS NOT NULL' ] )
-			) ) );
-		} else {
-			$loadBalancer = $this->loadBalancer;
-			$emails = $this->wanCache->getWithSetCallback(
-				$this->wanCache->makeKey( 'unified-femiwiki-extension-blocked-email' ),
-				WANObjectCache::TTL_HOUR,
-				static function ( $old, &$ttl, array &$setOpts ) use ( $loadBalancer ) {
-					$dbr = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
-					return $dbr->newSelectQueryBuilder()
-						->distinct()
-						->fields( [ 'user_email' ] )
-						->tables( [ 'ipblocks' ] )
-						->join( 'user', 'user_id = ipb_user' )
-						->conds( [
-							'ipb_user IS NOT NULL',
-							'user_email != ' . $dbr->addQuotes( '' ),
-							'ipb_expiry > ' . $dbr->addQuotes( $dbr->timestamp() ),
-						] )
-						->fetchFieldValues();
-				}
-			);
-			if ( !is_array( $emails ) ) {
-				$emails = [];
-			}
-		}
+		$emails = array_filter( array_unique( array_map(
+			static fn( $block ) => User::newFromIdentity( $block->getBlocker() )->getEmail(),
+			$this->databaseBlockStore->newListFromConds( [ 'bt_user IS NOT NULL' ] )
+		) ) );
 		if ( in_array( $addr, $emails ) ) {
 			return false;
 		}
