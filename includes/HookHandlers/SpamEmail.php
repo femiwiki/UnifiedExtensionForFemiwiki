@@ -79,9 +79,9 @@ class SpamEmail implements
 						->distinct()
 						->fields( [ 'user_email' ] )
 						->tables( [ 'ipblocks' ] )
-						->join( 'user', 'user_id = ipb_user' )
+						->join( 'user', null, ['user_id = ipb_user'] )
 						->conds( [
-							'ipb_user IS NOT NULL',
+							'user_email_authenticated IS NOT NULL',
 							'user_email != ' . $dbr->addQuotes( '' ),
 							'ipb_expiry > ' . $dbr->addQuotes( $dbr->timestamp() ),
 						] )
