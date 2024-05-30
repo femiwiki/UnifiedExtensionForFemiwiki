@@ -1,6 +1,6 @@
 {
   "name": "UnifiedExtensionForFemiwiki",
-  "version": "4.1.2",
+  "version": "4.2.0",
   "author": "[https://femiwiki.com/ Femiwiki Team]",
   "url": "https://github.com/femiwiki/unifiedExtensionForFemiwiki",
   "descriptionmsg": "unifiedextensionforfemiwiki-desc",
@@ -37,7 +37,12 @@
     },
     "SpamEmail": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\SpamEmail",
-      "services": ["MainConfig", "DBLoadBalancer", "DatabaseBlockStore", "MainWANObjectCache"]
+      "services": [
+        "MainConfig",
+        "DBLoadBalancer",
+        "DatabaseBlockStore",
+        "MainWANObjectCache"
+      ]
     }
   },
   "Hooks": {

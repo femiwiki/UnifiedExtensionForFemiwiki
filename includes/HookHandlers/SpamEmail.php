@@ -50,6 +50,18 @@ class SpamEmail implements
 			return true;
 		}
 
+		$allowlists = BaseBlacklist::getEmailBlacklist()->getWhitelists();
+		if ( is_array( $allowlists ) ) {
+			foreach ( $allowlists as $regex ) {
+				AtEase::suppressWarnings();
+				$match = preg_match( $regex, $addr );
+				AtEase::restoreWarnings();
+				if ( $match ) {
+					return true;
+				}
+			}
+		}
+
 		// Check againt MediaWiki:Email-blacklist
 		$denylist = BaseBlacklist::getEmailBlacklist()->getBlacklists();
 		foreach ( $denylist as $regex ) {
