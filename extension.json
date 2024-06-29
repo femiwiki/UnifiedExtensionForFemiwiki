@@ -29,7 +29,8 @@
     },
     "RelatedArticles": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\RelatedArticles",
-      "services": ["MainConfig", "DBLoadBalancer"]
+      "services": ["MainConfig", "DBLoadBalancer"],
+      "optional_services": ["DisambiguatorLookup"]
     },
     "DefaultOptions": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\DefaultOptions",
@@ -37,7 +38,12 @@
     },
     "SpamEmail": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\SpamEmail",
-      "services": ["MainConfig", "DBLoadBalancer", "DatabaseBlockStore", "MainWANObjectCache"]
+      "services": [
+        "MainConfig",
+        "DBLoadBalancer",
+        "DatabaseBlockStore",
+        "MainWANObjectCache"
+      ]
     }
   },
   "Hooks": {
