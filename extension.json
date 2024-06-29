@@ -29,7 +29,8 @@
     },
     "RelatedArticles": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\RelatedArticles",
-      "services": ["MainConfig", "DBLoadBalancer"]
+      "services": ["MainConfig", "DBLoadBalancer"],
+      "optional_services": ["DisambiguatorLookup"]
     },
     "DefaultOptions": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\DefaultOptions",

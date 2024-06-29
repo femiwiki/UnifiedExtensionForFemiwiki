@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\HookHandlers;
 
 use Config;
 use ExtensionRegistry;
+use MediaWiki\Extension\Disambiguator\Lookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageStoreRecord;
 use Title;
@@ -26,25 +27,30 @@ class RelatedArticles implements
 	private $loadBalancer;
 
 	/**
+	 * @var ?Lookup
+	 */
+	private $disambiguatorLookup;
+
+	/**
 	 * @param Config $config
 	 * @param ILoadBalancer $loadBalancer
+	 * @param ?Lookup $disambiguatorLookup
 	 */
-	public function __construct( Config $config, ILoadBalancer $loadBalancer ) {
+	public function __construct( Config $config, ILoadBalancer $loadBalancer, ?Lookup $disambiguatorLookup ) {
 		$this->config = $config;
 		$this->loadBalancer = $loadBalancer;
+		$this->disambiguatorLookup = $disambiguatorLookup;
 	}
 
 	/**
 	 * @param Title $title
 	 * @return bool
 	 */
-	private static function isDisambiguationPage( Title $title ) {
-		$services = MediaWikiServices::getInstance();
-		if ( !$services->hasService( 'DisambiguatorLookup' ) ) {
+	private function isDisambiguationPage( Title $title ) {
+		if ( $this->disambiguatorLookup === null ) {
 				return false;
 		}
-		return $services->getService( 'DisambiguatorLookup' )
-			->isDisambiguationPage( $title );
+		return $this->disambiguatorLookup->isDisambiguationPage( $title );
 	}
 
 	/**
@@ -62,7 +68,7 @@ class RelatedArticles implements
 			// T120735
 			$action !== 'view' ||
 			$title->isMainPage() ||
-			self::isDisambiguationPage( $title ) ||
+			$this->isDisambiguationPage( $title ) ||
 			$title->isRedirect()
 		) {
 			return;
