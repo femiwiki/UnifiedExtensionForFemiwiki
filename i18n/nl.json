@@ -1,11 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
+			"McDutchie",
 			"Romaine"
 		]
 	},
+	"unifiedextensionforfemiwiki-desc": "een uitbreiding voor femiwiki. Breidt [[Special:UncategorizedCategories]], [[Special:WhatLinksHere]] enz. uit.",
 	"femiwiki-terms-label": "Voorwaarden",
 	"femiwiki-terms-page": "Project:Voorwaarden",
 	"femiwiki-support-label": "Helpdesk",
-	"femiwiki-support-page": "Project:Ondersteuning"
+	"femiwiki-support-page": "Project:Ondersteuning",
+	"unifiedextensionforfemiwiki-createaccount": "Typ “I am a feminist” hieronder ([[Special:Captcha/help|meer info]]):",
+	"unifiedextensionforfemiwiki-createaccount-fail": "Typ “I am a feminist” in het laatste formulier"
 }
