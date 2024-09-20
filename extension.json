@@ -9,7 +9,8 @@
   "requires": {
     "MediaWiki": ">= 1.42.0",
     "extensions": {
-      "CategoryTree": "*"
+      "CategoryTree": "*",
+      "SpamBlacklist": "*"
     }
   },
   "AutoloadNamespaces": {
