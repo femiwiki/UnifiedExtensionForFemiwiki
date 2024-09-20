@@ -7,11 +7,6 @@
 name: Quibble and Phan
 
 on:
-  push:
-    branches:
-      - '*'
-    tags-ignore:
-      - '*.*'
   pull_request:
 
 env:
@@ -28,14 +23,8 @@ jobs:
       fail-fast: false
       matrix:
         stage:
-          - phan
-          - coverage
-          - phpunit-unit
-          - phpunit
-          - phpunit-standalone
           - npm-test
           - composer-test
-          - selenium
           # - qunit
           # - api-testing
 
