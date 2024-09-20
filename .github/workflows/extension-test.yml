@@ -128,8 +128,6 @@ jobs:
             git clone --recurse-submodules -b "${MEDIAWIKI_VERSION}" --depth 1 https://gerrit.wikimedia.org/r/mediawiki/skins/Vector src/skins/Vector
             for dep in $DEPENDENCIES; do
               if [ "$dep" != 'mediawiki/extensions/Wikibase' ]; then
-                git clone --recurse-submodules -b "${MEDIAWIKI_VERSION}" --depth 1 "https://gerrit.wikimedia.org/r/${dep}" src/"$(echo $dep | cut -d'/' -f2,3)"
-              else
                 git clone -b "${MEDIAWIKI_VERSION}" --depth 1 "https://gerrit.wikimedia.org/r/${dep}" src/"$(echo $dep | cut -d'/' -f2,3)"
 
                 cd src/"$(echo $dep | cut -d'/' -f2,3)"
@@ -159,6 +157,26 @@ jobs:
           EOF
                 git submodule update --init
                 cd -
+              elif [ "$dep" != 'mediawiki/extensions/WikibaseLexeme' ]; then
+                git clone -b "${MEDIAWIKI_VERSION}" --depth 1 "https://gerrit.wikimedia.org/r/${dep}" src/"$(echo $dep | cut -d'/' -f2,3)"
+
+                cd src/"$(echo $dep | cut -d'/' -f2,3)"
+                # https://gerrit.wikimedia.org/r/q/I2037cd8bb5d568021472e048900649028b5dcc62
+                git apply << 'EOF'
+          diff --git a/.gitmodules b/.gitmodules
+          index 51ab4cd..97dff70 100644
+          --- a/.gitmodules
+          +++ b/.gitmodules
+          @@ -1,3 +1,3 @@
+           [submodule "resources/special/new-lexeme"]
+           	path = resources/special/new-lexeme
+          -	url = https://phabricator.wikimedia.org/diffusion/NLSP/new-lexeme-special-page.git
+          +	url = https://github.com/wmde/new-lexeme-special-page.git
+          EOF
+                git submodule update --init
+                cd -
+              else
+                git clone --recurse-submodules -b "${MEDIAWIKI_VERSION}" --depth 1 "https://gerrit.wikimedia.org/r/${dep}" src/"$(echo $dep | cut -d'/' -f2,3)"
               fi
             done
           fi
