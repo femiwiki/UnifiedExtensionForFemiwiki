@@ -127,7 +127,7 @@ jobs:
             git clone -b "${MEDIAWIKI_VERSION}" --depth 1 https://gerrit.wikimedia.org/r/mediawiki/core src
             git clone --recurse-submodules -b "${MEDIAWIKI_VERSION}" --depth 1 https://gerrit.wikimedia.org/r/mediawiki/skins/Vector src/skins/Vector
             for dep in $DEPENDENCIES; do
-              if [ "$dep" != 'mediawiki/extensions/Wikibase' ]; then
+              if [ "$dep" = 'mediawiki/extensions/Wikibase' ]; then
                 git clone -b "${MEDIAWIKI_VERSION}" --depth 1 "https://gerrit.wikimedia.org/r/${dep}" src/"$(echo $dep | cut -d'/' -f2,3)"
 
                 cd src/"$(echo $dep | cut -d'/' -f2,3)"
@@ -157,7 +157,7 @@ jobs:
           EOF
                 git submodule update --init
                 cd -
-              elif [ "$dep" != 'mediawiki/extensions/WikibaseLexeme' ]; then
+              elif [ "$dep" = 'mediawiki/extensions/WikibaseLexeme' ]; then
                 git clone -b "${MEDIAWIKI_VERSION}" --depth 1 "https://gerrit.wikimedia.org/r/${dep}" src/"$(echo $dep | cut -d'/' -f2,3)"
 
                 cd src/"$(echo $dep | cut -d'/' -f2,3)"
