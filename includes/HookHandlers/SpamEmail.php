@@ -66,6 +66,9 @@ class SpamEmail implements
 		// Check email addresses of block users
 		$emails = array_filter( array_unique( array_map(
 			static function ( $block ) {
+				if ( wfTimestampNow() > $block->getExpiry() ) {
+					return null;
+				}
 				$id = $block->getBlocker();
 				if ( $id ) {
 					return User::newFromIdentity( $id )->getEmail();
@@ -78,5 +81,6 @@ class SpamEmail implements
 			$result = false;
 			return false;
 		}
+		return true;
 	}
 }
