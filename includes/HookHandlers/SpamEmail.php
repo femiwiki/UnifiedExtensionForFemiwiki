@@ -69,9 +69,13 @@ class SpamEmail implements
 				if ( wfTimestampNow() > $block->getExpiry() ) {
 					return null;
 				}
-				$id = $block->getBlocker();
-				if ( $id ) {
-					return User::newFromIdentity( $id )->getEmail();
+				$target = $block->getTargetUserIdentity();
+				if ( $target == null ) {
+					return null;
+				}
+				$target = User::newFromIdentity( $target );
+				if ( $target ) {
+					return $target->getEmail();
 				}
 				return null;
 			},
