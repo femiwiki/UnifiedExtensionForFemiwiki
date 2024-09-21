@@ -58,6 +58,7 @@ class SpamEmail implements
 			$match = preg_match( $regex, $addr );
 			AtEase::restoreWarnings();
 			if ( $match ) {
+				$result = false;
 				return false;
 			}
 		}
@@ -74,6 +75,7 @@ class SpamEmail implements
 			$this->databaseBlockStore->newListFromConds( [] )
 		) ) );
 		if ( in_array( $addr, $emails ) ) {
+			$result = false;
 			return false;
 		}
 	}
