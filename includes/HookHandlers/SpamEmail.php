@@ -72,7 +72,7 @@ class SpamEmail implements
 				}
 				return null;
 			},
-			$this->databaseBlockStore->newListFromConds( $dbr->expr( 'bt_user', '!=', null ) )
+			$this->databaseBlockStore->newListFromConds( [ $dbr->expr( 'bt_user', '!=', null ) ] )
 		) ) );
 		if ( in_array( $addr, $emails ) ) {
 			return false;
