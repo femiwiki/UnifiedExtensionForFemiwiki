@@ -58,24 +58,33 @@ class SpamEmail implements
 			$match = preg_match( $regex, $addr );
 			AtEase::restoreWarnings();
 			if ( $match ) {
+				$result = false;
 				return false;
 			}
 		}
 
 		// Check email addresses of block users
-		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
 		$emails = array_filter( array_unique( array_map(
-			static function ( $block ) use ( $dbr ) {
-				$id = $block->getBlocker();
-				if ( $id ) {
-					return User::newFromIdentity( $id )->getEmail();
+			static function ( $block ) {
+				if ( wfTimestampNow() > $block->getExpiry() ) {
+					return null;
+				}
+				$target = $block->getTargetUserIdentity();
+				if ( $target == null ) {
+					return null;
+				}
+				$target = User::newFromIdentity( $target );
+				if ( $target ) {
+					return $target->getEmail();
 				}
 				return null;
 			},
-			$this->databaseBlockStore->newListFromConds( [ $dbr->expr( 'bt_user', '!=', null ) ] )
+			$this->databaseBlockStore->newListFromConds( [] )
 		) ) );
 		if ( in_array( $addr, $emails ) ) {
+			$result = false;
 			return false;
 		}
+		return true;
 	}
 }
