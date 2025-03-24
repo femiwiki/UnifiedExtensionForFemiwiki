@@ -4,3 +4,7 @@
 
 # maintained by translatewiki
 /i18n/
+
+# External files
+.github/workflows/dependencies.yaml
+.github/workflows/phan_dependencies.yaml
