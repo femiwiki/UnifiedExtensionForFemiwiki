@@ -27,6 +27,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        mediawiki_version:
+          - REL1_42
+          # - REL1_43 # TODO
+          - master
         stage:
           - phan
           - coverage
@@ -41,6 +45,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      MEDIAWIKI_VERSION: ${{ matrix.mediawiki_version }}
+
     steps:
       - uses: actions/checkout@v3
 
@@ -51,29 +58,9 @@ jobs:
       # $GITHUB_WORKSPACE/.github/workflows/dependencies  Dependency extensions and skins
       - name: Set up
         run: |
-          if [ -e skin.json ]; then
-            echo "TYPE=skin" >> $GITHUB_ENV
-            echo "EXTENSION_NAME=$(cat skin.json |
-              python3 -c 'import json;import sys;print(json.loads("".join(sys.stdin.readlines()))["name"])')" >> $GITHUB_ENV
-          else
-            echo "TYPE=extension" >> $GITHUB_ENV
-            echo "EXTENSION_NAME=$(cat extension.json |
-              python3 -c 'import json;import sys;print(json.loads("".join(sys.stdin.readlines()))["name"])')" >> $GITHUB_ENV
-          fi
-
-          # Export the target version of MediaWiki
-          # An example of GITHUB_REF: refs/heads/feature-branch-1
-          BRANCH_NAME=$(echo "$GITHUB_REF" | cut -d'/' -f3 | cut -d'-' -f1)
-          BASE_BRANCH_NAME=$(echo "$GITHUB_BASE_REF" | cut -d'/' -f3)
-          if [[ "$BRANCH_NAME" =~ ^(master|REL[0-9]+_[0-9]+)$ ]]; then
-            # branch name starts with the version (ex: master-new-feature, REL1_34-bug-fix)
-            export MEDIAWIKI_VERSION="$BRANCH_NAME"
-          elif [ "$GITHUB_EVENT_NAME" == 'pull_request' ] && [[ "$BASE_BRANCH_NAME" =~ ^(master|REL[0-9]+_[0-9]+)$ ]]; then
-            export MEDIAWIKI_VERSION="$BASE_BRANCH_NAME"
-          else
-            export MEDIAWIKI_VERSION=master
-          fi
-          echo MEDIAWIKI_VERSION="${MEDIAWIKI_VERSION}" >> $GITHUB_ENV
+          echo "TYPE=extension" >> $GITHUB_ENV
+          echo "EXTENSION_NAME=$(cat extension.json |
+            python3 -c 'import json;import sys;print(json.loads("".join(sys.stdin.readlines()))["name"])')" >> $GITHUB_ENV
 
           # Get the latest docker tag (Ref: https://github.com/thcipriani/dockerregistry)
           QUIBBLE_DOCKER_LATEST_TAG="$(curl -sL "https://${DOCKER_REGISTRY}/v2/${DOCKER_ORG}/${QUIBBLE_DOCKER_IMAGE}/tags/list" |
@@ -93,9 +80,11 @@ jobs:
           # Resolve dependencies
           if [ -e .github/workflows/dependencies ]; then
             cd .github/workflows
+            curl -sL https://raw.githubusercontent.com/wikimedia/integration-config/master/zuul/dependencies.yaml -o dependencies.yaml
+            curl -sL https://raw.githubusercontent.com/wikimedia/integration-config/master/zuul/phan_dependencies.yaml -o phan_dependencies.yaml
             curl -sL https://raw.githubusercontent.com/wikimedia/integration-config/master/zuul/parameter_functions.py -o pf.py
-            curl -sL https://raw.githubusercontent.com/femiwiki/.github/main/scripts/resolve_dependencies.py -o rd.py
-            echo "DEPENDENCIES=$(python3 rd.py)" >> $GITHUB_ENV
+            curl -sL https://raw.githubusercontent.com/miraheze/ci-scripts/master/mediawiki/resolve_dependencies.py -o rd.py
+            echo "DEPENDENCIES=$(python3 rd.py dependencies)" >> $GITHUB_ENV
           fi
 
       - name: Cache quibble docker image
@@ -143,7 +132,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /home/runner/src
-          key: ${{ runner.os }}-${{ env.MEDIAWIKI_VERSION }}-${{ hashFiles('.github/workflows/dependencies') }}
+          key: ${{ runner.os }}-${{ matrix.mediawiki_version }}-${{ hashFiles('.github/workflows/dependencies') }}
       - name: Download MediaWiki and extensions
         run: |
           cd /home/runner
@@ -210,7 +199,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /home/runner/cache
-          key: ${{ runner.os }}-${{ env.MEDIAWIKI_VERSION }}-${{ hashFiles('**/*.lock') }}
+          key: ${{ runner.os }}-${{ matrix.mediawiki_version }}-${{ hashFiles('**/*.lock') }}
       - name: Setup PHP Action
         if: ${{ matrix.stage == 'phan' }}
         uses: shivammathur/setup-php@v2
@@ -267,11 +256,7 @@ jobs:
             if [ -d tests/phpunit ]; then
               # MW1.35+ requires PHP7.3 but quibble-coverage is not.
               if [ "${MEDIAWIKI_VERSION}" == 'master' ]; then
-                if [ "${TYPE}" == 'skin' ]; then
-                  COMMEND=mwskin-phpunit-coverage
-                else
-                  COMMEND=mwext-phpunit-coverage
-                fi
+                COMMEND=mwext-phpunit-coverage
                 docker run \
                   --entrypoint quibble-with-supervisord \
                   -e "ZUUL_PROJECT=mediawiki/${{ env.TYPE }}s/${{ env.EXTENSION_NAME }}" \
