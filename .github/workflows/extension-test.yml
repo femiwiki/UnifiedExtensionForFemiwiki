@@ -28,7 +28,6 @@ jobs:
       fail-fast: false
       matrix:
         mediawiki_version:
-          - REL1_42
           - REL1_43
           - master
         stage:
