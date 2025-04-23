@@ -1,9 +1,13 @@
-# composer dependencies
+# Composer dependencies
 /vendor/
 /composer.lock
 
-# maintained by translatewiki
+# Maintained by translatewiki
 /i18n/
+
+# Maneged by bots
+skin.json
+extension.json
 
 # External files
 .github/workflows/dependencies.yaml
