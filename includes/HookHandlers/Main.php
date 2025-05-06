@@ -4,10 +4,10 @@ namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\HookHandlers;
 
 use Config;
 use ExtensionRegistry;
-use Html;
+use MediaWiki\Html\Html;
+use MediaWiki\Title\Title;
 use RequestContext;
 use Skin;
-use Title;
 use Wikibase\Client\ClientHooks;
 use Wikibase\Client\WikibaseClient;
 
