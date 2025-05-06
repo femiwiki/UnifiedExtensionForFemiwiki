@@ -28,11 +28,6 @@
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\Main",
       "services": ["MainConfig"]
     },
-    "RelatedArticles": {
-      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\RelatedArticles",
-      "services": ["MainConfig", "DBLoadBalancer"],
-      "optional_services": ["DisambiguatorLookup"]
-    },
     "DefaultOptions": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\DefaultOptions",
       "services": ["MainConfig", "UserOptionsManager"]
@@ -51,7 +46,6 @@
     "HtmlPageLinkRendererBegin": "main",
     "isValidEmailAddr": "SpamEmail",
     "LinkerMakeExternalLink": "main",
-    "OutputPageParserOutput": "RelatedArticles",
     "SidebarBeforeOutput": "main",
     "SkinAddFooterLinks": "main",
     "UserMailerTransformContent": "main"
@@ -64,17 +58,9 @@
       "value": false,
       "description": "If set to true, creating account would require an additional step."
     },
-    "UnifiedExtensionForFemiwikiRelatedArticlesUseLinks": {
-      "value": true,
-      "description": "If set to true, Related Articles on a page would show links from the page and links to the page."
-    },
     "UnifiedExtensionForFemiwikiModifyEmailTheme": {
       "value": false,
       "description": "Modifies the email theme to use the femiwiki theme."
-    },
-    "UnifiedExtensionForFemiwikiRelatedArticlesTargetNamespaces": {
-      "value": [],
-      "description": "An array of namespaces which can be a target for RelatedArticles. Empty array means allowing all namespaces."
     },
     "UnifiedExtensionForFemiwikiBlockByEmail": {
       "value": true,
