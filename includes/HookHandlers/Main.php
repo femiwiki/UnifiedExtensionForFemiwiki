@@ -4,7 +4,7 @@ namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\HookHandlers;
 
 use Config;
 use ExtensionRegistry;
-use Html;
+use MediaWiki\Html\Html;
 use RequestContext;
 use Skin;
 use Title;
