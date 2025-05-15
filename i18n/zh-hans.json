@@ -1,10 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
+			"Administrator66",
 			"沈澄心"
 		]
 	},
+	"unifiedextensionforfemiwiki-desc": "femiwiki 的一个扩展。用于扩展 [[Special:UncategorizedCategories]] 和 [[Special:WhatLinksHere]] 等。",
 	"femiwiki-terms-label": "条款",
 	"femiwiki-terms-page": "Project:条款",
-	"femiwiki-support-label": "支持中心"
+	"femiwiki-support-label": "支持中心",
+	"femiwiki-support-page": "Project:支持",
+	"unifiedextensionforfemiwiki-createaccount": "在下方输入“I am a feminist”（[[Special:Captcha/help|更多资讯]]）：",
+	"unifiedextensionforfemiwiki-createaccount-fail": "请在最后一张表格里输入“I am a feminist”"
 }
