@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Умар"
+		]
+	},
+	"unifiedextensionforfemiwiki-desc": "femiwiki леррина шордар. Шорйо [[Special:UncategorizedCategories]] а, [[Special:WhatLinksHere]] а и т.д. д.",
+	"femiwiki-terms-label": "Хьелаш",
+	"femiwiki-terms-page": "Project:Билламаш",
+	"femiwiki-support-label": "ГӀоьна белхалой",
+	"femiwiki-support-page": "Project:ГӀо",
+	"unifiedextensionforfemiwiki-createaccount": "Йазде \"I am a feminist\" лахахь ([[Special:Captcha/help|кхин сов хаа]])",
+	"unifiedextensionforfemiwiki-createaccount-fail": "Дехар до, тӀаьххьарчу формехь «Со феминист йу» йазде"
+}
