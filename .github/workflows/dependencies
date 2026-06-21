@@ -1,9 +1,6 @@
 CategoryTree:
   branch: auto
   repo: auto
-Disambiguator:
-  branch: auto
-  repo: auto
 SpamBlacklist:
   branch: auto
   repo: auto
