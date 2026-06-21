@@ -19,7 +19,7 @@ jobs:
           application_id: ${{ vars.PAT_APPLICATION_ID }}
           application_private_key: ${{ secrets.PAT_APPLICATION_PRIVATE_KEY }}
 
-      - uses: femiwiki/release-please-action@femiwiki
+      - uses: googleapis/release-please-action@v4
         with:
           token: ${{ steps.get_workflow_token.outputs.token }}
-          release-type: mediawiki-skin
+          release-type: simple
