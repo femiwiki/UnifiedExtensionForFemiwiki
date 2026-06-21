@@ -51,7 +51,14 @@ jobs:
         with:
           stage: ${{ matrix.stage }}
           mediawiki-version: ${{ matrix.mediawiki-version }}
-          dependencies: CategoryTree SpamBlacklist Wikibase
+          # Wikibase is dropped from the selenium stage only. Quibble's selenium
+          # stage runs `npm run selenium-test` for every dependency that has it,
+          # and on REL1_43 Wikibase's wdio config globs in the wikibase-termbox
+          # specs, which need MinervaNeue + MobileFrontend to render their mobile
+          # UI and otherwise time out. Wikimedia's own downstream-extension jobs
+          # likewise do not run Wikibase's selenium. Wikibase stays for the other
+          # stages (phan/phpunit need it).
+          dependencies: ${{ matrix.stage == 'selenium' && 'CategoryTree SpamBlacklist' || 'CategoryTree SpamBlacklist Wikibase' }}
 
       - name: Upload coverage to Codecov
         if: matrix.stage == 'coverage'
