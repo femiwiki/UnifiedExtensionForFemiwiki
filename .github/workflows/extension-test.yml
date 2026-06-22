@@ -12,6 +12,9 @@ jobs:
       matrix:
         mediawiki-version:
           - REL1_43
+          - REL1_44
+          - REL1_45
+          - REL1_46
           - master
         stage:
           - phan
@@ -28,11 +31,23 @@ jobs:
           # composer-test (parallel-lint, phpcs, minus-x) is MediaWiki-version
           # independent, so run it on a single version (REL1_43). This avoids the
           # same phpcs annotations being emitted once per version and saves CI time.
+          - mediawiki-version: REL1_44
+            stage: composer-test
+          - mediawiki-version: REL1_45
+            stage: composer-test
+          - mediawiki-version: REL1_46
+            stage: composer-test
           - mediawiki-version: master
             stage: composer-test
           # coverage tooling (generatePHPUnitConfig.php) lives only on master, so
           # the action skips it on other branches; don't spin up a no-op job.
           - mediawiki-version: REL1_43
+            stage: coverage
+          - mediawiki-version: REL1_44
+            stage: coverage
+          - mediawiki-version: REL1_45
+            stage: coverage
+          - mediawiki-version: REL1_46
             stage: coverage
 
     runs-on: ubuntu-latest
