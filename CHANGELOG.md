@@ -4,6 +4,31 @@ See https://github.com/femiwiki/UnifiedExtensionForFemiwiki/releases
 
 Versions and bullets are arranged chronologically from latest to oldest.
 
+## [5.0.0](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/compare/v3.0.1...v5.0.0) (2026-06-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* drop related articles tweak ([#185](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/issues/185))
+
+### Features
+
+* Block users by blocked emails ([#140](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/issues/140)) ([082b86c](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/commit/082b86c00d26ff45c7d881d1920ad70671ad1cc7))
+* drop related articles tweak ([#185](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/issues/185)) ([08e6c8c](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/commit/08e6c8c24b336d2b2ef6842ea0937f090d200394))
+* Install Release please ([#180](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/issues/180)) ([78065c7](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/commit/78065c7fd93c39181707080beac747561e285ba8))
+
+
+### Bug Fixes
+
+* Callback is the first ([6141035](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/commit/6141035378ce5b3f94bbb73e95f31e5d77947072))
+* Parse error ([0d89531](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/commit/0d895317d3dc851ec664400c3608e70fa3330df1))
+* Replace removed Wikibase ClientHooks with stable API ([#220](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/issues/220)) ([7f6e7fe](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/commit/7f6e7fe226602ef65627b11948f22de66b4455a4))
+
+
+### Miscellaneous Chores
+
+* bump release-please baseline past legacy v4.x tags ([#223](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/issues/223)) ([e145438](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/commit/e1454387472b9c2e4ca3ce6322fb0376c92b52ff))
+
 ## 4.0.0
 
 - Dropped SpecialOrderedWhatLinksHere because of the hardness of the maintaining. Please upvote https://phabricator.wikimedia.org/T4306 if you still want to the functionality.
