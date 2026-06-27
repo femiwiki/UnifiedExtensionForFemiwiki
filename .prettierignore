@@ -8,6 +8,7 @@
 # Maneged by bots
 skin.json
 extension.json
+CHANGELOG.md
 
 # External files
 .github/workflows/dependencies.yaml
