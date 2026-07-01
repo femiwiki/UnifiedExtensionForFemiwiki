@@ -13,13 +13,13 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: peter-murray/workflow-application-token-action@v4
+      - uses: peter-murray/workflow-application-token-action@d17e3a9a36850ea89f35db16c1067dd2b68ee343 # v4.0.1
         id: get_workflow_token
         with:
           application_id: ${{ vars.PAT_APPLICATION_ID }}
           application_private_key: ${{ secrets.PAT_APPLICATION_PRIVATE_KEY }}
 
-      - uses: googleapis/release-please-action@v4
+      - uses: googleapis/release-please-action@5c625bfb5d1ff62eadeeb3772007f7f66fdcf071 # v4.4.1
         with:
           token: ${{ steps.get_workflow_token.outputs.token }}
           release-type: simple
