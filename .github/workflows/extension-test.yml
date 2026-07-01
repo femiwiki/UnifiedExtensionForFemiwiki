@@ -61,7 +61,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: femiwiki/quibble-action@6cdce5833f7d82f9e003b0077c8bc5a7572343cf # main
+      - uses: femiwiki/quibble-action@9964af476e606e1dc7e14ee13db34f99456f3c41 # main
         id: quibble
         with:
           stage: ${{ matrix.stage }}
