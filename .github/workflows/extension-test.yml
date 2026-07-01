@@ -59,9 +59,11 @@ jobs:
       id-token: write
 
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
 
-      - uses: femiwiki/quibble-action@6cdce5833f7d82f9e003b0077c8bc5a7572343cf # main
+      - uses: femiwiki/quibble-action@bb9c162a76424990c3f2abc4b66dc653dfe3daeb # v2.0.0
         id: quibble
         with:
           stage: ${{ matrix.stage }}
@@ -77,7 +79,7 @@ jobs:
 
       - name: Upload coverage to Codecov
         if: matrix.stage == 'coverage'
-        uses: codecov/codecov-action@v7
+        uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
         with:
           use_oidc: true
           directory: ${{ steps.quibble.outputs.coverage }}
