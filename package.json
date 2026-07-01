@@ -10,6 +10,6 @@
   "devDependencies": {
     "@prettier/plugin-xml": "^3.4.2",
     "grunt-banana-checker": "0.13.0",
-    "prettier": "^3.8.4"
+    "prettier": "^3.9.4"
   }
 }
