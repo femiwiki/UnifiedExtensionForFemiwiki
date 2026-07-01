@@ -13,7 +13,7 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      - uses: peter-murray/workflow-application-token-action@v4
+      - uses: peter-murray/workflow-application-token-action@v5
         id: get_workflow_token
         with:
           application_id: ${{ vars.PAT_APPLICATION_ID }}
