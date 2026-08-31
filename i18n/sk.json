@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wizzard"
+		]
+	},
+	"unifiedextensionforfemiwiki-desc": "rozšírenie pre femiwiki. Rozširuje stránky [[Special:UncategorizedCategories]], [[Special:WhatLinksHere]] a ďalšie.",
+	"femiwiki-terms-label": "Podmienky",
+	"femiwiki-terms-page": "Project:Podmienky",
+	"femiwiki-support-label": "Podpora",
+	"femiwiki-support-page": "Project:Podpora",
+	"unifiedextensionforfemiwiki-createaccount": "Zadajte nižšie „I am a feminist“ ([[Special:Captcha/help|ďalšie informácie]]):",
+	"unifiedextensionforfemiwiki-createaccount-fail": "Zadajte, prosím, do posledného poľa „I am a feminist“"
+}
