@@ -8,5 +8,7 @@
 	"femiwiki-support-label": "Used as page name and link at the bottom of each wiki page. The page is a support desk.",
 	"femiwiki-support-page": "{{doc-important|Do not change the <code>Project:</code> part.}}\nUsed as page for support desk. Used at the bottom of every page on the wiki.\n\nExample: [[{{MediaWiki:Support}}|{{MediaWiki:Support}}]].",
 	"unifiedextensionforfemiwiki-createaccount": "A QuestyCaptcha question written by FemiWiki shown to users trying to create a new account.",
-	"unifiedextensionforfemiwiki-createaccount-fail": "Used as failure message."
+	"unifiedextensionforfemiwiki-createaccount-fail": "Used as failure message.",
+  "echo-category-title-write-manual-notification": "",
+  "echo-pref-tooltip-write-manual-notification": ""
 }

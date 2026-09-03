@@ -40,6 +40,10 @@
         "DatabaseBlockStore",
         "MainWANObjectCache"
       ]
+    },
+    "WriteManualNotification": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\WriteManualNotification",
+      "services": ["MainConfig"]
     }
   },
   "Hooks": {
@@ -48,10 +52,26 @@
     "LinkerMakeExternalLink": "main",
     "SidebarBeforeOutput": "main",
     "SkinAddFooterLinks": "main",
-    "UserMailerTransformContent": "main"
+    "UserMailerTransformContent": "main",
+    "BeforeCreateEchoEvent": "WriteManualNotification"
+  },
+  "SpecialPages": {
+    "WriteManualNotification": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\Special\\SpecialWriteManualNotification",
+      "services": ["UserGroupManager"]
+    }
+  },
+  "AvailableRights": ["writemanualnotification-write"],
+  "GroupPermissions": {
+    "sysop": {
+      "writemanualnotification-write": true
+    }
   },
   "MessagesDirs": {
     "UnifiedExtensionForFemiwiki": ["i18n"]
+  },
+  "ExtensionMessagesFiles": {
+    "UnifiedExtensionForFemiwikiAlias": "UnifiedExtensionForFemiwiki.i18n.alias.php"
   },
   "config": {
     "UnifiedExtensionForFemiwikiPreAuth": {

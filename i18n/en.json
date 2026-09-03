@@ -8,5 +8,8 @@
   "femiwiki-support-label": "Support desk",
   "femiwiki-support-page": "Project:Support",
   "unifiedextensionforfemiwiki-createaccount": "Enter \"I am a feminist\" below ([[Special:Captcha/help|more info]]):",
-  "unifiedextensionforfemiwiki-createaccount-fail": "Please enter \"I am a feminist\" in the last form"
+  "unifiedextensionforfemiwiki-createaccount-fail": "Please enter \"I am a feminist\" in the last form",
+  "echo-category-title-write-manual-notification": "Announcement from the administrator",
+  "writemanualnotification-success": "Successed to send the notification.",
+  "echo-pref-tooltip-write-manual-notification": "Notify when a adiministrator sends a notification. This could be an announcement or a promotion message."
 }
