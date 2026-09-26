@@ -56,7 +56,6 @@ jobs:
           NEEDS_RELEASE_PLEASE_OUTPUTS_TAG_NAME: ${{ needs.release-please.outputs.tag_name }}
         run: |
           composer update --no-dev
-          yarn --prod
           tar --exclude-vcs -C .. -zcvf "../${NEEDS_RELEASE_PLEASE_OUTPUTS_TAG_NAME}.tar.gz" "$(basename "$(pwd)")"
           mv "../${NEEDS_RELEASE_PLEASE_OUTPUTS_TAG_NAME}.tar.gz" ./
 
