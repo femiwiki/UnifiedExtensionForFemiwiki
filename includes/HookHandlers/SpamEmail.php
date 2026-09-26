@@ -31,7 +31,6 @@ class SpamEmail implements
 	 * @param ILoadBalancer $loadBalancer
 	 * @param DatabaseBlockStore $databaseBlockStore
 	 * @param WANObjectCache $wanCache
-	 *
 	 */
 	public function __construct(
 		Config $config,
