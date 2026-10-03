@@ -70,6 +70,10 @@ class Main implements
 		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
 			return true;
 		}
+		// Parsoid (DataAccess::getExternalUrlInfo) passes no class and ignores $link
+		if ( !isset( $attribs['class'] ) ) {
+			return true;
+		}
 		$canonicalServer = RequestContext::getMain()->getConfig()->get( 'CanonicalServer' );
 		if ( strpos( $canonicalServer, parse_url( $url, PHP_URL_HOST ) ) === false ) {
 			return true;
