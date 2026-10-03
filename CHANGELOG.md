@@ -4,6 +4,13 @@ See https://github.com/femiwiki/UnifiedExtensionForFemiwiki/releases
 
 Versions and bullets are arranged chronologically from latest to oldest.
 
+## [5.0.1](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/compare/v5.0.0...v5.0.1) (2026-10-03)
+
+
+### Bug Fixes
+
+* Skip the external link hook when Parsoid calls it ([#259](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/issues/259)) ([5e4039c](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/commit/5e4039cfa1981e36eafb5fb748eb043c249fef29)), closes [#258](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/issues/258)
+
 ## [5.0.0](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/compare/v3.0.1...v5.0.0) (2026-06-27)
 
 
