@@ -27,9 +27,9 @@ jobs:
           # - api-testing
         exclude:
           # composer-test (parallel-lint, phpcs, minus-x) is MediaWiki-version
-          # independent, so run it on a single version (REL1_43). This avoids the
+          # independent, so run it on a single version (REL1_46). This avoids the
           # same phpcs annotations being emitted once per version and saves CI time.
-          - mediawiki-version: REL1_46
+          - mediawiki-version: REL1_43
             stage: composer-test
           - mediawiki-version: master
             stage: composer-test
@@ -41,11 +41,11 @@ jobs:
             stage: coverage
 
     runs-on: ubuntu-latest
-    # Only REL1_43's phan, npm-test, composer-test and selenium have to pass;
+    # Only REL1_46's phan, npm-test, composer-test and selenium have to pass;
     # the other legs still report, but a failure there does not fail the
     # required job.
     continue-on-error: >-
-      ${{ !(matrix.mediawiki-version == 'REL1_43'
+      ${{ !(matrix.mediawiki-version == 'REL1_46'
         && contains(fromJSON('["phan", "npm-test", "composer-test", "selenium"]'), matrix.stage)) }}
 
     # contents: read to clone; id-token: write so the Codecov upload can
