@@ -11,7 +11,7 @@ use Skin;
 use Wikibase\Client\WikibaseClient;
 
 class Main implements
-	\MediaWiki\Hook\LinkerMakeExternalLinkHook,
+	\MediaWiki\Linker\Hook\LinkerMakeExternalLinkHook,
 	\MediaWiki\Hook\SidebarBeforeOutputHook,
 	\MediaWiki\Hook\SkinAddFooterLinksHook,
 	\MediaWiki\Hook\UserMailerTransformContentHook,
