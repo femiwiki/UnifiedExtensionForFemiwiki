@@ -4,11 +4,10 @@ namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\HookHandlers;
 
 use Config;
 use ExtensionRegistry;
-use Html;
+use MediaWiki\Html\Html;
+use MediaWiki\Title\Title;
 use RequestContext;
 use Skin;
-use Title;
-use Wikibase\Client\ClientHooks;
 use Wikibase\Client\WikibaseClient;
 
 class Main implements
@@ -71,6 +70,10 @@ class Main implements
 		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
 			return true;
 		}
+		// Parsoid (DataAccess::getExternalUrlInfo) passes no class and ignores $link
+		if ( !isset( $attribs['class'] ) ) {
+			return true;
+		}
 		$canonicalServer = RequestContext::getMain()->getConfig()->get( 'CanonicalServer' );
 		if ( strpos( $canonicalServer, parse_url( $url, PHP_URL_HOST ) ) === false ) {
 			return true;
@@ -105,7 +108,7 @@ class Main implements
 	 */
 	private function addWikibaseNewItemLink( $skin, &$sidebar ): void {
 		if ( !ExtensionRegistry::getInstance()->isLoaded( 'WikibaseClient' ) ||
-			ClientHooks::buildWikidataItemLink( $skin ) ) {
+			$this->pageHasWikibaseItem( $skin ) ) {
 			return;
 		}
 		$title = $skin->getTitle();
@@ -124,6 +127,30 @@ class Main implements
 			'href' => $url,
 			'id' => 't-wikibase'
 		];
+	}
+
+	/**
+	 * Whether the current page is already connected to a Wikibase item.
+	 *
+	 * Replaces Wikibase\Client\ClientHooks::buildWikidataItemLink(), which was
+	 * removed from Wikibase on master. This replicates its check using only the
+	 * WikibaseClient service accessors and EntityIdLookup, which are present and
+	 * signature-identical on both REL1_43 and master.
+	 *
+	 * @param Skin $skin
+	 * @return bool
+	 */
+	private function pageHasWikibaseItem( $skin ): bool {
+		// The rendered page already carries the connected item id.
+		if ( $skin->getOutput()->getProperty( 'wikibase_item' ) !== null ) {
+			return true;
+		}
+		// Non-view actions: look it up from the store, as upstream did.
+		$title = $skin->getTitle();
+		if ( $title && $skin->getActionName() !== 'view' && $title->exists() ) {
+			return WikibaseClient::getEntityIdLookup()->getEntityIdForTitle( $title ) !== null;
+		}
+		return false;
 	}
 
 	/**

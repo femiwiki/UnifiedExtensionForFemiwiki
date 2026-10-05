@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"unifiedextensionforfemiwiki-desc": "Unha extensión para Femiwiki. Ampliar as páxinas [[Special:UncategorizedCategories]], [[Special:WhatLinksHere]] etc.",
+	"femiwiki-terms-label": "Termos",
+	"femiwiki-terms-page": "Project:Termos",
+	"femiwiki-support-label": "A Taberna",
+	"femiwiki-support-page": "Project:Asistencia",
+	"unifiedextensionforfemiwiki-createaccount": "Introduce «I am a feminist» embaixo ([[Special:Captcha/help|máis información]]):",
+	"unifiedextensionforfemiwiki-createaccount-fail": "Introduce «I am a feminist» no último formulario"
+}

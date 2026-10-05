@@ -1,6 +1,6 @@
 {
   "name": "UnifiedExtensionForFemiwiki",
-  "version": "3.0.1",
+  "version": "5.0.0",
   "author": "[https://femiwiki.com/ Femiwiki Team]",
   "url": "https://github.com/femiwiki/unifiedExtensionForFemiwiki",
   "descriptionmsg": "unifiedextensionforfemiwiki-desc",
@@ -9,7 +9,8 @@
   "requires": {
     "MediaWiki": ">= 1.46.0",
     "extensions": {
-      "CategoryTree": "*"
+      "CategoryTree": "*",
+      "SpamBlacklist": "*"
     }
   },
   "AutoloadNamespaces": {
@@ -27,19 +28,24 @@
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\Main",
       "services": ["MainConfig"]
     },
-    "RelatedArticles": {
-      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\RelatedArticles",
-      "services": ["MainConfig", "DBLoadBalancer"]
-    },
     "DefaultOptions": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\DefaultOptions",
       "services": ["MainConfig", "UserOptionsManager"]
+    },
+    "SpamEmail": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\SpamEmail",
+      "services": [
+        "MainConfig",
+        "DBLoadBalancer",
+        "DatabaseBlockStore",
+        "MainWANObjectCache"
+      ]
     }
   },
   "Hooks": {
     "HtmlPageLinkRendererBegin": "main",
+    "isValidEmailAddr": "SpamEmail",
     "LinkerMakeExternalLink": "main",
-    "OutputPageParserOutput": "RelatedArticles",
     "SidebarBeforeOutput": "main",
     "SkinAddFooterLinks": "main",
     "UserMailerTransformContent": "main"
@@ -52,17 +58,13 @@
       "value": false,
       "description": "If set to true, creating account would require an additional step."
     },
-    "UnifiedExtensionForFemiwikiRelatedArticlesUseLinks": {
-      "value": true,
-      "description": "If set to true, Related Articles on a page would show links from the page and links to the page."
-    },
     "UnifiedExtensionForFemiwikiModifyEmailTheme": {
       "value": false,
       "description": "Modifies the email theme to use the femiwiki theme."
     },
-    "UnifiedExtensionForFemiwikiRelatedArticlesTargetNamespaces": {
-      "value": [],
-      "description": "An array of namespaces which can be a target for RelatedArticles. Empty array means allowing all namespaces."
+    "UnifiedExtensionForFemiwikiBlockByEmail": {
+      "value": true,
+      "description": "Block emails used by block users"
     }
   },
   "TestAutoloadNamespaces": {

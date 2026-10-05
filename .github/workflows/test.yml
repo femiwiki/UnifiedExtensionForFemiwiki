@@ -1,0 +1,88 @@
+name: Quibble and Phan
+
+on:
+  workflow_call:
+
+permissions: {}
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        mediawiki-version:
+          - REL1_43
+          - REL1_46
+          - master
+        stage:
+          - phan
+          - coverage
+          - phpunit-unit
+          - phpunit
+          - phpunit-standalone
+          - npm-test
+          - composer-test
+          - selenium
+          # - qunit
+          # - api-testing
+        exclude:
+          # composer-test (parallel-lint, phpcs, minus-x) is MediaWiki-version
+          # independent, so run it on a single version (REL1_46). This avoids the
+          # same phpcs annotations being emitted once per version and saves CI time.
+          - mediawiki-version: REL1_43
+            stage: composer-test
+          - mediawiki-version: master
+            stage: composer-test
+          # coverage tooling (generatePHPUnitConfig.php) lives only on master, so
+          # the action skips it on other branches; don't spin up a no-op job.
+          - mediawiki-version: REL1_43
+            stage: coverage
+          - mediawiki-version: REL1_46
+            stage: coverage
+
+    runs-on: ubuntu-latest
+    # Only REL1_46's phan, npm-test, composer-test and selenium have to pass;
+    # the other legs still report, but a failure there does not fail the
+    # required job.
+    continue-on-error: >-
+      ${{ !(matrix.mediawiki-version == 'REL1_46'
+        && contains(fromJSON('["phan", "npm-test", "composer-test", "selenium"]'), matrix.stage)) }}
+
+    # contents: read to clone; id-token: write so the Codecov upload can
+    # authenticate via OIDC instead of an upload token.
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+
+      - uses: femiwiki/quibble-action@6dc4f959985c9de92561d630f4092f54042e745e # v2.3.1
+        id: quibble
+        with:
+          stage: ${{ matrix.stage }}
+          mediawiki-version: ${{ matrix.mediawiki-version }}
+          # Node 26 images stop WebdriverIO's browser download midway, so the
+          # selenium specs silently do not run; see femiwiki/FemiwikiSkin#991.
+          quibble-docker-tag: >-
+            ${{ case(
+              matrix.stage == 'selenium' && matrix.mediawiki-version != 'REL1_43',
+              '1.21.0-s2',
+              '') }}
+          # Wikibase is dropped from the selenium stage only. Quibble's selenium
+          # stage runs `npm run selenium-test` for every dependency that has it,
+          # and on REL1_43 Wikibase's wdio config globs in the wikibase-termbox
+          # specs, which need MinervaNeue + MobileFrontend to render their mobile
+          # UI and otherwise time out. Wikimedia's own downstream-extension jobs
+          # likewise do not run Wikibase's selenium. Wikibase stays for the other
+          # stages (phan/phpunit need it).
+          dependencies: ${{ matrix.stage == 'selenium' && 'CategoryTree SpamBlacklist' || 'CategoryTree SpamBlacklist Wikibase' }}
+
+      - name: Upload coverage to Codecov
+        if: matrix.stage == 'coverage'
+        uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
+        with:
+          use_oidc: true
+          directory: ${{ steps.quibble.outputs.coverage }}

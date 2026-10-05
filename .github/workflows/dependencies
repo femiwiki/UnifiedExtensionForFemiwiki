@@ -1,3 +1,9 @@
-CategoryTree
-Disambiguator
-Wikibase
+CategoryTree:
+  branch: auto
+  repo: auto
+SpamBlacklist:
+  branch: auto
+  repo: auto
+Wikibase:
+  branch: auto
+  repo: auto
