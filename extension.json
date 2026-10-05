@@ -40,12 +40,16 @@
         "DatabaseBlockStore",
         "MainWANObjectCache"
       ]
+    },
+    "Services": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\Services"
     }
   },
   "Hooks": {
     "HtmlPageLinkRendererBegin": "main",
     "isValidEmailAddr": "SpamEmail",
     "LinkerMakeExternalLink": "main",
+    "MediaWikiServices": "Services",
     "SidebarBeforeOutput": "main",
     "SkinAddFooterLinks": "main",
     "UserMailerTransformContent": "main"
@@ -65,10 +69,15 @@
     "UnifiedExtensionForFemiwikiBlockByEmail": {
       "value": true,
       "description": "Block emails used by block users"
+    },
+    "UnifiedExtensionForFemiwikiSuggestedEdits": {
+      "value": false,
+      "description": "Finds GrowthExperiments suggested edits with database queries, without CirrusSearch or WikimediaMessages."
     }
   },
   "TestAutoloadNamespaces": {
-    "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\Tests\\Unit\\": "tests/phpunit/unit/"
+    "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\Tests\\Unit\\": "tests/phpunit/unit/",
+    "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\Tests\\Integration\\": "tests/phpunit/integration/"
   },
   "manifest_version": 2
 }
