@@ -11,7 +11,6 @@ jobs:
       fail-fast: false
       matrix:
         mediawiki-version:
-          - REL1_43
           - REL1_46
           - master
         stage:
@@ -29,14 +28,10 @@ jobs:
           # composer-test (parallel-lint, phpcs, minus-x) is MediaWiki-version
           # independent, so run it on a single version (REL1_46). This avoids the
           # same phpcs annotations being emitted once per version and saves CI time.
-          - mediawiki-version: REL1_43
-            stage: composer-test
           - mediawiki-version: master
             stage: composer-test
           # coverage tooling (generatePHPUnitConfig.php) lives only on master, so
           # the action skips it on other branches; don't spin up a no-op job.
-          - mediawiki-version: REL1_43
-            stage: coverage
           - mediawiki-version: REL1_46
             stage: coverage
 
@@ -66,11 +61,7 @@ jobs:
           mediawiki-version: ${{ matrix.mediawiki-version }}
           # Node 26 images stop WebdriverIO's browser download midway, so the
           # selenium specs silently do not run; see femiwiki/FemiwikiSkin#991.
-          quibble-docker-tag: >-
-            ${{ case(
-              matrix.stage == 'selenium' && matrix.mediawiki-version != 'REL1_43',
-              '1.21.0-s2',
-              '') }}
+          quibble-docker-tag: ${{ matrix.stage == 'selenium' && '1.21.0-s2' || '' }}
           # Wikibase is dropped from the selenium stage only. Quibble's selenium
           # stage runs `npm run selenium-test` for every dependency that has it,
           # and on REL1_43 Wikibase's wdio config globs in the wikibase-termbox
