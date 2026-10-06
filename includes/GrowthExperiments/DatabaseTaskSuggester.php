@@ -100,18 +100,12 @@ class DatabaseTaskSuggester implements TaskSuggester {
 		$totalCount = 0;
 		$rowsByTaskType = [];
 		foreach ( $taskTypes as $taskType ) {
-			$queryBuilder = $this->newQueryBuilder( $dbr, $taskType );
+			$queryBuilder = $this->newQueryBuilder( $dbr, $taskType, $topicCategoryIds );
 			if ( !$queryBuilder ) {
 				continue;
 			}
 			if ( $excludePageIds ) {
 				$queryBuilder->andWhere( $dbr->expr( 'page_id', '!=', $excludePageIds ) );
-			}
-			if ( $topicCategoryIds ) {
-				// Any of the topics matches, as GrowthExperiments' OR mode does
-				$queryBuilder
-					->join( 'categorylinks', 'topic_cl', 'topic_cl.cl_from = page_id' )
-					->andWhere( [ 'topic_cl.cl_target_id' => $topicCategoryIds ] );
 			}
 			$totalCount += (int)( clone $queryBuilder )
 				->clearFields()
@@ -196,11 +190,13 @@ class DatabaseTaskSuggester implements TaskSuggester {
 	 *
 	 * @param IReadableDatabase $dbr
 	 * @param TemplateBasedTaskType $taskType
+	 * @param int[]|null $topicCategoryIds Pages in any of these categories, or any page if null
 	 * @return SelectQueryBuilder|null Null if none of the templates is used anywhere
 	 */
 	private function newQueryBuilder(
 		IReadableDatabase $dbr,
-		TemplateBasedTaskType $taskType
+		TemplateBasedTaskType $taskType,
+		?array $topicCategoryIds = null
 	): ?SelectQueryBuilder {
 		$templateIds = $this->getLinkTargetIds( $taskType->getTemplates() );
 		if ( !$templateIds ) {
@@ -217,6 +213,11 @@ class DatabaseTaskSuggester implements TaskSuggester {
 				'tl.tl_target_id' => $templateIds,
 			] )
 			->caller( __METHOD__ );
+		if ( $topicCategoryIds !== null ) {
+			$queryBuilder
+				->join( 'categorylinks', 'topic_cl', 'topic_cl.cl_from = page_id' )
+				->andWhere( [ 'topic_cl.cl_target_id' => $topicCategoryIds ] );
+		}
 
 		$excludedTemplateIds = $this->getLinkTargetIds( $taskType->getExcludedTemplates() );
 		if ( $excludedTemplateIds ) {
