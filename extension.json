@@ -43,6 +43,9 @@
     },
     "Services": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\Services"
+    },
+    "GrowthMessages": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\GrowthMessages"
     }
   },
   "Hooks": {
@@ -50,6 +53,7 @@
     "isValidEmailAddr": "SpamEmail",
     "LinkerMakeExternalLink": "main",
     "MediaWikiServices": "Services",
+    "MessageCacheFetchOverrides": "GrowthMessages",
     "SidebarBeforeOutput": "main",
     "SkinAddFooterLinks": "main",
     "UserMailerTransformContent": "main"

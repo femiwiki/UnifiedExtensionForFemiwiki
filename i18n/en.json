@@ -8,5 +8,15 @@
   "femiwiki-support-label": "Support desk",
   "femiwiki-support-page": "Project:Support",
   "unifiedextensionforfemiwiki-createaccount": "Enter \"I am a feminist\" below ([[Special:Captcha/help|more info]]):",
-  "unifiedextensionforfemiwiki-createaccount-fail": "Please enter \"I am a feminist\" in the last form"
+  "unifiedextensionforfemiwiki-createaccount-fail": "Please enter \"I am a feminist\" in the last form",
+  "unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-dialog-intro-header": "{{SITENAME}} is built by people like {{GENDER:|you}} working together.",
+  "unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-dialog-intro-subheader": "{{GENDER:|Your}} edits help improve {{SITENAME}} and further the mission to share free knowledge with the world. Continue to start with small suggested edits.",
+  "unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-subheader-other": "Help add to the world's knowledge with some easy fixes on {{SITENAME}} articles.",
+  "unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-mobilesummary-body-variant-d": "Help add to the world's knowledge with some easy fixes on {{SITENAME}} articles.",
+  "unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-dialog-difficulty-level-hard-description-header": "When {{GENDER:$1|you}} have learned about {{SITENAME}} best practices.",
+  "unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-shortdescription-references": "Add sources to verify {{SITENAME}} articles",
+  "unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-copyedit": "Copy editing is about making a small fix to the way an article is written, and it is a valuable and easy way to get used to editing {{SITENAME}}. Copy edits help articles be more professional and trustworthy.",
+  "unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-references": "Use books, websites, and news sources to validate that {{SITENAME}} is accurate, and add those to articles so that readers can feel confident that what they're reading is true.",
+  "unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-update": "Articles get out of date as time goes on and new events occur. Find and add the correct information so that {{SITENAME}} always contains the current truth.",
+  "unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-expand": "Many {{SITENAME}} articles are only a sentence or two long. Find more information and add it to make the article more complete."
 }

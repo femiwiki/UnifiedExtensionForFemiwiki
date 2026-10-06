@@ -8,5 +8,15 @@
 	"femiwiki-support-label": "Used as page name and link at the bottom of each wiki page. The page is a support desk.",
 	"femiwiki-support-page": "{{doc-important|Do not change the <code>Project:</code> part.}}\nUsed as page for support desk. Used at the bottom of every page on the wiki.\n\nExample: [[{{MediaWiki:Support}}|{{MediaWiki:Support}}]].",
 	"unifiedextensionforfemiwiki-createaccount": "A QuestyCaptcha question written by FemiWiki shown to users trying to create a new account.",
-	"unifiedextensionforfemiwiki-createaccount-fail": "Used as failure message."
+	"unifiedextensionforfemiwiki-createaccount-fail": "Used as failure message.",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-dialog-intro-header": "Replaces [[MediaWiki:Growthexperiments-homepage-startediting-dialog-intro-header]] from GrowthExperiments, naming this wiki instead of Wikipedia.",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-dialog-intro-subheader": "Replaces [[MediaWiki:Growthexperiments-homepage-startediting-dialog-intro-subheader]] from GrowthExperiments, naming this wiki instead of Wikipedia.",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-subheader-other": "Replaces [[MediaWiki:Growthexperiments-homepage-startediting-subheader-other]] from GrowthExperiments, naming this wiki instead of Wikipedia.",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-mobilesummary-body-variant-d": "Replaces [[MediaWiki:Growthexperiments-homepage-startediting-mobilesummary-body-variant-d]] from GrowthExperiments, naming this wiki instead of Wikipedia.",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-dialog-difficulty-level-hard-description-header": "Replaces [[MediaWiki:Growthexperiments-homepage-startediting-dialog-difficulty-level-hard-description-header]] from GrowthExperiments, naming this wiki instead of Wikipedia.",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-shortdescription-references": "Replaces [[MediaWiki:Growthexperiments-homepage-suggestededits-tasktype-shortdescription-references]] from GrowthExperiments, naming this wiki instead of Wikipedia.",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-copyedit": "Replaces [[MediaWiki:Growthexperiments-homepage-suggestededits-tasktype-description-copyedit]] from GrowthExperiments, naming this wiki instead of Wikipedia.",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-references": "Replaces [[MediaWiki:Growthexperiments-homepage-suggestededits-tasktype-description-references]] from GrowthExperiments, naming this wiki instead of Wikipedia.",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-update": "Replaces [[MediaWiki:Growthexperiments-homepage-suggestededits-tasktype-description-update]] from GrowthExperiments, naming this wiki instead of Wikipedia.",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-expand": "Replaces [[MediaWiki:Growthexperiments-homepage-suggestededits-tasktype-description-expand]] from GrowthExperiments, naming this wiki instead of Wikipedia."
 }
