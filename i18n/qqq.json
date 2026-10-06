@@ -18,5 +18,18 @@
 	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-copyedit": "Replaces [[MediaWiki:Growthexperiments-homepage-suggestededits-tasktype-description-copyedit]] from GrowthExperiments, naming this wiki instead of Wikipedia.",
 	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-references": "Replaces [[MediaWiki:Growthexperiments-homepage-suggestededits-tasktype-description-references]] from GrowthExperiments, naming this wiki instead of Wikipedia.",
 	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-update": "Replaces [[MediaWiki:Growthexperiments-homepage-suggestededits-tasktype-description-update]] from GrowthExperiments, naming this wiki instead of Wikipedia.",
-	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-expand": "Replaces [[MediaWiki:Growthexperiments-homepage-suggestededits-tasktype-description-expand]] from GrowthExperiments, naming this wiki instead of Wikipedia."
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-expand": "Replaces [[MediaWiki:Growthexperiments-homepage-suggestededits-tasktype-description-expand]] from GrowthExperiments, naming this wiki instead of Wikipedia.",
+	"communityconfiguration-femiwikisuggestededitstopics-title": "Title of the suggested edit topics page in [[Special:CommunityConfiguration]].",
+	"communityconfiguration-femiwikisuggestededitstopics-description": "Description of the suggested edit topics page in [[Special:CommunityConfiguration]].",
+	"communityconfiguration-femiwikisuggestededitstopics-groups-label": "Label in [[Special:CommunityConfiguration/FemiwikiSuggestedEditsTopics]].",
+	"communityconfiguration-femiwikisuggestededitstopics-groups-item-label": "Label in [[Special:CommunityConfiguration/FemiwikiSuggestedEditsTopics]].",
+	"communityconfiguration-femiwikisuggestededitstopics-groups-id-label": "Label in [[Special:CommunityConfiguration/FemiwikiSuggestedEditsTopics]].",
+	"communityconfiguration-femiwikisuggestededitstopics-groups-label-label": "Label in [[Special:CommunityConfiguration/FemiwikiSuggestedEditsTopics]].",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-label": "Label in [[Special:CommunityConfiguration/FemiwikiSuggestedEditsTopics]].",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-item-label": "Label in [[Special:CommunityConfiguration/FemiwikiSuggestedEditsTopics]].",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-id-label": "Label in [[Special:CommunityConfiguration/FemiwikiSuggestedEditsTopics]].",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-label-label": "Label in [[Special:CommunityConfiguration/FemiwikiSuggestedEditsTopics]].",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-group-label": "Label in [[Special:CommunityConfiguration/FemiwikiSuggestedEditsTopics]].",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-categories-label": "Label in [[Special:CommunityConfiguration/FemiwikiSuggestedEditsTopics]].",
+	"communityconfiguration-femiwikisuggestededitstopics-defaulttopics-label": "Label in [[Special:CommunityConfiguration/FemiwikiSuggestedEditsTopics]]."
 }

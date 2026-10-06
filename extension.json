@@ -46,6 +46,9 @@
     },
     "GrowthMessages": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\GrowthMessages"
+    },
+    "GrowthTopics": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\GrowthTopics"
     }
   },
   "Hooks": {
@@ -56,10 +59,28 @@
     "MessageCacheFetchOverrides": "GrowthMessages",
     "SidebarBeforeOutput": "main",
     "SkinAddFooterLinks": "main",
+    "UserGetDefaultOptions": "GrowthTopics",
     "UserMailerTransformContent": "main"
   },
   "MessagesDirs": {
     "UnifiedExtensionForFemiwiki": ["i18n"]
+  },
+  "attributes": {
+    "CommunityConfiguration": {
+      "Providers": {
+        "FemiwikiSuggestedEditsTopics": {
+          "store": {
+            "type": "wikipage",
+            "args": ["MediaWiki:FemiwikiSuggestedEditsTopics.json"]
+          },
+          "validator": {
+            "type": "jsonschema",
+            "args": ["MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\GrowthExperiments\\TopicsSchema"]
+          },
+          "type": "data"
+        }
+      }
+    }
   },
   "config": {
     "UnifiedExtensionForFemiwikiPreAuth": {

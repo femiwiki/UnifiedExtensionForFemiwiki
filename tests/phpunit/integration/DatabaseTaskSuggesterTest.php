@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\Tests\Integration;
 
 use GrowthExperiments\GrowthExperimentsServices;
+use GrowthExperiments\HomepageModules\SuggestedEdits;
 use GrowthExperiments\NewcomerTasks\ConfigurationLoader\ConfigurationLoader;
 use GrowthExperiments\NewcomerTasks\NewcomerTasksUserOptionsLookup;
 use GrowthExperiments\NewcomerTasks\Task\Task;
@@ -11,6 +12,10 @@ use GrowthExperiments\NewcomerTasks\Task\TaskSetFilters;
 use GrowthExperiments\NewcomerTasks\TaskSuggester\ErrorForwardingTaskSuggester;
 use GrowthExperiments\NewcomerTasks\TaskType\TaskType;
 use GrowthExperiments\NewcomerTasks\TaskType\TemplateBasedTaskType;
+use GrowthExperiments\NewcomerTasks\Topic\ITopicRegistry;
+use MediaWiki\Context\RequestContext;
+use MediaWiki\Extension\UnifiedExtensionForFemiwiki\GrowthExperiments\CategoryTopic;
+use MediaWiki\Extension\UnifiedExtensionForFemiwiki\GrowthExperiments\CategoryTopicRegistry;
 use MediaWiki\Extension\UnifiedExtensionForFemiwiki\GrowthExperiments\DatabaseTaskSuggester;
 use MediaWiki\Extension\UnifiedExtensionForFemiwiki\GrowthExperiments\DatabaseTaskSuggesterFactory;
 use MediaWiki\Extension\UnifiedExtensionForFemiwiki\GrowthExperiments\FeatureManager;
@@ -42,8 +47,8 @@ class DatabaseTaskSuggesterTest extends MediaWikiIntegrationTestCase {
 		$this->editPage( 'Template:Copyedit', 'x' );
 		$this->editPage( 'Template:Stub', 'x' );
 		$this->editPage( 'Template:Ignore', 'x' );
-		$this->editPage( 'Plain', '{{Copyedit}}' );
-		$this->editPage( 'Both', '{{Copyedit}}{{Stub}}' );
+		$this->editPage( 'Plain', '{{Copyedit}}[[Category:Feminism]]' );
+		$this->editPage( 'Both', '{{Copyedit}}{{Stub}}[[Category:Games]]' );
 		$this->editPage( 'Stub only', '{{Stub}}' );
 		$this->editPage( 'Excluded by template', '{{Copyedit}}{{Ignore}}' );
 		$this->editPage( 'Excluded by category', '{{Copyedit}}[[Category:Ignore]]' );
@@ -59,14 +64,19 @@ class DatabaseTaskSuggesterTest extends MediaWikiIntegrationTestCase {
 			[ new TitleValue( NS_CATEGORY, 'Ignore' ) ] );
 	}
 
-	private function newSuggester(): DatabaseTaskSuggester {
+	/**
+	 * @param CategoryTopic[] $topics
+	 * @return DatabaseTaskSuggester
+	 */
+	private function newSuggester( array $topics = [] ): DatabaseTaskSuggester {
 		$userOptionsLookup = $this->createMock( NewcomerTasksUserOptionsLookup::class );
 		$userOptionsLookup->method( 'filterTaskTypes' )->willReturnArgument( 0 );
 		return new DatabaseTaskSuggester(
 			$userOptionsLookup,
 			$this->getServiceContainer()->getConnectionProvider(),
 			$this->getServiceContainer()->getLinkTargetLookup(),
-			[ $this->newTaskType( 'copyedit', 'Copyedit' ), $this->newTaskType( 'expand', 'Stub' ) ]
+			[ $this->newTaskType( 'copyedit', 'Copyedit' ), $this->newTaskType( 'expand', 'Stub' ) ],
+			$topics
 		);
 	}
 
@@ -108,6 +118,29 @@ class DatabaseTaskSuggesterTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [ 'copyedit:Both' ], $this->getTitles( $taskSet ) );
 	}
 
+	public function testSuggestTopics() {
+		$user = new UserIdentityValue( 1, 'User' );
+		$suggester = $this->newSuggester( [
+			new CategoryTopic( 'feminism', 'society', 'Feminism', 'Society', [ 'Feminism' ] ),
+			new CategoryTopic( 'games', 'culture', 'Games', 'Culture', [ 'Games' ] ),
+			new CategoryTopic( 'empty', 'culture', 'Empty', 'Culture', [ 'Nothing' ] ),
+		] );
+
+		$taskSet = $suggester->suggest( $user, new TaskSetFilters( [ 'copyedit' ], [ 'feminism' ] ) );
+		$this->assertSame( [ 'copyedit:Plain' ], $this->getTitles( $taskSet ) );
+		$this->assertSame( 1, $taskSet->getTotalCount() );
+
+		$taskSet = $suggester->suggest( $user, new TaskSetFilters( [ 'copyedit' ], [ 'feminism', 'games' ] ) );
+		$this->assertSame( [ 'copyedit:Both', 'copyedit:Plain' ], $this->getTitles( $taskSet ) );
+
+		$taskSet = $suggester->suggest( $user, new TaskSetFilters( [ 'copyedit' ], [ 'empty' ] ) );
+		$this->assertCount( 0, $taskSet );
+
+		// A topic the wiki has since removed filters nothing
+		$taskSet = $suggester->suggest( $user, new TaskSetFilters( [ 'copyedit' ], [ 'removed' ] ) );
+		$this->assertSame( [ 'copyedit:Both', 'copyedit:Plain' ], $this->getTitles( $taskSet ) );
+	}
+
 	public function testSuggestInvalidTaskType() {
 		$taskSet = $this->newSuggester()->suggest( new UserIdentityValue( 1, 'User' ),
 			new TaskSetFilters( [ 'link-recommendation' ] ) );
@@ -144,6 +177,7 @@ class DatabaseTaskSuggesterTest extends MediaWikiIntegrationTestCase {
 			$this->createNoOpMock( NewcomerTasksUserOptionsLookup::class ),
 			$this->getServiceContainer()->getConnectionProvider(),
 			$this->getServiceContainer()->getLinkTargetLookup(),
+			$this->createNoOpMock( ITopicRegistry::class ),
 			$logger
 		);
 		$this->assertInstanceOf( ErrorForwardingTaskSuggester::class, $factory->create() );
@@ -166,6 +200,52 @@ class DatabaseTaskSuggesterTest extends MediaWikiIntegrationTestCase {
 		$featureManager = $growthServices->getFeatureManager();
 		$this->assertInstanceOf( FeatureManager::class, $featureManager );
 		$this->assertTrue( $featureManager->isNewcomerTasksAvailable() );
+		$this->assertInstanceOf( CategoryTopicRegistry::class, $growthServices->getTopicRegistry() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Extension\UnifiedExtensionForFemiwiki\GrowthExperiments\CategoryTopicRegistry
+	 * @covers \MediaWiki\Extension\UnifiedExtensionForFemiwiki\GrowthExperiments\CategoryTopic
+	 * @covers \MediaWiki\Extension\UnifiedExtensionForFemiwiki\GrowthExperiments\TopicsSchema
+	 * @covers \MediaWiki\Extension\UnifiedExtensionForFemiwiki\HookHandlers\GrowthTopics
+	 */
+	public function testTopicsFromWiki() {
+		$this->overrideConfigValue( 'UnifiedExtensionForFemiwikiSuggestedEdits', true );
+		$this->editPage( 'MediaWiki:FemiwikiSuggestedEditsTopics.json', json_encode( [
+			'Groups' => [ [ 'id' => 'society', 'label' => 'Society' ] ],
+			'Topics' => [
+				[
+					'id' => 'feminism',
+					'label' => 'Feminism',
+					'group' => 'society',
+					'categories' => [ 'Category:Feminism', 'Women' ],
+				],
+			],
+			'DefaultTopics' => [ 'feminism', 'removed' ],
+		] ) );
+		// Saving the page already loaded the registry, still empty, for the default options
+		$this->resetServices();
+
+		$growthServices = GrowthExperimentsServices::wrap( $this->getServiceContainer() );
+		$topics = $growthServices->getTopicRegistry()->getTopics();
+		$this->assertCount( 1, $topics );
+		$this->assertInstanceOf( CategoryTopic::class, $topics[0] );
+		$this->assertSame( [
+			'id' => 'feminism',
+			'name' => 'Feminism',
+			'groupId' => 'society',
+			'groupName' => 'Society',
+		], $topics[0]->getViewData( RequestContext::getMain() ) );
+		$this->assertSame( [ 'Feminism', 'Women' ], array_map( static function ( $category ) {
+			return $category->getDBkey();
+		}, $topics[0]->getCategories() ) );
+
+		$taskSet = $growthServices->getTaskSuggesterFactory()->create()->suggest(
+			new UserIdentityValue( 1, 'User' ), new TaskSetFilters( [ 'copyedit' ], [ 'feminism' ] ) );
+		$this->assertInstanceOf( TaskSet::class, $taskSet );
+
+		$this->assertSame( '["feminism"]', $this->getServiceContainer()->getUserOptionsLookup()
+			->getDefaultOption( SuggestedEdits::TOPICS_ORES_PREF ) );
 	}
 
 	/**

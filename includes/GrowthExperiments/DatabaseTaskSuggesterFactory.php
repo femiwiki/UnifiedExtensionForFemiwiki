@@ -6,6 +6,7 @@ use GrowthExperiments\NewcomerTasks\ConfigurationLoader\ConfigurationLoader;
 use GrowthExperiments\NewcomerTasks\NewcomerTasksUserOptionsLookup;
 use GrowthExperiments\NewcomerTasks\TaskSuggester\ErrorForwardingTaskSuggester;
 use GrowthExperiments\NewcomerTasks\TaskSuggester\TaskSuggesterFactory;
+use GrowthExperiments\NewcomerTasks\Topic\ITopicRegistry;
 use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\Status\Status;
 use Psr\Log\LoggerInterface;
@@ -19,6 +20,7 @@ class DatabaseTaskSuggesterFactory extends TaskSuggesterFactory {
 		private NewcomerTasksUserOptionsLookup $newcomerTasksUserOptionsLookup,
 		private IConnectionProvider $connectionProvider,
 		private LinkTargetLookup $linkTargetLookup,
+		private ITopicRegistry $topicRegistry,
 		LoggerInterface $logger
 	) {
 		// GrowthExperiments 1.46 sets the logger with setLogger(), later releases in the
@@ -39,7 +41,8 @@ class DatabaseTaskSuggesterFactory extends TaskSuggesterFactory {
 			$this->newcomerTasksUserOptionsLookup,
 			$this->connectionProvider,
 			$this->linkTargetLookup,
-			$taskTypes
+			$taskTypes,
+			$this->topicRegistry->getTopics()
 		);
 	}
 }

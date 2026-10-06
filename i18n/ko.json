@@ -22,5 +22,18 @@
 	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-copyedit": "교열은 문서에 자잘한 수정을 통해 문서의 잘못된 점을 바로잡는 일이고, {{SITENAME}} 편집에 익숙해지는 빠르고 가치있는 작업입니다. 교열은 문서가 더 전문적이고 신뢰할 수 있는 문서가 되게 해 줍니다.",
 	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-references": "책, 웹사이트, 뉴스 사이트를 통해 {{SITENAME}}의 내용이 정확하고 독자가 읽는 내용을 확인할 수 있는 링크를 추가해 주세요.",
 	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-update": "시간이 지나고 새로운 일이 발생하면서 문서가 낡아집니다. {{SITENAME}}가 현재 시점에 맞는 정보를 저장하도록 새로운 사실을 찾아 저장해 주세요.",
-	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-expand": "많은 {{SITENAME}} 문서의 내용은 한 두 줄밖에 되지 않습니다. 더 많은 정보를 찾아 문서를 살찌워 주세요."
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-expand": "많은 {{SITENAME}} 문서의 내용은 한 두 줄밖에 되지 않습니다. 더 많은 정보를 찾아 문서를 살찌워 주세요.",
+	"communityconfiguration-femiwikisuggestededitstopics-title": "편집 제안 주제",
+	"communityconfiguration-femiwikisuggestededitstopics-description": "새 사용자가 편집 제안을 고를 때 쓰는 주제입니다. 주제에 적은 분류 중 하나에 속한 문서가 그 주제로 추천됩니다.",
+	"communityconfiguration-femiwikisuggestededitstopics-groups-label": "주제 묶음",
+	"communityconfiguration-femiwikisuggestededitstopics-groups-item-label": "묶음",
+	"communityconfiguration-femiwikisuggestededitstopics-groups-id-label": "ID",
+	"communityconfiguration-femiwikisuggestededitstopics-groups-label-label": "이름",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-label": "주제",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-item-label": "주제",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-id-label": "ID",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-label-label": "이름",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-group-label": "묶음 ID",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-categories-label": "분류",
+	"communityconfiguration-femiwikisuggestededitstopics-defaulttopics-label": "주제를 고르지 않은 사용자에게 미리 골라 둘 주제"
 }
