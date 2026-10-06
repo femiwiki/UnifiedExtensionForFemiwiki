@@ -223,6 +223,8 @@ class DatabaseTaskSuggesterTest extends MediaWikiIntegrationTestCase {
 			],
 			'DefaultTopics' => [ 'feminism', 'removed' ],
 		] ) );
+		// Saving the page already loaded the registry, still empty, for the default options
+		$this->resetServices();
 
 		$growthServices = GrowthExperimentsServices::wrap( $this->getServiceContainer() );
 		$topics = $growthServices->getTopicRegistry()->getTopics();
