@@ -4,6 +4,20 @@ See https://github.com/femiwiki/UnifiedExtensionForFemiwiki/releases
 
 Versions and bullets are arranged chronologically from latest to oldest.
 
+## [5.1.0](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/compare/v5.0.1...v5.1.0) (2026-10-06)
+
+
+### Features
+
+* Let suggested edits be filtered by category topics ([#269](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/issues/269)) ([69476a4](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/commit/69476a40fb0d933e5af041d728d03dfbb21ffe45))
+* name this wiki instead of Wikipedia in GrowthExperiments messages ([#268](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/issues/268)) ([bf6ff1c](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/commit/bf6ff1ce4986a3da99d6e5812377c45f93e0e764))
+* Suggest edits for GrowthExperiments from database queries ([#262](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/issues/262)) ([0517aa8](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/commit/0517aa80142ae5e7bd99f63b678148666e23847f))
+
+
+### Bug Fixes
+
+* Update namespace of hook ([#216](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/issues/216)) ([b569e3a](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/commit/b569e3a6eab1d0ff10c148441ca531a7ff8d95ea))
+
 ## [5.0.1](https://github.com/femiwiki/UnifiedExtensionForFemiwiki/compare/v5.0.0...v5.0.1) (2026-10-03)
 
 
