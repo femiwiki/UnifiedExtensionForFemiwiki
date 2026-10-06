@@ -135,7 +135,7 @@ class Main implements
 	 * Replaces Wikibase\Client\ClientHooks::buildWikidataItemLink(), which was
 	 * removed from Wikibase on master. This replicates its check using only the
 	 * WikibaseClient service accessors and EntityIdLookup, which are present and
-	 * signature-identical on both REL1_43 and master.
+	 * signature-identical on both REL1_46 and master.
 	 *
 	 * @param Skin $skin
 	 * @return bool
