@@ -3,6 +3,8 @@
 namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\HookHandlers;
 
 use GrowthExperiments\GrowthExperimentsServices;
+use MediaWiki\Extension\CommunityConfiguration\CommunityConfigurationServices;
+use MediaWiki\Extension\UnifiedExtensionForFemiwiki\GrowthExperiments\CategoryTopicRegistry;
 use MediaWiki\Extension\UnifiedExtensionForFemiwiki\GrowthExperiments\DatabaseTaskSuggesterFactory;
 use MediaWiki\Extension\UnifiedExtensionForFemiwiki\GrowthExperiments\FeatureManager;
 use MediaWiki\Hook\MediaWikiServicesHook;
@@ -13,6 +15,9 @@ use MediaWiki\Registration\ExtensionRegistry;
 // @phan-file-suppress UnusedPluginSuppression, UnusedPluginFileSuppression
 
 class Services implements MediaWikiServicesHook {
+
+	/** CommunityConfiguration provider of the suggested edit topics */
+	public const TOPICS_PROVIDER = 'FemiwikiSuggestedEditsTopics';
 
 	/**
 	 * Let GrowthExperiments suggest edits without CirrusSearch or WikimediaMessages.
@@ -59,6 +64,19 @@ class Services implements MediaWikiServicesHook {
 			}
 		);
 		$services->addServiceManipulator(
+			'GrowthExperimentsTopicRegistry',
+			static function ( $registry, MediaWikiServices $services ): ?CategoryTopicRegistry {
+				if ( !self::isEnabled( $services ) ) {
+					return null;
+				}
+				return new CategoryTopicRegistry(
+					CommunityConfigurationServices::wrap( $services )->getConfigurationProviderFactory()
+						->newProvider( self::TOPICS_PROVIDER ),
+					$services->getTitleParser()
+				);
+			}
+		);
+		$services->addServiceManipulator(
 			'GrowthExperimentsTaskSuggesterFactory',
 			static function ( $factory, MediaWikiServices $services ): ?DatabaseTaskSuggesterFactory {
 				if ( !self::isEnabled( $services ) ) {
@@ -70,6 +88,7 @@ class Services implements MediaWikiServicesHook {
 					$growthServices->getNewcomerTasksUserOptionsLookup(),
 					$services->getConnectionProvider(),
 					$services->getLinkTargetLookup(),
+					$growthServices->getTopicRegistry(),
 					$growthServices->getLogger()
 				);
 			}

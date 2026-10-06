@@ -28,9 +28,13 @@ if ( is_dir( '../../extensions/GrowthExperiments' ) ) {
 	$cfg['exclude_analysis_directory_list'][] = '../../extensions/GrowthExperiments';
 } else {
 	$cfg['exclude_file_list'] = array_merge( $cfg['exclude_file_list'], [
+		'includes/GrowthExperiments/CategoryTopic.php',
+		'includes/GrowthExperiments/CategoryTopicRegistry.php',
 		'includes/GrowthExperiments/DatabaseTaskSuggester.php',
 		'includes/GrowthExperiments/DatabaseTaskSuggesterFactory.php',
 		'includes/GrowthExperiments/FeatureManager.php',
+		'includes/GrowthExperiments/TopicsSchema.php',
+		'includes/HookHandlers/GrowthTopics.php',
 		'includes/HookHandlers/Services.php',
 		'tests/phpunit/integration/DatabaseTaskSuggesterTest.php',
 	] );

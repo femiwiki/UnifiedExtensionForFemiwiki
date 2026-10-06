@@ -21,7 +21,8 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * Finds template-based tasks with database queries instead of CirrusSearch.
- * Topics are not supported.
+ * A topic matches articles directly in one of its categories; FacetedCategory already puts
+ * articles in the parent categories of `/`-named ones.
  */
 class DatabaseTaskSuggester implements TaskSuggester {
 
@@ -31,22 +32,32 @@ class DatabaseTaskSuggester implements TaskSuggester {
 	/** @var TemplateBasedTaskType[] Keyed by task type ID */
 	private array $taskTypes = [];
 
+	/** @var CategoryTopic[] Keyed by topic ID */
+	private array $topics = [];
+
 	/**
 	 * @param NewcomerTasksUserOptionsLookup $newcomerTasksUserOptionsLookup
 	 * @param IConnectionProvider $connectionProvider
 	 * @param LinkTargetLookup $linkTargetLookup
 	 * @param \GrowthExperiments\NewcomerTasks\TaskType\TaskType[] $taskTypes
+	 * @param \GrowthExperiments\NewcomerTasks\Topic\Topic[] $topics
 	 */
 	public function __construct(
 		private NewcomerTasksUserOptionsLookup $newcomerTasksUserOptionsLookup,
 		private IConnectionProvider $connectionProvider,
 		private LinkTargetLookup $linkTargetLookup,
-		array $taskTypes
+		array $taskTypes,
+		array $topics = []
 	) {
 		foreach ( $taskTypes as $taskType ) {
 			// The other task types need services only Wikimedia runs
 			if ( $taskType instanceof TemplateBasedTaskType ) {
 				$this->taskTypes[$taskType->getId()] = $taskType;
+			}
+		}
+		foreach ( $topics as $topic ) {
+			if ( $topic instanceof CategoryTopic ) {
+				$this->topics[$topic->getId()] = $topic;
 			}
 		}
 	}
@@ -81,6 +92,11 @@ class DatabaseTaskSuggester implements TaskSuggester {
 		$limit ??= self::DEFAULT_LIMIT;
 		$dbr = $this->connectionProvider->getReplicaDatabase();
 		$excludePageIds = $options['excludePageIds'] ?? [];
+		$topicCategoryIds = $this->getTopicCategoryIds( $taskSetFilters->getTopicFilters() );
+		if ( $topicCategoryIds === [] ) {
+			// None of the chosen topics' categories has any page
+			return new TaskSet( [], 0, 0, $taskSetFilters );
+		}
 		$totalCount = 0;
 		$rowsByTaskType = [];
 		foreach ( $taskTypes as $taskType ) {
@@ -90,6 +106,12 @@ class DatabaseTaskSuggester implements TaskSuggester {
 			}
 			if ( $excludePageIds ) {
 				$queryBuilder->andWhere( $dbr->expr( 'page_id', '!=', $excludePageIds ) );
+			}
+			if ( $topicCategoryIds ) {
+				// Any of the topics matches, as GrowthExperiments' OR mode does
+				$queryBuilder
+					->join( 'categorylinks', 'topic_cl', 'topic_cl.cl_from = page_id' )
+					->andWhere( [ 'topic_cl.cl_target_id' => $topicCategoryIds ] );
 			}
 			$totalCount += (int)( clone $queryBuilder )
 				->clearFields()
@@ -151,6 +173,21 @@ class DatabaseTaskSuggester implements TaskSuggester {
 			$taskSet->getFilters(), $taskSet->getInvalidTasks() );
 		$filteredTaskSet->setDebugData( $taskSet->getDebugData() );
 		return $filteredTaskSet;
+	}
+
+	/**
+	 * @param string[] $topicIds
+	 * @return int[]|null Link target IDs of the topics' categories, or null to match any page.
+	 *   Topics that no longer exist are ignored, so stale preferences don't hide every task.
+	 */
+	private function getTopicCategoryIds( array $topicIds ): ?array {
+		$categories = [];
+		foreach ( $topicIds as $topicId ) {
+			if ( isset( $this->topics[$topicId] ) ) {
+				$categories = array_merge( $categories, $this->topics[$topicId]->getCategories() );
+			}
+		}
+		return $categories ? $this->getLinkTargetIds( $categories ) : null;
 	}
 
 	/**

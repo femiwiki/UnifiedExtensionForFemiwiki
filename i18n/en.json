@@ -18,5 +18,18 @@
   "unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-copyedit": "Copy editing is about making a small fix to the way an article is written, and it is a valuable and easy way to get used to editing {{SITENAME}}. Copy edits help articles be more professional and trustworthy.",
   "unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-references": "Use books, websites, and news sources to validate that {{SITENAME}} is accurate, and add those to articles so that readers can feel confident that what they're reading is true.",
   "unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-update": "Articles get out of date as time goes on and new events occur. Find and add the correct information so that {{SITENAME}} always contains the current truth.",
-  "unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-expand": "Many {{SITENAME}} articles are only a sentence or two long. Find more information and add it to make the article more complete."
+  "unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-expand": "Many {{SITENAME}} articles are only a sentence or two long. Find more information and add it to make the article more complete.",
+  "communityconfiguration-femiwikisuggestededitstopics-title": "Suggested edit topics",
+  "communityconfiguration-femiwikisuggestededitstopics-description": "Topics newcomers can choose suggested edits from. A topic matches the articles in any of its categories.",
+  "communityconfiguration-femiwikisuggestededitstopics-groups-label": "Topic groups",
+  "communityconfiguration-femiwikisuggestededitstopics-groups-item-label": "Group",
+  "communityconfiguration-femiwikisuggestededitstopics-groups-id-label": "ID",
+  "communityconfiguration-femiwikisuggestededitstopics-groups-label-label": "Name",
+  "communityconfiguration-femiwikisuggestededitstopics-topics-label": "Topics",
+  "communityconfiguration-femiwikisuggestededitstopics-topics-item-label": "Topic",
+  "communityconfiguration-femiwikisuggestededitstopics-topics-id-label": "ID",
+  "communityconfiguration-femiwikisuggestededitstopics-topics-label-label": "Name",
+  "communityconfiguration-femiwikisuggestededitstopics-topics-group-label": "Group ID",
+  "communityconfiguration-femiwikisuggestededitstopics-topics-categories-label": "Categories",
+  "communityconfiguration-femiwikisuggestededitstopics-defaulttopics-label": "Topics selected for users who have not chosen any"
 }
