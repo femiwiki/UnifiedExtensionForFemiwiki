@@ -20,4 +20,20 @@ $cfg['exclude_analysis_directory_list'] = array_merge(
 	]
 );
 
+// CI checks out GrowthExperiments from REL1_46 on; elsewhere skip the code that uses it
+if ( is_dir( '../../extensions/GrowthExperiments' ) ) {
+	$cfg['directory_list'][] = '../../extensions/CommunityConfiguration';
+	$cfg['directory_list'][] = '../../extensions/GrowthExperiments';
+	$cfg['exclude_analysis_directory_list'][] = '../../extensions/CommunityConfiguration';
+	$cfg['exclude_analysis_directory_list'][] = '../../extensions/GrowthExperiments';
+} else {
+	$cfg['exclude_file_list'] = array_merge( $cfg['exclude_file_list'], [
+		'includes/GrowthExperiments/DatabaseTaskSuggester.php',
+		'includes/GrowthExperiments/DatabaseTaskSuggesterFactory.php',
+		'includes/GrowthExperiments/FeatureManager.php',
+		'includes/HookHandlers/Services.php',
+		'tests/phpunit/integration/DatabaseTaskSuggesterTest.php',
+	] );
+}
+
 return $cfg;
