@@ -77,11 +77,11 @@ jobs:
           dependencies: >-
             ${{ case(
               matrix.stage == 'selenium',
-              'CategoryTree SpamBlacklist',
+              'CategoryTree SpamBlacklist Echo',
               matrix.mediawiki-version != 'REL1_43'
                 && contains(fromJSON('["phan", "phpunit-standalone", "coverage"]'), matrix.stage),
-              'CategoryTree SpamBlacklist Wikibase CommunityConfiguration GrowthExperiments VisualEditor',
-              'CategoryTree SpamBlacklist Wikibase') }}
+              'CategoryTree SpamBlacklist Echo Wikibase CommunityConfiguration GrowthExperiments VisualEditor',
+              'CategoryTree SpamBlacklist Echo Wikibase') }}
 
       - name: Upload coverage to Codecov
         if: matrix.stage == 'coverage'

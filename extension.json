@@ -10,7 +10,8 @@
     "MediaWiki": ">= 1.46.0",
     "extensions": {
       "CategoryTree": "*",
-      "SpamBlacklist": "*"
+      "SpamBlacklist": "*",
+      "Echo": "*"
     }
   },
   "AutoloadNamespaces": {
@@ -49,9 +50,13 @@
     },
     "GrowthTopics": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\GrowthTopics"
+    },
+    "ManualNotification": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\ManualNotification"
     }
   },
   "Hooks": {
+    "BeforeCreateEchoEvent": "ManualNotification",
     "HtmlPageLinkRendererBegin": "main",
     "isValidEmailAddr": "SpamEmail",
     "LinkerMakeExternalLink": "main",
@@ -62,8 +67,42 @@
     "UserGetDefaultOptions": "GrowthTopics",
     "UserMailerTransformContent": "main"
   },
+  "SpecialPages": {
+    "WriteManualNotification": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\Special\\SpecialWriteManualNotification",
+      "services": [
+        "UserGroupManager",
+        "ConnectionProvider",
+        "JobQueueGroup",
+        "MainObjectStash"
+      ]
+    }
+  },
+  "JobClasses": {
+    "writeManualNotification": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\ManualNotification\\ManualNotificationJob",
+      "services": ["NotificationService", "ConnectionProvider", "JobQueueGroup"],
+      "needsPage": false
+    }
+  },
+  "AvailableRights": ["writemanualnotification"],
+  "GroupPermissions": {
+    "sysop": {
+      "writemanualnotification": true
+    }
+  },
+  "LogTypes": ["manualnotification"],
+  "LogActionsHandlers": {
+    "manualnotification/*": "MediaWiki\\Logging\\LogFormatter"
+  },
+  "DefaultUserOptions": {
+    "echo-subscriptions-email-write-manual-notification": false
+  },
   "MessagesDirs": {
     "UnifiedExtensionForFemiwiki": ["i18n"]
+  },
+  "ExtensionMessagesFiles": {
+    "UnifiedExtensionForFemiwikiAlias": "UnifiedExtensionForFemiwiki.i18n.alias.php"
   },
   "attributes": {
     "CommunityConfiguration": {
@@ -98,6 +137,10 @@
     "UnifiedExtensionForFemiwikiSuggestedEdits": {
       "value": false,
       "description": "Finds GrowthExperiments suggested edits with database queries, without CirrusSearch or WikimediaMessages."
+    },
+    "UnifiedExtensionForFemiwikiManualNotificationBatchSize": {
+      "value": 500,
+      "description": "How many users one job of Special:WriteManualNotification notifies before queueing the next."
     }
   },
   "TestAutoloadNamespaces": {
