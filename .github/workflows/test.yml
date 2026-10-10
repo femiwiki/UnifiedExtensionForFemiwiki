@@ -62,24 +62,13 @@ jobs:
           # Node 26 images stop WebdriverIO's browser download midway, so the
           # selenium specs silently do not run; see femiwiki/FemiwikiSkin#991.
           quibble-docker-tag: ${{ matrix.stage == 'selenium' && '1.21.0-s2' || '' }}
-          # Wikibase is dropped from the selenium stage only. Quibble's selenium
-          # stage runs `npm run selenium-test` for every dependency that has it,
-          # and on REL1_43 Wikibase's wdio config globs in the wikibase-termbox
-          # specs, which need MinervaNeue + MobileFrontend to render their mobile
-          # UI and otherwise time out. Wikimedia's own downstream-extension jobs
-          # likewise do not run Wikibase's selenium. Wikibase stays for the other
-          # stages (phan/phpunit need it).
-          # GrowthExperiments, with what it requires, goes in for phan,
-          # phpunit-standalone and coverage, which run only this extension's
-          # tests. The other PHPUnit stages would also run GrowthExperiments' own
-          # tests, which expect Wikimedia's setup. REL1_43 is left out: the code
-          # using it starts at GrowthExperiments 1.46.
+          # selenium leaves Wikibase out, as Wikimedia's downstream jobs do. GrowthExperiments goes in
+          # only where just this extension's tests run, since its own tests expect Wikimedia's setup.
           dependencies: >-
             ${{ case(
               matrix.stage == 'selenium',
               'CategoryTree SpamBlacklist Echo',
-              matrix.mediawiki-version != 'REL1_43'
-                && contains(fromJSON('["phan", "phpunit-standalone", "coverage"]'), matrix.stage),
+              contains(fromJSON('["phan", "phpunit-standalone", "coverage"]'), matrix.stage),
               'CategoryTree SpamBlacklist Echo Wikibase CommunityConfiguration GrowthExperiments VisualEditor',
               'CategoryTree SpamBlacklist Echo Wikibase') }}
 
