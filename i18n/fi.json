@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wikipeedikko"
+		]
+	},
+	"communityconfiguration-femiwikisuggestededitstopics-groups-label": "Aiheryhmät",
+	"communityconfiguration-femiwikisuggestededitstopics-groups-item-label": "Ryhmä",
+	"communityconfiguration-femiwikisuggestededitstopics-groups-label-label": "Nimi",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-label": "Aiheet",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-item-label": "Aihe",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-label-label": "Nimi",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-group-label": "Ryhmän tunnus",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-categories-label": "Luokat",
+	"communityconfiguration-femiwikisuggestededitstopics-defaulttopics-label": "Niille käyttäjille valitut aiheet, jotka eivät ole valinneet aiheita"
+}

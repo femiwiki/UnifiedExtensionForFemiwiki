@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Tensama0415",
 			"YeBoy371",
 			"Ykhwong",
 			"렌즈"
@@ -17,7 +18,7 @@
 	"unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-dialog-intro-subheader": "{{GENDER:|당신의}} 편집이 {{SITENAME}}를 발전시키고 전 세계에 자유로운 지식을 보급하는 일을 돕습니다. 저희가 추천하는 작은 편집부터 시작해 보세요.",
 	"unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-subheader-other": "{{SITENAME}} 문서를 손쉽게 고치고 세상의 지식을 더하는 데 기여해 주세요.",
 	"unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-mobilesummary-body-variant-d": "{{SITENAME}} 문서를 손쉽게 고치고 세상의 지식을 더하는 데 기여해 주세요.",
-	"unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-dialog-difficulty-level-hard-description-header": "{{SITENAME}} 편집에 익숙한 사람을 위한 편집.",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-dialog-difficulty-level-hard-description-header": "{{GENDER:$1|{{SITENAME}}}} 편집에 익숙한 사람을 위한 편집.",
 	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-shortdescription-references": "{{SITENAME}} 문서의 내용을 증명할 출처를 추가합니다",
 	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-copyedit": "교열은 문서에 자잘한 수정을 통해 문서의 잘못된 점을 바로잡는 일이고, {{SITENAME}} 편집에 익숙해지는 빠르고 가치있는 작업입니다. 교열은 문서가 더 전문적이고 신뢰할 수 있는 문서가 되게 해 줍니다.",
 	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-references": "책, 웹사이트, 뉴스 사이트를 통해 {{SITENAME}}의 내용이 정확하고 독자가 읽는 내용을 확인할 수 있는 링크를 추가해 주세요.",

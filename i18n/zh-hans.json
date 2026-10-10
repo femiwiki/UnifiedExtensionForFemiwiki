@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Administrator66",
+			"GuoPC",
 			"沈澄心"
 		]
 	},
@@ -11,5 +12,28 @@
 	"femiwiki-support-label": "支持中心",
 	"femiwiki-support-page": "Project:支持",
 	"unifiedextensionforfemiwiki-createaccount": "在下方输入“I am a feminist”（[[Special:Captcha/help|更多资讯]]）：",
-	"unifiedextensionforfemiwiki-createaccount-fail": "请在最后一张表格里输入“I am a feminist”"
+	"unifiedextensionforfemiwiki-createaccount-fail": "请在最后一张表格里输入“I am a feminist”",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-dialog-intro-header": "{{SITENAME}}是由同{{GENDER:|您}}一样的人们齐心协力建设而成的。",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-dialog-intro-subheader": "{{GENDER:|您}}的编辑有助于改进{{SITENAME}}，并进一步推动与世界分享自由知识的使命。请继续从建议的小编辑开始。",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-subheader-other": "略微修缮{{SITENAME}}的条目，帮忙为全世界的知识添砖加瓦。",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-mobilesummary-body-variant-d": "略微修缮{{SITENAME}}的条目，帮忙为全世界的知识添砖加瓦。",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-dialog-difficulty-level-hard-description-header": "适合已了解{{SITENAME}}最佳实践的{{GENDER:$1|编者}}。",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-shortdescription-references": "添加来源以核实{{SITENAME}}的条目",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-copyedit": "编修就是对条目的写法进行小修小补，这是一个很有价值的、很容易养成编辑{{SITENAME}}的习惯。编修可以帮助条目更专业，更值得信赖。",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-references": "使用书籍、网站和新闻来源来验证{{SITENAME}}的准确性，并将其添加到条目中，这样读者就可以确信他们所读到的内容是真实的。",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-update": "条目会随着时间的推移和新事件的发生而过时。找到并添加正确的信息，使{{SITENAME}}始终包含当前的事实。",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-expand": "很多{{SITENAME}}的条目只有一两句话的长度。找到更多的信息，补充一下，让条目更完整。",
+	"communityconfiguration-femiwikisuggestededitstopics-title": "编辑建议主题",
+	"communityconfiguration-femiwikisuggestededitstopics-description": "新手可以从中选择编辑建议的主题。一个主题会匹配其所属分类下的所有条目。",
+	"communityconfiguration-femiwikisuggestededitstopics-groups-label": "主题组",
+	"communityconfiguration-femiwikisuggestededitstopics-groups-item-label": "组",
+	"communityconfiguration-femiwikisuggestededitstopics-groups-id-label": "ID",
+	"communityconfiguration-femiwikisuggestededitstopics-groups-label-label": "名称",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-label": "主题",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-item-label": "主题",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-id-label": "ID",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-label-label": "名称",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-group-label": "组ID",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-categories-label": "分类",
+	"communityconfiguration-femiwikisuggestededitstopics-defaulttopics-label": "为尚未选择任何主题的用户选定的主题"
 }

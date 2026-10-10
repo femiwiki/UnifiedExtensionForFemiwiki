@@ -1,0 +1,37 @@
+{
+	"@metadata": {
+		"authors": [
+			"AhmedG612"
+		]
+	},
+	"unifiedextensionforfemiwiki-desc": "kordhin loogu talagalay femiwiki. Waxay ballaarisaa [[Special:UncategorizedCategories]] iyo [[Special:WhatLinksHere]] iwm.",
+	"femiwiki-terms-label": "Shuruudaha",
+	"femiwiki-terms-page": "Project:Shuruudaha",
+	"femiwiki-support-label": "Miiska taageerada",
+	"femiwiki-support-page": "Project:Taageero",
+	"unifiedextensionforfemiwiki-createaccount": "Hoos ku qor \"I am a feminist\" ([[Special:Captcha/help|faahfaahin dheeraad ah]]):",
+	"unifiedextensionforfemiwiki-createaccount-fail": "Fadlan ku qor \"I am a feminist\" foomkii ugu dambeeyay",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-dialog-intro-header": "{{SITENAME}} waxaa dhisay dad la mid ah {{GENDER:|adiga}} oo wada shaqaynaya.",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-dialog-intro-subheader": "Wax ka beddelladaada {{GENDER:|Adiga}} waxay gacan ka geystaan hagaajinta {{SITENAME}} iyo horumarinta himilada ah in aqoon xor ah lala wadaago adduunka. Sii wad inaad ku bilowdo wax-ka-beddellada yaryar ee la soo jeediyay.",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-subheader-other": "Ka caawi ku darista aqoonta adduunka adigoo wax ka beddello fudud ku samaynaya maqaallada {{SITENAME}}.",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-mobilesummary-body-variant-d": "Ka caawi ku darista aqoonta adduunka adigoo hagaajinno fudud ku samaynaya maqaallada {{SITENAME}}.",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-startediting-dialog-difficulty-level-hard-description-header": "Marka {{GENDER:$1|aad}} wax ka barato hab dhaqannada ugu wanaagsan ee {{SITENAME}}.",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-shortdescription-references": "Ku dar ilo lagu xaqiijiyo maqaallada {{SITENAME}}",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-copyedit": "Tafatirka qoraalku wuxuu ku saabsan yahay samaynta hagaajin yar oo lagu sameeyo habka maqaal loo qoray, waana hab qiimo leh oo fudud oo lagu baran karo tafatirka {{SITENAME}}. Tafatirrada qoraalku waxay ka caawiyaan maqaallada inay noqdaan kuwo xirfad badan oo lagu kalsoonaan karo.",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-references": "Isticmaal buugaag, mareegaha, iyo ilaha wararka si aad u xaqiijiso in {{SITENAME}} uu sax yahay, kuna dar maqaallada si akhristayaashu ugu kalsoonaadaan in waxa ay akhrinayaan ay run yihiin.",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-update": "Maqaalladu way duugoobaan marka waqtigu sii socdo oo dhacdooyin cusub ay dhacaan. Raadi oo ku dar macluumaadka saxda ah si {{SITENAME}} uu mar walba ugu jiro xaqiiqada hadda jirta.",
+	"unifiedextensionforfemiwiki-growthexperiments-homepage-suggestededits-tasktype-description-expand": "Maqaallo badan oo {{SITENAME}} ah waxay ka kooban yihiin oo keliya hal ama laba jumladood. Raadi macluumaad dheeraad ah oo ku dar si maqaalka looga dhigo mid dhammaystiran.",
+	"communityconfiguration-femiwikisuggestededitstopics-title": "Mawduucyada wax ka beddelka la soo jeediyay",
+	"communityconfiguration-femiwikisuggestededitstopics-description": "Mawduucyada isticmaalayaasha cusub ay ka dooran karaan wax ka beddellada la soo jeediyay. Mawduuc wuxuu waafaqaa maqaallada ku jira mid kasta oo ka mid ah qaybihiisa.",
+	"communityconfiguration-femiwikisuggestededitstopics-groups-label": "Kooxaha Mawduuca",
+	"communityconfiguration-femiwikisuggestededitstopics-groups-item-label": "Kooxda",
+	"communityconfiguration-femiwikisuggestededitstopics-groups-id-label": "Aqoonsi",
+	"communityconfiguration-femiwikisuggestededitstopics-groups-label-label": "Magaca",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-label": "Mawduucyo",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-item-label": "Mowduuca",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-id-label": "Aqoonsi",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-label-label": "Magaca",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-group-label": "Aqoonsiga Kooxda",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-categories-label": "Qaybaha",
+	"communityconfiguration-femiwikisuggestededitstopics-defaulttopics-label": "Mawduucyada loo doortay isticmaalayaasha aan dooran wax mawduuc ah"
+}
