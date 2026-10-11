@@ -58,5 +58,6 @@
   "log-name-manualnotification": "Manual notification log",
   "log-description-manualnotification": "Notifications that administrators sent to all users or to a group with [[Special:WriteManualNotification]].",
   "logentry-manualnotification-all": "$1 {{GENDER:$2|sent}} the notification \"$4\", linking to $3, to all users ({{PLURAL:$5|one user|$5 users}})",
-  "logentry-manualnotification-group": "$1 {{GENDER:$2|sent}} the notification \"$4\", linking to $3, to the group $6 ({{PLURAL:$5|one user|$5 users}})"
+  "logentry-manualnotification-group": "$1 {{GENDER:$2|sent}} the notification \"$4\", linking to $3, to the group $6 ({{PLURAL:$5|one user|$5 users}})",
+  "unifiedextensionforfemiwiki-wikibase-repo-site-name": "Wikibase"
 }

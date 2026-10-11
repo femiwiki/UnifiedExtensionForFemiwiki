@@ -58,5 +58,6 @@
 	"log-name-manualnotification": "{{doc-logpage}}\nName of the log of manual notifications.",
 	"log-description-manualnotification": "Description of the log of manual notifications.",
 	"logentry-manualnotification-all": "{{logentry}}\nAdditional parameters:\n* $4 - notification title\n* $5 - number of recipients",
-	"logentry-manualnotification-group": "{{logentry}}\nAdditional parameters:\n* $4 - notification title\n* $5 - number of recipients\n* $6 - recipient group name"
+	"logentry-manualnotification-group": "{{logentry}}\nAdditional parameters:\n* $4 - notification title\n* $5 - number of recipients\n* $6 - recipient group name",
+	"unifiedextensionforfemiwiki-wikibase-repo-site-name": "Name of the wiki's Wikibase repository, read by the Wikibase client as <code>{{WBREPONAME}}</code>, for example in {{msg-mw|wikibase-dataitem}}."
 }

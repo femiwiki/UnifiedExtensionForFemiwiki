@@ -61,5 +61,6 @@
 	"log-name-manualnotification": "수동 알림 기록",
 	"log-description-manualnotification": "관리자가 [[Special:WriteManualNotification]]으로 전체 사용자나 그룹에게 보낸 알림입니다.",
 	"logentry-manualnotification-all": "$1님이 $3 문서로 연결되는 알림 \"$4\"을(를) 모든 사용자($5명)에게 {{GENDER:$2|보냈습니다}}",
-	"logentry-manualnotification-group": "$1님이 $3 문서로 연결되는 알림 \"$4\"을(를) $6 그룹($5명)에게 {{GENDER:$2|보냈습니다}}"
+	"logentry-manualnotification-group": "$1님이 $3 문서로 연결되는 알림 \"$4\"을(를) $6 그룹($5명)에게 {{GENDER:$2|보냈습니다}}",
+	"unifiedextensionforfemiwiki-wikibase-repo-site-name": "위키베이스"
 }
