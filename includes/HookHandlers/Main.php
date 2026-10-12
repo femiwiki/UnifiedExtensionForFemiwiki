@@ -4,6 +4,7 @@ namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\HookHandlers;
 
 use Config;
 use ExtensionRegistry;
+use MediaWiki\Extension\Notifications\Formatters\EchoHtmlEmailFormatter;
 use MediaWiki\Html\Html;
 use MediaWiki\Title\Title;
 use RequestContext;
@@ -197,18 +198,17 @@ class Main implements
 	}
 
 	/**
-	 * Echo(REL1_31)'s content values
-	 * @See https://gerrit.wikimedia.org/r/plugins/gitiles/mediawiki/extensions/Echo/+/REL1_31/includes/formatters/EchoHtmlEmailFormatter.php
+	 * Echo's footer link style, written inline in EchoHtmlEmailFormatter::getFooter()
 	 */
-	// phpcs:ignore Generic.Files.LineLength.TooLong
-	private const PRIMARY_LINK_STYLE = 'cursor:pointer; text-align:center; text-decoration:none; padding:.45em 0.6em .45em; color:#FFF; background:#36C; font-family: Arial, Helvetica, sans-serif;font-size: 13px;';
 	private const FOOTER_PREFERENCE_LINK_STYLE = 'text-decoration: none; color: #36C;';
 
 	/**
-	 * Styles for Femiwiki
+	 * Colors of FemiwikiSkin's primary button and links
 	 */
-	// phpcs:ignore Generic.Files.LineLength.TooLong
-	private const FEMIWIKI_PRIMARY_LINK_STYLE = 'cursor:pointer; text-align:center; text-decoration:none; padding:.45em 0.6em .45em; color:#FFF; background:#aca7e2; font-family: Arial, Helvetica, sans-serif;font-size: 13px;';
+	private const FEMIWIKI_PRIMARY_LINK_COLORS = [
+		'color: #FFF;' => 'color: #414f0a;',
+		'background: #36C;' => 'background: #bad75b;',
+	];
 	private const FEMIWIKI_FOOTER_PREFERENCE_LINK_STYLE = 'text-decoration: none; color: #5144a3;';
 
 	/**
@@ -225,12 +225,10 @@ class Main implements
 			return;
 		}
 
-		$body['html'] = str_replace(
-			[ self::PRIMARY_LINK_STYLE,
-				self::FOOTER_PREFERENCE_LINK_STYLE ],
-			[ self::FEMIWIKI_PRIMARY_LINK_STYLE,
-				self::FEMIWIKI_FOOTER_PREFERENCE_LINK_STYLE ],
-			$body['html']
-		);
+		$primaryLinkStyle = EchoHtmlEmailFormatter::PRIMARY_LINK_STYLE;
+		$body['html'] = strtr( $body['html'], [
+			$primaryLinkStyle => strtr( $primaryLinkStyle, self::FEMIWIKI_PRIMARY_LINK_COLORS ),
+			self::FOOTER_PREFERENCE_LINK_STYLE => self::FEMIWIKI_FOOTER_PREFERENCE_LINK_STYLE,
+		] );
 	}
 }
