@@ -57,6 +57,7 @@ class Services implements MediaWikiServicesHook {
 					$services->getExtensionRegistry(),
 					$growthServices->getGrowthConfig(),
 					$services->getUserRegistrationLookup(),
+					$services->getUserOptionsLookup(),
 					$growthServices->getLogger(),
 					$hasTestKitchen ? $services->get( 'TestKitchen.ExperimentManager' ) : null,
 					$hasTestKitchen ? $services->get( 'TestKitchen.ExperimentCoordinator' ) : null
