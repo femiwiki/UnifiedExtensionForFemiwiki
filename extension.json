@@ -53,10 +53,14 @@
     },
     "ManualNotification": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\ManualNotification"
+    },
+    "FlowBoards": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\FlowBoards"
     }
   },
   "Hooks": {
     "BeforeCreateEchoEvent": "ManualNotification",
+    "ContentAlterParserOutput": "FlowBoards",
     "HtmlPageLinkRendererBegin": "main",
     "isValidEmailAddr": "SpamEmail",
     "LinkerMakeExternalLink": "main",
