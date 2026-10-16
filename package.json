@@ -1,15 +1,10 @@
 {
-  "private": true,
-  "scripts": {
-    "test": "npm -s run lint",
-    "lint": "npm -s run lint:prettier && npm -s run lint:i18n",
-    "lint:prettier": "prettier . --check",
-    "lint:i18n": "banana-checker --requireLowerCase=0 i18n/",
-    "fix": "prettier . --write"
-  },
-  "devDependencies": {
-    "@prettier/plugin-xml": "^3.4.2",
-    "grunt-banana-checker": "0.13.0",
-    "prettier": "^3.9.9"
-  }
+	"private": true,
+	"scripts": {
+		"test": "npm -s run lint",
+		"lint": "banana-checker --requireLowerCase=0 i18n/"
+	},
+	"devDependencies": {
+		"grunt-banana-checker": "0.13.0"
+	}
 }
