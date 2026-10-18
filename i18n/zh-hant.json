@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kly"
+			"Kly",
+			"Willy1018"
 		]
 	},
 	"unifiedextensionforfemiwiki-desc": "用於 femiwiki 的擴充套件。可擴充 [[Special:UncategorizedCategories]]、[[Special:WhatLinksHere]]、等等其它。",
@@ -10,5 +11,15 @@
 	"femiwiki-support-label": "服務中心",
 	"femiwiki-support-page": "Project:服務中心",
 	"unifiedextensionforfemiwiki-createaccount": "在下方輸入「I am a feminist」（[[Special:Captcha/help|更多資訊]]）：",
-	"unifiedextensionforfemiwiki-createaccount-fail": "請在最後的表單裡輸入「I am a feminist」"
+	"unifiedextensionforfemiwiki-createaccount-fail": "請在最後的表單裡輸入「I am a feminist」",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-label": "話題",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-item-label": "話題",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-label-label": "姓名",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-categories-label": "分類",
+	"writemanualnotification-group-all": "所有已註冊的使用者",
+	"writemanualnotification-label-header": "標題",
+	"writemanualnotification-label-body": "正文（可選）",
+	"writemanualnotification-label-page": "已連結頁面",
+	"writemanualnotification-preview": "預覽",
+	"writemanualnotification-send": "發送"
 }
