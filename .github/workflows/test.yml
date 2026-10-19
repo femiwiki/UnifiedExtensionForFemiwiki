@@ -59,9 +59,6 @@ jobs:
         with:
           stage: ${{ matrix.stage }}
           mediawiki-version: ${{ matrix.mediawiki-version }}
-          # Node 26 images stop WebdriverIO's browser download midway, so the
-          # selenium specs silently do not run; see femiwiki/FemiwikiSkin#991.
-          quibble-docker-tag: ${{ matrix.stage == 'selenium' && '1.21.0-s2' || '' }}
           # selenium leaves Wikibase out, as Wikimedia's downstream jobs do. GrowthExperiments goes in
           # only where just this extension's tests run, since its own tests expect Wikimedia's setup.
           dependencies: >-
