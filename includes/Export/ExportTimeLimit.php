@@ -10,7 +10,7 @@ use MediaWiki\HookContainer\HookContainer;
  */
 class ExportTimeLimit {
 
-	/** @var callable(): float */
+	/** @var callable Returns the current Unix time in seconds */
 	private $clock;
 
 	/**

@@ -66,7 +66,7 @@ class ExportTimeLimitTest extends MediaWikiIntegrationTestCase {
 		$doc = simplexml_load_string( $xml );
 		$this->assertNotFalse( $doc, $xml );
 		$this->assertCount( $pages, $doc->xpath( '//*[local-name()="page"]' ) );
-		$this->assertSame( $revisions, count( $doc->xpath( '//*[local-name()="revision"]' ) ) );
+		$this->assertCount( $revisions, $doc->xpath( '//*[local-name()="revision"]' ) );
 		$this->assertStringEndsWith( "<!-- note -->\n</mediawiki>\n", $xml );
 	}
 }
