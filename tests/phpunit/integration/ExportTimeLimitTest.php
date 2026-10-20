@@ -7,6 +7,7 @@ use MediaWiki\Export\WikiExporter;
 use MediaWiki\Extension\UnifiedExtensionForFemiwiki\Export\ExportTimeLimit;
 use MediaWiki\Extension\UnifiedExtensionForFemiwiki\Export\ExportTimeLimitException;
 use MediaWiki\Extension\UnifiedExtensionForFemiwiki\Special\SpecialExportWithTimeLimit;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 
@@ -21,6 +22,38 @@ class ExportTimeLimitTest extends MediaWikiIntegrationTestCase {
 	public function testReplacesSpecialExport() {
 		$page = $this->getServiceContainer()->getSpecialPageFactory()->getPage( 'Export' );
 		$this->assertInstanceOf( SpecialExportWithTimeLimit::class, $page );
+	}
+
+	public static function provideLimits() {
+		yield 'past the limit' => [ 20, 0, true ];
+		yield 'no limit' => [ 0, 1, false ];
+	}
+
+	/**
+	 * @dataProvider provideLimits
+	 */
+	public function testSpecialPageEndsAtTheLimit( int $limit, int $pages, bool $noted ) {
+		$this->overrideConfigValue( 'UnifiedExtensionForFemiwikiExportTimeLimit', $limit );
+		$title = Title::makeTitle( NS_MAIN, 'ExportTimeLimit Special' );
+		$this->editPage( $title, 'text' );
+
+		$special = $this->getServiceContainer()->getSpecialPageFactory()->getPage( 'Export' );
+		$special->setContext( RequestContext::getMain() );
+		// Started long enough ago that any limit has passed
+		( new \ReflectionProperty( $special, 'started' ) )->setValue( $special, 0.0 );
+		// Set by execute(), which would also reset the output buffers
+		( new \ReflectionProperty( $special, 'templates' ) )->setValue( $special, false );
+		( new \ReflectionProperty( $special, 'pageLinkDepth' ) )->setValue( $special, 0 );
+		$doExport = new \ReflectionMethod( $special, 'doExport' );
+
+		ob_start();
+		$doExport->invoke( $special, $title->getPrefixedText(), WikiExporter::FULL, false, false );
+		$xml = ob_get_clean();
+
+		$doc = simplexml_load_string( $xml );
+		$this->assertNotFalse( $doc, $xml );
+		$this->assertCount( $pages, $doc->xpath( '//*[local-name()="page"]' ) );
+		$this->assertSame( $noted, str_contains( $xml, 'archive.org' ) );
 	}
 
 	public static function provideCuts() {
