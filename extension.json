@@ -56,16 +56,23 @@
     },
     "FlowBoards": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\FlowBoards"
+    },
+    "NumberOfEmails": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\NumberOfEmails",
+      "services": ["ConnectionProvider", "MainWANObjectCache", "MagicWordFactory"]
     }
   },
   "Hooks": {
     "BeforeCreateEchoEvent": "ManualNotification",
     "ContentAlterParserOutput": "FlowBoards",
+    "GetMagicVariableIDs": "NumberOfEmails",
     "HtmlPageLinkRendererBegin": "main",
     "isValidEmailAddr": "SpamEmail",
     "LinkerMakeExternalLink": "main",
     "MediaWikiServices": "Services",
     "MessageCacheFetchOverrides": "GrowthMessages",
+    "ParserFirstCallInit": "NumberOfEmails",
+    "ParserGetVariableValueSwitch": "NumberOfEmails",
     "SidebarBeforeOutput": "main",
     "SkinAddFooterLinks": "main",
     "UserGetDefaultOptions": "GrowthTopics",
@@ -106,7 +113,8 @@
     "UnifiedExtensionForFemiwiki": ["i18n"]
   },
   "ExtensionMessagesFiles": {
-    "UnifiedExtensionForFemiwikiAlias": "UnifiedExtensionForFemiwiki.i18n.alias.php"
+    "UnifiedExtensionForFemiwikiAlias": "UnifiedExtensionForFemiwiki.i18n.alias.php",
+    "UnifiedExtensionForFemiwikiMagic": "UnifiedExtensionForFemiwiki.i18n.magic.php"
   },
   "attributes": {
     "CommunityConfiguration": {
