@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\Tests\Integration;
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Export\DumpStringOutput;
 use MediaWiki\Export\WikiExporter;
 use MediaWiki\Extension\UnifiedExtensionForFemiwiki\Export\ExportTimeLimit;
 use MediaWiki\Extension\UnifiedExtensionForFemiwiki\Export\ExportTimeLimitException;
 use MediaWiki\Extension\UnifiedExtensionForFemiwiki\Special\SpecialExportWithTimeLimit;
-use MediaWiki\Context\RequestContext;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 
