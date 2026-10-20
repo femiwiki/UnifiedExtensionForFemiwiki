@@ -72,6 +72,10 @@
     "UserMailerTransformContent": "main"
   },
   "SpecialPages": {
+    "Export": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\Special\\SpecialExportWithTimeLimit",
+      "services": ["ConnectionProvider", "WikiExporterFactory", "TitleFormatter", "LinksMigration"]
+    },
     "WriteManualNotification": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\Special\\SpecialWriteManualNotification",
       "services": [
@@ -145,6 +149,10 @@
     "UnifiedExtensionForFemiwikiManualNotificationBatchSize": {
       "value": 500,
       "description": "How many users one job of Special:WriteManualNotification notifies before queueing the next."
+    },
+    "UnifiedExtensionForFemiwikiExportTimeLimit": {
+      "value": 20,
+      "description": "Seconds after which Special:Export ends the document and points to the public dump. 0 turns the limit off."
     }
   },
   "TestAutoloadNamespaces": {

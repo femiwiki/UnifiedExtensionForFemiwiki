@@ -58,5 +58,6 @@
 	"log-name-manualnotification": "{{doc-logpage}}\nName of the log of manual notifications.",
 	"log-description-manualnotification": "Description of the log of manual notifications.",
 	"logentry-manualnotification-all": "{{logentry}}\nAdditional parameters:\n* $4 - notification title\n* $5 - number of recipients",
-	"logentry-manualnotification-group": "{{logentry}}\nAdditional parameters:\n* $4 - notification title\n* $5 - number of recipients\n* $6 - recipient group name"
+	"logentry-manualnotification-group": "{{logentry}}\nAdditional parameters:\n* $4 - notification title\n* $5 - number of recipients\n* $6 - recipient group name",
+	"unifiedextensionforfemiwiki-export-time-limit": "Plain-text note put in an XML comment at the end of a [[Special:Export]] document that ran out of time.\n\nParameters:\n* $1 - time limit in seconds"
 }
