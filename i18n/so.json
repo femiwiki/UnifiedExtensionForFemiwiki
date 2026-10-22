@@ -60,5 +60,6 @@
 	"log-name-manualnotification": "Diiwaanka ogeysiisyada gacanta",
 	"log-description-manualnotification": "Ogeysiisyada ay maamulayaashu u direen dhammaan isticmaalayaasha ama koox iyagoo adeegsanaya [[Special:WriteManualNotification]].",
 	"logentry-manualnotification-all": "$1 {{GENDER:$2|diray}} ogeysiiska \"$4\", oo xiriirinaya $3, dhammaan isticmaalayaasha ({{PLURAL:$5|hal isticmaale|$5 isticmaale}})",
-	"logentry-manualnotification-group": "$1 {{GENDER:$2|diray}} ogeysiiska \"$4\", oo xiriirinaya $3, kooxda $6 ({{PLURAL:$5|hal isticmaale|$5 isticmaale}})"
+	"logentry-manualnotification-group": "$1 {{GENDER:$2|diray}} ogeysiiska \"$4\", oo xiriirinaya $3, kooxda $6 ({{PLURAL:$5|hal isticmaale|$5 isticmaale}})",
+	"unifiedextensionforfemiwiki-export-time-limit": "Dhoofintan waxay joogsatay markii ay gaartay xadka waqtiga ee {{PLURAL:$1|hal ilbiriqsi|$1 ilbiriqsi}}. Taariikhda buuxda ee {{SITENAME}} waxaa lagu daabacay kayd ahaan halkan: https://archive.org/search?query=identifier%3Afemiwiki-dump-%2A"
 }

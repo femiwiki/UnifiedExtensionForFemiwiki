@@ -60,5 +60,6 @@
 	"log-name-manualnotification": "Rexistro de notificacións manuais",
 	"log-description-manualnotification": "Notificacións que a administración enviou a todas as usuarias ou a un grupo a través de «[[Special:WriteManualNotification]]».",
 	"logentry-manualnotification-all": "$1 {{GENDER:$2|enviou}} a notificación «$4», con ligazón cara a «$3», a todas as usuarias ({{PLURAL:$5|unha usuaria|$5 usuarias}})",
-	"logentry-manualnotification-group": "$1 {{GENDER:$2|enviou}} a notificación «$4», con ligazón cara a «$3», ao grupo «$6» ({{PLURAL:$5|unha usuaria|$5 usuarias}})"
+	"logentry-manualnotification-group": "$1 {{GENDER:$2|enviou}} a notificación «$4», con ligazón cara a «$3», ao grupo «$6» ({{PLURAL:$5|unha usuaria|$5 usuarias}})",
+	"unifiedextensionforfemiwiki-export-time-limit": "Esta exportación detívose no seu límite de tempo {{PLURAL:$1|dun segundo|de $1 segundo}}. O historial completo de {{SITENAME}} publícase en https://archive.org/search?query=identifier%3Afemiwiki-dump-%2A"
 }
