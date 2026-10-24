@@ -203,11 +203,14 @@ class Main implements
 	private const FOOTER_PREFERENCE_LINK_STYLE = 'text-decoration: none; color: #36C;';
 
 	/**
-	 * Colors of FemiwikiSkin's primary button and links
+	 * Colors of the primary button and links. The button is FemiwikiSkin's accent pair
+	 * swapped (light text on the dark accent text color) rather than the skin's own,
+	 * because mail clients' dark modes lighten dark text but keep a mid-tone background,
+	 * which made the skin's dark-on-light button unreadable.
 	 */
 	private const FEMIWIKI_PRIMARY_LINK_COLORS = [
-		'color: #FFF;' => 'color: #414f0a;',
-		'background: #36C;' => 'background: #bad75b;',
+		'color: #FFF;' => 'color: #bad75b;',
+		'background: #36C;' => 'background: #414f0a;',
 	];
 	private const FEMIWIKI_FOOTER_PREFERENCE_LINK_STYLE = 'text-decoration: none; color: #5144a3;';
 

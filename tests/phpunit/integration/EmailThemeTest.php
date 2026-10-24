@@ -29,7 +29,7 @@ class EmailThemeTest extends MediaWikiIntegrationTestCase {
 
 		$themed = $this->transform( true, $html );
 
-		$this->assertStringContainsString( 'color: #414f0a;background: #bad75b;', $themed );
+		$this->assertStringContainsString( 'color: #bad75b;background: #414f0a;', $themed );
 		$this->assertStringContainsString( 'text-decoration: none; color: #5144a3;', $themed );
 		$this->assertStringNotContainsString( '#36C', $themed );
 	}
