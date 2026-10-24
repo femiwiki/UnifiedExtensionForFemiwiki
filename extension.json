@@ -75,6 +75,7 @@
     "ParserGetVariableValueSwitch": "NumberOfEmails",
     "SidebarBeforeOutput": "main",
     "SkinAddFooterLinks": "main",
+    "SpecialStatsAddExtra": "NumberOfEmails",
     "UserGetDefaultOptions": "GrowthTopics",
     "UserMailerTransformContent": "main"
   },

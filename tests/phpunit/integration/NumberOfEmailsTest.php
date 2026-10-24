@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\Tests\Integration;
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Extension\UnifiedExtensionForFemiwiki\EmailCounter;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Title\Title;
@@ -122,5 +123,20 @@ class NumberOfEmailsTest extends MediaWikiIntegrationTestCase {
 			Title::makeTitle( NS_MAIN, 'NumberOfEmailsTest' ),
 			ParserOptions::newFromAnon()
 		) );
+	}
+
+	public function testSpecialStatistics() {
+		$this->addUsers();
+		$extraStats = [];
+
+		$this->getServiceContainer()->getHookContainer()->run(
+			'SpecialStatsAddExtra',
+			[ &$extraStats, RequestContext::getMain() ]
+		);
+
+		$this->assertSame(
+			2,
+			$extraStats['statistics-header-hooks']['unifiedextensionforfemiwiki-statistics-emails-authenticated']
+		);
 	}
 }
