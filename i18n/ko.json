@@ -62,5 +62,6 @@
 	"log-description-manualnotification": "관리자가 [[Special:WriteManualNotification]]으로 전체 사용자나 그룹에게 보낸 알림입니다.",
 	"logentry-manualnotification-all": "$1님이 $3 문서로 연결되는 알림 \"$4\"을(를) 모든 사용자($5명)에게 {{GENDER:$2|보냈습니다}}",
 	"logentry-manualnotification-group": "$1님이 $3 문서로 연결되는 알림 \"$4\"을(를) $6 그룹($5명)에게 {{GENDER:$2|보냈습니다}}",
-	"unifiedextensionforfemiwiki-export-time-limit": "내보내기가 $1초 시간 제한에 걸려 여기서 끝났습니다. {{SITENAME}}의 전체 역사는 공개 덤프로 받을 수 있습니다: https://archive.org/search?query=identifier%3Afemiwiki-dump-%2A"
+	"unifiedextensionforfemiwiki-export-time-limit": "내보내기가 $1초 시간 제한에 걸려 여기서 끝났습니다. {{SITENAME}}의 전체 역사는 공개 덤프로 받을 수 있습니다: https://archive.org/search?query=identifier%3Afemiwiki-dump-%2A",
+	"unifiedextensionforfemiwiki-statistics-emails-authenticated": "인증된 이메일 주소"
 }

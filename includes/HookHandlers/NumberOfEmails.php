@@ -11,12 +11,13 @@ use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * {{NUMBEROFEMAILS}}, with the options of {{NUMBEROFEMAILS:authenticated}} and
- * {{NUMBEROFEMAILS:R}} in any order.
+ * {{NUMBEROFEMAILS:R}} in any order, and the authenticated count on Special:Statistics.
  */
 class NumberOfEmails implements
 	\MediaWiki\Parser\Hook\GetMagicVariableIDsHook,
 	\MediaWiki\Parser\Hook\ParserFirstCallInitHook,
-	\MediaWiki\Parser\Hook\ParserGetVariableValueSwitchHook
+	\MediaWiki\Parser\Hook\ParserGetVariableValueSwitchHook,
+	\MediaWiki\Specials\Hook\SpecialStatsAddExtraHook
 	{
 
 	private EmailCounter $counter;
@@ -44,6 +45,12 @@ class NumberOfEmails implements
 		if ( $magicWordId === 'numberofemails' ) {
 			$ret = $variableCache[$magicWordId] = $this->numberOfEmails( $parser );
 		}
+	}
+
+	/** @inheritDoc */
+	public function onSpecialStatsAddExtra( &$extraStats, $context ) {
+		$extraStats['statistics-header-hooks']['unifiedextensionforfemiwiki-statistics-emails-authenticated'] =
+			$this->counter->count( true );
 	}
 
 	/**

@@ -59,5 +59,6 @@
 	"log-description-manualnotification": "Description of the log of manual notifications.",
 	"logentry-manualnotification-all": "{{logentry}}\nAdditional parameters:\n* $4 - notification title\n* $5 - number of recipients",
 	"logentry-manualnotification-group": "{{logentry}}\nAdditional parameters:\n* $4 - notification title\n* $5 - number of recipients\n* $6 - recipient group name",
-	"unifiedextensionforfemiwiki-export-time-limit": "Plain-text note put in an XML comment at the end of a [[Special:Export]] document that ran out of time.\n\nParameters:\n* $1 - time limit in seconds"
+	"unifiedextensionforfemiwiki-export-time-limit": "Plain-text note put in an XML comment at the end of a [[Special:Export]] document that ran out of time.\n\nParameters:\n* $1 - time limit in seconds",
+	"unifiedextensionforfemiwiki-statistics-emails-authenticated": "Label of a row on [[Special:Statistics]], next to the number of distinct email addresses that registered users have confirmed, which unlike [[MediaWiki:Statistics-users]] counts several accounts sharing one address once."
 }
