@@ -29,9 +29,24 @@ class EmailThemeTest extends MediaWikiIntegrationTestCase {
 
 		$themed = $this->transform( true, $html );
 
-		$this->assertStringContainsString( 'color: #bad75b;background: #414f0a;', $themed );
+		$this->assertStringContainsString( 'background: #5144a3;', $themed );
 		$this->assertStringContainsString( 'text-decoration: none; color: #5144a3;', $themed );
 		$this->assertStringNotContainsString( '#36C', $themed );
+	}
+
+	public function testRecolorsConfirmEmail() {
+		$html = '<html><head><style>#mw-confirm-email .mw-confirm-email__button { background: #36C; }</style></head>'
+			. '<body><div id="mw-confirm-email"></div></body></html>';
+
+		$themed = $this->transform( true, $html );
+
+		$this->assertMatchesRegularExpression( '/#36C;.*background: #5144a3;.*<\/head>/s', $themed );
+	}
+
+	public function testLeavesOtherMails() {
+		$html = '<html><head></head><body></body></html>';
+
+		$this->assertSame( $html, $this->transform( true, $html ) );
 	}
 
 	public function testDisabled() {
