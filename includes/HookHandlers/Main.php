@@ -203,28 +203,48 @@ class Main implements
 	private const FOOTER_PREFERENCE_LINK_STYLE = 'text-decoration: none; color: #36C;';
 
 	/**
-	 * Colors of the primary button and links. The button is FemiwikiSkin's accent pair
-	 * swapped (light text on the dark accent text color) rather than the skin's own,
-	 * because mail clients' dark modes lighten dark text but keep a mid-tone background,
-	 * which made the skin's dark-on-light button unreadable.
+	 * White on dark purple, because mail clients' dark modes rewrite light backgrounds and dark text.
 	 */
 	private const FEMIWIKI_PRIMARY_LINK_COLORS = [
-		'color: #FFF;' => 'color: #bad75b;',
-		'background: #36C;' => 'background: #414f0a;',
+		'background: #36C;' => 'background: #5144a3;',
 	];
 	private const FEMIWIKI_FOOTER_PREFERENCE_LINK_STYLE = 'text-decoration: none; color: #5144a3;';
 
 	/**
-	 * Modifying HTML mails sent from Echo.
+	 * Overrides the colors of core's confirmation and notification mails
+	 * (resources/templates/ConfirmEmail/EmailCreated.mustache), with the same colors as Echo's.
+	 */
+	private const FEMIWIKI_CONFIRM_EMAIL_STYLE = '<style>'
+		. '#mw-confirm-email .mw-confirm-email__button, #mw-confirm-email .mw-confirm-email__button:hover, '
+		. '#mw-confirm-email .mw-confirm-email__button:active { background: #5144a3; color: #fff; }'
+		. '#mw-confirm-email .mw-confirm-email__button:focus { border-color: #5144a3; '
+		. 'box-shadow: inset 0 0 0 1px #5144a3,inset 0 0 0 2px #fff; }'
+		. '#mw-confirm-email .mw-confirm-email__footer a { color: #5144a3; }'
+		. '</style>';
+
+	/**
+	 * Modifying HTML mails sent from core and Echo.
 	 * @inheritDoc
 	 */
 	public function onUserMailerTransformContent( $to, $from, &$body, &$error ) {
 		if (
 			!$this->config->get( 'UnifiedExtensionForFemiwikiModifyEmailTheme' ) ||
-			!ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ||
 			!is_array( $body ) ||
 			!isset( $body['html'] )
 		) {
+			return;
+		}
+
+		if ( str_contains( $body['html'], 'id="mw-confirm-email"' ) ) {
+			$body['html'] = preg_replace(
+				'/<\/head>/i',
+				self::FEMIWIKI_CONFIRM_EMAIL_STYLE . '</head>',
+				$body['html'],
+				1
+			);
+		}
+
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Echo' ) ) {
 			return;
 		}
 
