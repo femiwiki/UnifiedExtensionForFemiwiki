@@ -3,6 +3,7 @@
 		"authors": [
 			"Administrator66",
 			"GuoPC",
+			"Ouclie",
 			"沈澄心"
 		]
 	},
@@ -53,6 +54,8 @@
 	"writemanualnotification-bad-page": "链接的页面无效。",
 	"writemanualnotification-too-long": "标题最多只能包含$1个字符，正文最多只能包含$2个字符。",
 	"writemanualnotification-queued": "通知已排队{{PLURAL:$1|一个用户|$1个用户}}。通知在后台发送，可能需要一些时间。请在[[Special:Log/manualnotification]]查看。",
+	"notification-header-write-manual-notification": "$1",
+	"notification-body-write-manual-notification": "$1",
 	"echo-category-title-write-manual-notification": "来自管理员的公告",
 	"echo-pref-tooltip-write-manual-notification": "当管理员向所有用户或特定用户组发送通知时通知我。通知内容可能是公告或推广。",
 	"right-writemanualnotification": "向所有用户或特定用户组发送通知",
@@ -60,5 +63,7 @@
 	"log-name-manualnotification": "手动通知日志",
 	"log-description-manualnotification": "管理员使用[[Special:WriteManualNotification]]向所有用户或特定用户组发送的通知。",
 	"logentry-manualnotification-all": "$1{{GENDER:$2|发送了}}通知“$4”，链接到$3，发送给所有用户（{{PLURAL:$5|一个用户|$5个用户}}）",
-	"logentry-manualnotification-group": "$1{{GENDER:$2|发送了}}通知“$4”，链接到$3，发送给用户组$6（{{PLURAL:$5|一个用户|$5个用户}}）"
+	"logentry-manualnotification-group": "$1{{GENDER:$2|发送了}}通知“$4”，链接到$3，发送给用户组$6（{{PLURAL:$5|一个用户|$5个用户}}）",
+	"unifiedextensionforfemiwiki-export-time-limit": "此次导出已达到其{{PLURAL:$1|一秒|$1秒}}的时间限制。{{SITENAME}}的完整历史已通过转储形式发布在https://archive.org/search?query=identifier%3Afemiwiki-dump-%2A",
+	"unifiedextensionforfemiwiki-statistics-emails-authenticated": "已确认的电子邮件地址"
 }

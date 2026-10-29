@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"SleaY",
 			"Thibaut120094",
 			"Verdy p"
 		]
@@ -11,5 +12,6 @@
 	"femiwiki-support-label": "Assistance",
 	"femiwiki-support-page": "Project:Assistance",
 	"unifiedextensionforfemiwiki-createaccount": "Entrez « I am a feminist » ci-dessous ([[Special:Captcha/help|plus d’infos]]) :",
-	"unifiedextensionforfemiwiki-createaccount-fail": "Entrez « I am a feminist » dans le dernier formulaire"
+	"unifiedextensionforfemiwiki-createaccount-fail": "Entrez « I am a feminist » dans le dernier formulaire",
+	"writemanualnotification-label-header": "Titre"
 }
