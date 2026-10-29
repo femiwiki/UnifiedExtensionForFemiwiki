@@ -61,5 +61,7 @@
 	"log-name-manualnotification": "Logboek handmatige meldingen",
 	"log-description-manualnotification": "Meldingen die moderatoren met behulp van [[Special:WriteManualNotification]] naar alle gebruikers of naar een groep hebben verzonden.",
 	"logentry-manualnotification-all": "$1 heeft de melding “$4” met een koppeling naar $3 {{GENDER:$2|verzonden}} naar alle gebruikers ({{PLURAL:$5|één gebruiker|$5 gebruikers}})",
-	"logentry-manualnotification-group": "$1 heeft de melding “$4” met een koppeling naar $3 {{GENDER:$2|verzonden}} naar de groep $6 ({{PLURAL:$5|één gebruiker|$5 gebruikers}})"
+	"logentry-manualnotification-group": "$1 heeft de melding “$4” met een koppeling naar $3 {{GENDER:$2|verzonden}} naar de groep $6 ({{PLURAL:$5|één gebruiker|$5 gebruikers}})",
+	"unifiedextensionforfemiwiki-export-time-limit": "Deze export is bij het bereiken van de tijdslimiet van {{PLURAL:$1|één seconde|$1 seconden}} gestopt. De volledige geschiedenis van {{SITENAME}} is gepubliceerd als dumps op https://archive.org/search?query=identifier%3Afemiwiki-dump-%2A",
+	"unifiedextensionforfemiwiki-statistics-emails-authenticated": "Bevestigde e-mailadressen"
 }
