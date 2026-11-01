@@ -51,6 +51,9 @@
     "GrowthTopics": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\GrowthTopics"
     },
+    "KartographerMessages": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\KartographerMessages"
+    },
     "ManualNotification": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\ManualNotification"
     },
@@ -70,7 +73,7 @@
     "isValidEmailAddr": "SpamEmail",
     "LinkerMakeExternalLink": "main",
     "MediaWikiServices": "Services",
-    "MessageCacheFetchOverrides": "GrowthMessages",
+    "MessageCacheFetchOverrides": ["GrowthMessages", "KartographerMessages"],
     "ParserFirstCallInit": "NumberOfEmails",
     "ParserGetVariableValueSwitch": "NumberOfEmails",
     "SidebarBeforeOutput": "main",
