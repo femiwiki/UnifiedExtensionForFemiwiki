@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"SleaY",
 			"Thibaut120094",
 			"Verdy p"
 		]
@@ -11,5 +12,13 @@
 	"femiwiki-support-label": "Assistance",
 	"femiwiki-support-page": "Project:Assistance",
 	"unifiedextensionforfemiwiki-createaccount": "Entrez « I am a feminist » ci-dessous ([[Special:Captcha/help|plus d’infos]]) :",
-	"unifiedextensionforfemiwiki-createaccount-fail": "Entrez « I am a feminist » dans le dernier formulaire"
+	"unifiedextensionforfemiwiki-createaccount-fail": "Entrez « I am a feminist » dans le dernier formulaire",
+	"communityconfiguration-femiwikisuggestededitstopics-topics-label-label": "Nom",
+	"writemanualnotification-label-header": "Titre",
+	"writemanualnotification-send": "Envoyer",
+	"echo-category-title-write-manual-notification": "Annonce des administrateurs",
+	"echo-pref-tooltip-write-manual-notification": "Prévenez-moi lorsque les administrateurs envoient une notification à tous les utilisateurs ou à un groupe. Il peut s'agir d'une annonce ou d'une publicité.",
+	"right-writemanualnotification": "Envoyer une notification à tous les utilisateurs ou à un groupe",
+	"action-writemanualnotification": "envoyer une notification à tous les utilisateurs ou à un groupe",
+	"log-name-manualnotification": "Journal de notification manuelle"
 }
