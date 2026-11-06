@@ -63,5 +63,11 @@
 	"logentry-manualnotification-all": "$1님이 $3 문서로 연결되는 알림 \"$4\"을(를) 모든 사용자({{PLURAL:사용자 한 명|사용자 $5명}})에게 {{GENDER:$2|보냈습니다}}",
 	"logentry-manualnotification-group": "$1님이 $3 문서로 연결되는 알림 \"$4\"을(를) $6 그룹({{PLURAL:사용자 한 명|사용자 $5명}})에게 {{GENDER:$2|보냈습니다}}",
 	"unifiedextensionforfemiwiki-export-time-limit": "내보내기가 {{PLURAL:$1|$1초}} 시간 제한에 걸려 여기서 끝났습니다. {{SITENAME}}의 전체 역사는 공개 덤프로 받을 수 있습니다: https://archive.org/search?query=identifier%3Afemiwiki-dump-%2A",
-	"unifiedextensionforfemiwiki-statistics-emails-authenticated": "인증된 이메일 주소"
+	"unifiedextensionforfemiwiki-statistics-emails-authenticated": "인증된 이메일 주소",
+	"achievementbadges-achievement-name-femiwiki-ranking": "순위에 들기",
+	"achievementbadges-achievement-hint-femiwiki-ranking": "꾸준히 편집해 [[Project:활동적인 사용자|활동적인 사용자]] 순위에 이름을 올려 보세요.",
+	"achievementbadges-achievement-description-femiwiki-ranking": "활동적인 사용자 순위에 {{GENDER:$1|들었습니다}}. 꾸준히 편집해 주셔서 감사합니다.",
+	"achievementbadges-achievement-name-femiwiki-ranking-first": "1등 하기",
+	"achievementbadges-achievement-hint-femiwiki-ranking-first": "[[Project:활동적인 사용자|활동적인 사용자]] 순위에서 1등을 해 보세요.",
+	"achievementbadges-achievement-description-femiwiki-ranking-first": "활동적인 사용자 순위에서 {{GENDER:$1|1등을 했습니다}}. 많이 편집해 주셔서 감사합니다."
 }

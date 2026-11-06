@@ -60,5 +60,11 @@
   "logentry-manualnotification-all": "$1 {{GENDER:$2|sent}} the notification \"$4\", linking to $3, to all users ({{PLURAL:$5|one user|$5 users}})",
   "logentry-manualnotification-group": "$1 {{GENDER:$2|sent}} the notification \"$4\", linking to $3, to the group $6 ({{PLURAL:$5|one user|$5 users}})",
   "unifiedextensionforfemiwiki-export-time-limit": "This export stopped at its {{PLURAL:$1|one-second|$1-second}} time limit. The full history of {{SITENAME}} is published as dumps at https://archive.org/search?query=identifier%3Afemiwiki-dump-%2A",
-  "unifiedextensionforfemiwiki-statistics-emails-authenticated": "Confirmed email addresses"
+  "unifiedextensionforfemiwiki-statistics-emails-authenticated": "Confirmed email addresses",
+  "achievementbadges-achievement-name-femiwiki-ranking": "On the ranking",
+  "achievementbadges-achievement-hint-femiwiki-ranking": "Edit steadily enough to appear on the [[Project:활동적인 사용자|active users]] ranking.",
+  "achievementbadges-achievement-description-femiwiki-ranking": "{{GENDER:$1|You}} made it onto the active users ranking. Thank you for editing steadily.",
+  "achievementbadges-achievement-name-femiwiki-ranking-first": "First place",
+  "achievementbadges-achievement-hint-femiwiki-ranking-first": "Edit steadily enough to come first on the [[Project:활동적인 사용자|active users]] ranking.",
+  "achievementbadges-achievement-description-femiwiki-ranking-first": "{{GENDER:$1|You}} came first on the active users ranking. Thank you for editing so much."
 }

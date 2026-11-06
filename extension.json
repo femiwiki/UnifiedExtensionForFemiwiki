@@ -60,15 +60,21 @@
     "NumberOfEmails": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\NumberOfEmails",
       "services": ["ConnectionProvider", "MainWANObjectCache", "MagicWordFactory"]
+    },
+    "RankingAchievement": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\RankingAchievement",
+      "services": ["MainConfig", "PermissionManager", "SpecialPageFactory", "TitleFactory", "UserFactory"]
     }
   },
   "Hooks": {
+    "BeforeCreateAchievement": "RankingAchievement",
     "BeforeCreateEchoEvent": "ManualNotification",
     "ContentAlterParserOutput": "FlowBoards",
     "GetMagicVariableIDs": "NumberOfEmails",
     "HtmlPageLinkRendererBegin": "main",
     "isValidEmailAddr": "SpamEmail",
     "LinkerMakeExternalLink": "main",
+    "LinksUpdateComplete": "RankingAchievement",
     "MediaWikiServices": "Services",
     "MessageCacheFetchOverrides": "GrowthMessages",
     "ParserFirstCallInit": "NumberOfEmails",
@@ -162,6 +168,10 @@
     "UnifiedExtensionForFemiwikiExportTimeLimit": {
       "value": 20,
       "description": "Seconds after which Special:Export ends the document and points to the public dump. 0 turns the limit off."
+    },
+    "UnifiedExtensionForFemiwikiRankingPages": {
+      "value": [],
+      "description": "Pages where a ranking bot lists users as links to their Special:Contributions. Users listed there by an account with the bot right earn an AchievementBadges badge. The badge exists only while this is not empty."
     }
   },
   "TestAutoloadNamespaces": {

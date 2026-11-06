@@ -66,7 +66,7 @@ jobs:
               matrix.stage == 'selenium',
               'CategoryTree SpamBlacklist Echo',
               contains(fromJSON('["phan", "phpunit-standalone", "coverage"]'), matrix.stage),
-              'CategoryTree SpamBlacklist Echo Wikibase CommunityConfiguration GrowthExperiments VisualEditor',
+              'CategoryTree SpamBlacklist Echo Wikibase CommunityConfiguration GrowthExperiments VisualEditor AchievementBadges BetaFeatures',
               'CategoryTree SpamBlacklist Echo Wikibase') }}
 
       - name: Upload coverage to Codecov
