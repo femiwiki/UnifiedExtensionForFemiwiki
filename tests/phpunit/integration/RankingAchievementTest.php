@@ -28,6 +28,7 @@ class RankingAchievementTest extends MediaWikiIntegrationTestCase {
 			// The registry is built once at setup, so add the badge as the hook would have
 			'AchievementBadgesAchievements' => [
 				RankingAchievement::ACHIEVEMENT_KEY => [ 'type' => 'instant' ],
+				RankingAchievement::FIRST_ACHIEVEMENT_KEY => [ 'type' => 'instant' ],
 			],
 		] );
 	}
@@ -43,13 +44,13 @@ class RankingAchievementTest extends MediaWikiIntegrationTestCase {
 		$this->runDeferredUpdates();
 	}
 
-	private function countBadges( User $user ): int {
+	private function countBadges( User $user, string $key = RankingAchievement::ACHIEVEMENT_KEY ): int {
 		return $this->getDb()->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'logging' )
 			->where( [
 				'log_type' => 'achievementbadges',
-				'log_action' => RankingAchievement::ACHIEVEMENT_KEY,
+				'log_action' => $key,
 				'log_actor' => $user->getActorId(),
 			] )
 			->caller( __METHOD__ )
@@ -60,6 +61,7 @@ class RankingAchievementTest extends MediaWikiIntegrationTestCase {
 		$achievements = [];
 		$this->getServiceContainer()->getHookContainer()->run( 'BeforeCreateAchievement', [ &$achievements ] );
 		$this->assertArrayHasKey( RankingAchievement::ACHIEVEMENT_KEY, $achievements );
+		$this->assertArrayHasKey( RankingAchievement::FIRST_ACHIEVEMENT_KEY, $achievements );
 
 		// Overriding resets the services, so the handler below sees the new value
 		$this->overrideConfigValue( 'UnifiedExtensionForFemiwikiRankingPages', [] );
@@ -80,6 +82,21 @@ class RankingAchievementTest extends MediaWikiIntegrationTestCase {
 		$this->saveRanking( $bot, $second, $first );
 		$this->assertSame( 1, $this->countBadges( $first ), 'A user earns the badge only once' );
 		$this->assertSame( 1, $this->countBadges( $second ) );
+	}
+
+	public function testFirstPlace() {
+		$bot = $this->getTestUser( [ 'bot' ] )->getUser();
+		$first = $this->getMutableTestUser()->getUser();
+		$second = $this->getMutableTestUser()->getUser();
+		$key = RankingAchievement::FIRST_ACHIEVEMENT_KEY;
+
+		$this->saveRanking( $bot, $first, $second );
+		$this->assertSame( 1, $this->countBadges( $first, $key ) );
+		$this->assertSame( 0, $this->countBadges( $second, $key ) );
+
+		$this->saveRanking( $bot, $second, $first );
+		$this->assertSame( 1, $this->countBadges( $first, $key ) );
+		$this->assertSame( 1, $this->countBadges( $second, $key ) );
 	}
 
 	public function testEditsByOthersAwardNothing() {

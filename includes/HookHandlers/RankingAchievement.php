@@ -13,7 +13,8 @@ use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserFactory;
 
 /**
- * An AchievementBadges badge for the users that a ranking bot lists on a ranking page.
+ * AchievementBadges badges for the users that a ranking bot lists on a ranking page, and for
+ * the user it lists first.
  *
  * The bot saves each ranked user as a link to their Special:Contributions, so the users are
  * read from the special page links of the saved revision. Only revisions by users with the
@@ -25,6 +26,10 @@ use MediaWiki\User\UserFactory;
 class RankingAchievement implements \MediaWiki\Deferred\Hook\LinksUpdateCompleteHook {
 
 	public const ACHIEVEMENT_KEY = 'femiwiki-ranking';
+
+	public const FIRST_ACHIEVEMENT_KEY = 'femiwiki-ranking-first';
+
+	private const IMAGES = 'extensions/UnifiedExtensionForFemiwiki/images';
 
 	private const CONFIG_KEY = 'UnifiedExtensionForFemiwikiRankingPages';
 
@@ -46,11 +51,15 @@ class RankingAchievement implements \MediaWiki\Deferred\Hook\LinksUpdateComplete
 		if ( !$this->config->get( self::CONFIG_KEY ) ) {
 			return;
 		}
-		$achievements[self::ACHIEVEMENT_KEY] = [
-			'type' => 'instant',
-			// After the badges for everyday editing, which are 500 at most
-			'priority' => 600,
-		];
+		foreach ( [ self::ACHIEVEMENT_KEY => 600, self::FIRST_ACHIEVEMENT_KEY => 610 ] as $key => $priority ) {
+			$achievements[$key] = [
+				'type' => 'instant',
+				// After the badges for everyday editing, which are 500 at most
+				'priority' => $priority,
+				'icon' => self::IMAGES . "/achievement-$key.svg",
+				'og-image' => self::IMAGES . "/achievement-$key.png",
+			];
+		}
 	}
 
 	/** @inheritDoc */
@@ -67,6 +76,8 @@ class RankingAchievement implements \MediaWiki\Deferred\Hook\LinksUpdateComplete
 		}
 
 		$links = $linksUpdate->getParserOutput()->getLinkList( ParserOutputLinkTypes::SPECIAL );
+		// The links keep the order of the page, so the first user is the first place
+		$first = true;
 		foreach ( $links as [ 'link' => $link ] ) {
 			[ $name, $subpage ] = $this->specialPageFactory->resolveAlias( $link->getDBkey() );
 			if ( $name !== 'Contributions' || $subpage === null ) {
@@ -78,6 +89,10 @@ class RankingAchievement implements \MediaWiki\Deferred\Hook\LinksUpdateComplete
 			}
 			// AchievementBadges skips users who already have the badge
 			Achievement::achieve( [ 'key' => self::ACHIEVEMENT_KEY, 'user' => $user ] );
+			if ( $first ) {
+				Achievement::achieve( [ 'key' => self::FIRST_ACHIEVEMENT_KEY, 'user' => $user ] );
+				$first = false;
+			}
 		}
 	}
 

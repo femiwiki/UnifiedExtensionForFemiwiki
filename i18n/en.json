@@ -63,5 +63,8 @@
   "unifiedextensionforfemiwiki-statistics-emails-authenticated": "Confirmed email addresses",
   "achievementbadges-achievement-name-femiwiki-ranking": "On the ranking",
   "achievementbadges-achievement-hint-femiwiki-ranking": "Edit steadily enough to appear on the [[Project:활동적인 사용자|active users]] ranking.",
-  "achievementbadges-achievement-description-femiwiki-ranking": "{{GENDER:$1|You}} made it onto the active users ranking. Thank you for editing steadily."
+  "achievementbadges-achievement-description-femiwiki-ranking": "{{GENDER:$1|You}} made it onto the active users ranking. Thank you for editing steadily.",
+  "achievementbadges-achievement-name-femiwiki-ranking-first": "First place",
+  "achievementbadges-achievement-hint-femiwiki-ranking-first": "Edit steadily enough to come first on the [[Project:활동적인 사용자|active users]] ranking.",
+  "achievementbadges-achievement-description-femiwiki-ranking-first": "{{GENDER:$1|You}} came first on the active users ranking. Thank you for editing so much."
 }
