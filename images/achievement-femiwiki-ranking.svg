@@ -1,4 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 512 512">
+	<title>Podium</title>
 	<rect width="100%" height="100%" fill="#ACA6E4"/>
-	<path fill="#fff" d="M200 184h112v248H200zM72 256h112v176H72zm256 64h112v112H328zM256 56l17.6 35.7 39.4 5.7-28.5 27.8 6.7 39.2L256 145.9l-35.2 18.5 6.7-39.2-28.5-27.8 39.4-5.7z"/>
+	<g transform="matrix(1.2 0 0 1.2 -51.2 -51.2)">
+		<path fill="#fff" d="M200 184h112v248H200zM72 256h112v176H72zm256 64h112v112H328zM256 56l17.6 35.7 39.4 5.7-28.5 27.8 6.7 39.2L256 145.9l-35.2 18.5 6.7-39.2-28.5-27.8 39.4-5.7z"/>
+	</g>
 </svg>
