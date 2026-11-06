@@ -37,6 +37,8 @@ class RankingAchievementTest extends MediaWikiIntegrationTestCase {
 			static fn ( User $u ) => "|-\n| 1 || [[Special:Contributions/{$u->getName()}|{$u->getName()}]]",
 			$users
 		);
+		// Links to other special pages are ignored
+		$rows[] = '[[Special:RecentChanges]] [[Special:Contributions]]';
 		$this->editPage( self::PAGE, implode( "\n", $rows ) . "\n" . microtime(), '', NS_MAIN, $author );
 		$this->runDeferredUpdates();
 	}
@@ -52,6 +54,18 @@ class RankingAchievementTest extends MediaWikiIntegrationTestCase {
 			] )
 			->caller( __METHOD__ )
 			->fetchRowCount();
+	}
+
+	public function testRegistersBadgeOnlyWhenConfigured() {
+		$achievements = [];
+		$this->getServiceContainer()->getHookContainer()->run( 'BeforeCreateAchievement', [ &$achievements ] );
+		$this->assertArrayHasKey( RankingAchievement::ACHIEVEMENT_KEY, $achievements );
+
+		// Overriding resets the services, so the handler below sees the new value
+		$this->overrideConfigValue( 'UnifiedExtensionForFemiwikiRankingPages', [] );
+		$achievements = [];
+		$this->getServiceContainer()->getHookContainer()->run( 'BeforeCreateAchievement', [ &$achievements ] );
+		$this->assertArrayNotHasKey( RankingAchievement::ACHIEVEMENT_KEY, $achievements );
 	}
 
 	public function testBotRankingAwardsOnce() {
