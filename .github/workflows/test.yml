@@ -61,7 +61,6 @@ jobs:
           mediawiki-version: ${{ matrix.mediawiki-version }}
           # selenium leaves Wikibase out, as Wikimedia's downstream jobs do. GrowthExperiments goes in
           # only where just this extension's tests run, since its own tests expect Wikimedia's setup.
-          # AchievementBadges goes in the same stages, for the ranking badge.
           dependencies: >-
             ${{ case(
               matrix.stage == 'selenium',
