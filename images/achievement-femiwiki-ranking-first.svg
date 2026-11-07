@@ -1,9 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 512 512">
 	<title>Trophy</title>
+	<defs>
+		<filter id="shadow" width="140%" height="140%" x="-20%" y="-20%">
+			<feDropShadow dx="0" dy="8" flood-color="#2E2670" flood-opacity=".45" stdDeviation="8"/>
+		</filter>
+	</defs>
 	<rect width="100%" height="100%" fill="#ACA6E4"/>
-	<g transform="matrix(1.2 0 0 1.2 -51.2 -51.2)">
-		<path fill="none" stroke="#fff" stroke-width="28" d="M168 128h-56c0 72 32 112 80 120m152-120h56c0 72-32 112-80 120"/>
-		<path fill="#fff" d="M152 88h208v96c0 64-44 112-104 120-60-8-104-56-104-120zm84 212h40v72h-40zm-60 72h160v32H176zm-32 32h224v32H144z"/>
-		<path fill="#ACA6E4" d="m256 120 15.3 31 34.2 5-24.8 24.1 5.9 34.1-30.6-16.1-30.6 16.1 5.9-34.1-24.8-24.1 34.2-5z"/>
+	<circle cx="256" cy="256" r="220" fill="#C7C1F0" filter="url(#shadow)"/>
+	<circle cx="256" cy="256" r="180" fill="#8E83DD" filter="url(#shadow)"/>
+	<circle cx="256" cy="256" r="140" fill="#5144A3" filter="url(#shadow)"/>
+	<g filter="url(#shadow)">
+		<path fill="none" stroke="#F5B82E" stroke-linecap="round" stroke-width="18" d="M196 192h-34c0 42 22 66 52 72m102-72h34c0 42-22 66-52 72"/>
+		<path fill="#FFD45C" d="M188 168h136v66c0 44-30 76-68 82-38-6-68-38-68-82z"/>
+		<path fill="#F5B82E" d="M256 168h68v66c0 44-30 76-68 82z"/>
+		<circle cx="206" cy="186" r="8" fill="#FFF" opacity=".7"/>
+		<path fill="#F5B82E" d="M240 312h32v26h-32z"/>
+		<path fill="#F49AB8" d="M208 334h96v22h-96z"/>
+		<path fill="#E06C96" d="M196 352h120v20H196z"/>
+		<path fill="#FFF" d="m256 196 10 20.3 22.4 3.3-16.2 15.8 3.8 22.3-20-10.5-20 10.5 3.8-22.3-16.2-15.8 22.4-3.3z"/>
 	</g>
 </svg>
