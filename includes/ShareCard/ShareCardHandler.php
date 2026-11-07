@@ -91,7 +91,9 @@ class ShareCardHandler extends SimpleHandler {
 		// Keyed by page ID: the list formatversion 2 prints is only made by the printer
 		$pages = $api->getResult()->getResultData( [ 'query', 'pages' ], [ 'Strip' => 'all' ] );
 		$page = is_array( $pages ) ? reset( $pages ) : false;
-		$extract = is_array( $page ) ? trim( (string)( $page['extract'] ?? '' ) ) : '';
+		$extract = is_array( $page ) ? ( $page['extract'] ?? '' ) : '';
+		// TextExtracts gives [ '*' => text ] to internal callers, as for XML
+		$extract = trim( (string)( is_array( $extract ) ? ( $extract['*'] ?? '' ) : $extract ) );
 		return $extract === '' ? '' : trim( explode( "\n", $extract )[0] );
 	}
 
