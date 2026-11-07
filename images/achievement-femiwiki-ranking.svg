@@ -1,7 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 512 512">
 	<title>Podium</title>
+	<defs>
+		<filter id="shadow" width="140%" height="140%" x="-20%" y="-20%">
+			<feDropShadow dx="0" dy="8" flood-color="#2E2670" flood-opacity=".45" stdDeviation="8"/>
+		</filter>
+	</defs>
 	<rect width="100%" height="100%" fill="#ACA6E4"/>
-	<g transform="matrix(1.2 0 0 1.2 -51.2 -51.2)">
-		<path fill="#fff" d="M200 184h112v248H200zM72 256h112v176H72zm256 64h112v112H328zM256 56l17.6 35.7 39.4 5.7-28.5 27.8 6.7 39.2L256 145.9l-35.2 18.5 6.7-39.2-28.5-27.8 39.4-5.7z"/>
+	<circle cx="256" cy="256" r="220" fill="#C7C1F0" filter="url(#shadow)"/>
+	<circle cx="256" cy="256" r="180" fill="#8E83DD" filter="url(#shadow)"/>
+	<circle cx="256" cy="256" r="140" fill="#5144A3" filter="url(#shadow)"/>
+	<g filter="url(#shadow)">
+		<path fill="#E4E1F8" d="M152 262h64v94h-64z"/>
+		<path fill="#C7C1F0" d="M184 262h32v94h-32z"/>
+		<path fill="#F49AB8" d="M296 288h64v68h-64z"/>
+		<path fill="#E06C96" d="M328 288h32v68h-32z"/>
+		<path fill="#FFD45C" d="M216 220h80v136h-80z"/>
+		<path fill="#F5B82E" d="M256 220h40v136h-40z"/>
+		<circle cx="232" cy="238" r="8" fill="#FFF" opacity=".7"/>
+		<path fill="#FFF" d="m256 144 11 22.3 24.6 3.6-17.8 17.3 4.2 24.5L256 200.2l-22 11.5 4.2-24.5-17.8-17.3 24.6-3.6z"/>
 	</g>
 </svg>
