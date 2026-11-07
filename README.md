@@ -18,6 +18,9 @@
   낱말. `{{NUMBEROFEMAILS:authenticated}}`(`{{이메일수:인증됨}}`)는 인증된 주소만,
   `R`을 더하면 쉼표 없는 숫자를 보여 줍니다. 인증된 주소 수는 `[[특수:통계]]`에도
   나옵니다.
+- 문서 그림이 없는 일반 문서에 제목과 첫 문단을 그린 공유 카드를 og:image로
+  붙임(`$wgUnifiedExtensionForFemiwikiShareCard`). PHP GD와 `rsvg-convert`,
+  `$wgUnifiedExtensionForFemiwikiShareCardFonts`의 글꼴이 필요합니다.
 
 Breaking change가 모든 릴리즈에서 있을 수 있습니다. 페미위키를 제외한 위키에서의
 사용을 권하지 않습니다.

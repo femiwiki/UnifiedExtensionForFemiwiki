@@ -66,5 +66,6 @@
 	"achievementbadges-achievement-description-femiwiki-ranking": "{{doc-achievementbadges-achievement-description}}",
 	"achievementbadges-achievement-name-femiwiki-ranking-first": "{{doc-achievementbadges-achievement-name}}\nName of the badge for coming first on the active users ranking of [[Project:활동적인 사용자]] for the first time.",
 	"achievementbadges-achievement-hint-femiwiki-ranking-first": "{{doc-achievementbadges-achievement-hint}}",
-	"achievementbadges-achievement-description-femiwiki-ranking-first": "{{doc-achievementbadges-achievement-description}}"
+	"achievementbadges-achievement-description-femiwiki-ranking-first": "{{doc-achievementbadges-achievement-description}}",
+	"unifiedextensionforfemiwiki-share-card-disabled": "Error from the share card REST endpoint when $wgUnifiedExtensionForFemiwikiShareCard is off."
 }
