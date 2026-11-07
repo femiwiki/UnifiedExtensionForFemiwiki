@@ -69,5 +69,6 @@
 	"achievementbadges-achievement-description-femiwiki-ranking": "활동적인 사용자 순위에 {{GENDER:$1|들었습니다}}. 꾸준히 편집해 주셔서 감사합니다.",
 	"achievementbadges-achievement-name-femiwiki-ranking-first": "1등 하기",
 	"achievementbadges-achievement-hint-femiwiki-ranking-first": "[[Project:활동적인 사용자|활동적인 사용자]] 순위에서 1등을 해 보세요.",
-	"achievementbadges-achievement-description-femiwiki-ranking-first": "활동적인 사용자 순위에서 {{GENDER:$1|1등을 했습니다}}. 많이 편집해 주셔서 감사합니다."
+	"achievementbadges-achievement-description-femiwiki-ranking-first": "활동적인 사용자 순위에서 {{GENDER:$1|1등을 했습니다}}. 많이 편집해 주셔서 감사합니다.",
+	"unifiedextensionforfemiwiki-share-card-disabled": "이 위키에서는 공유 카드를 쓰지 않습니다."
 }

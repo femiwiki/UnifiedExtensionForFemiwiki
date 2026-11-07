@@ -64,11 +64,16 @@
     "RankingAchievement": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\RankingAchievement",
       "services": ["MainConfig", "PermissionManager", "SpecialPageFactory", "TitleFactory", "UserFactory"]
+    },
+    "ShareCard": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\ShareCard",
+      "services": ["MainConfig", "PageProps", "NamespaceInfo", "UrlUtils"]
     }
   },
   "Hooks": {
     "BeforeCreateAchievement": "RankingAchievement",
     "BeforeCreateEchoEvent": "ManualNotification",
+    "BeforePageDisplay": "ShareCard",
     "ContentAlterParserOutput": "FlowBoards",
     "GetMagicVariableIDs": "NumberOfEmails",
     "HtmlPageLinkRendererBegin": "main",
@@ -100,6 +105,14 @@
       ]
     }
   },
+  "RestRoutes": [
+    {
+      "path": "/femiwiki/v1/share-card/{revision}",
+      "method": "GET",
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\ShareCard\\ShareCardHandler",
+      "services": ["MainConfig", "RevisionLookup", "NamespaceInfo", "TitleFormatter", "ShellCommandFactory"]
+    }
+  ],
   "JobClasses": {
     "writeManualNotification": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\ManualNotification\\ManualNotificationJob",
@@ -168,6 +181,21 @@
     "UnifiedExtensionForFemiwikiExportTimeLimit": {
       "value": 20,
       "description": "Seconds after which Special:Export ends the document and points to the public dump. 0 turns the limit off."
+    },
+    "UnifiedExtensionForFemiwikiShareCard": {
+      "value": false,
+      "description": "Gives content pages without a page image a share card as og:image: the title and first paragraph drawn as PNG with GD and rsvg-convert. Turn $wgPageImagesOpenGraphFallbackImage off with it."
+    },
+    "UnifiedExtensionForFemiwikiShareCardFonts": {
+      "value": {
+        "regular": "/usr/local/share/fonts/pretendard/Pretendard-Regular.otf",
+        "bold": "/usr/local/share/fonts/pretendard/Pretendard-Bold.otf",
+        "han": "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+        "hanBold": "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
+        "family": "Pretendard, 'Noto Sans CJK KR', sans-serif"
+      },
+      "merge_strategy": "array_replace_recursive",
+      "description": "Font files the share card measures text with: regular and bold, and han and hanBold for Hanja. family is the font-family list naming the same fonts to rsvg-convert, which finds them through fontconfig."
     },
     "UnifiedExtensionForFemiwikiRankingPages": {
       "value": [],
