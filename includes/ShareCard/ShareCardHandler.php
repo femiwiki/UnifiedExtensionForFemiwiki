@@ -88,10 +88,23 @@ class ShareCardHandler extends SimpleHandler {
 			'formatversion' => 2,
 		] ) );
 		$api->execute();
-		// Keyed by page ID: the list formatversion 2 prints is only made by the printer
-		$pages = $api->getResult()->getResultData( [ 'query', 'pages' ], [ 'Strip' => 'all' ] );
+		return self::leadFromPages(
+			$api->getResult()->getResultData( [ 'query', 'pages' ], [ 'Strip' => 'all' ] )
+		);
+	}
+
+	/**
+	 * The first line of the extract of the first page in an internal API result's query.pages.
+	 * Those pages are keyed by page ID: the list formatversion 2 prints is only made by the
+	 * printer. TextExtracts gives the extract as [ '*' => text ] to internal callers, as for XML.
+	 *
+	 * @param mixed $pages
+	 * @return string
+	 */
+	public static function leadFromPages( $pages ): string {
 		$page = is_array( $pages ) ? reset( $pages ) : false;
-		$extract = is_array( $page ) ? trim( (string)( $page['extract'] ?? '' ) ) : '';
+		$extract = is_array( $page ) ? ( $page['extract'] ?? '' ) : '';
+		$extract = trim( (string)( is_array( $extract ) ? ( $extract['*'] ?? '' ) : $extract ) );
 		return $extract === '' ? '' : trim( explode( "\n", $extract )[0] );
 	}
 
