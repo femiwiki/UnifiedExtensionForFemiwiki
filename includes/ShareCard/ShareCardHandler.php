@@ -88,8 +88,10 @@ class ShareCardHandler extends SimpleHandler {
 			'formatversion' => 2,
 		] ) );
 		$api->execute();
+		// Keyed by page ID: the list formatversion 2 prints is only made by the printer
 		$pages = $api->getResult()->getResultData( [ 'query', 'pages' ], [ 'Strip' => 'all' ] );
-		$extract = trim( (string)( $pages[0]['extract'] ?? '' ) );
+		$page = is_array( $pages ) ? reset( $pages ) : false;
+		$extract = is_array( $page ) ? trim( (string)( $page['extract'] ?? '' ) ) : '';
 		return $extract === '' ? '' : trim( explode( "\n", $extract )[0] );
 	}
 
