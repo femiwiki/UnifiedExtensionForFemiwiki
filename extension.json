@@ -15,7 +15,8 @@
     }
   },
   "AutoloadNamespaces": {
-    "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\": "includes/"
+    "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\": "includes/",
+    "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\Maintenance\\": "maintenance/"
   },
   "AuthManagerAutoConfig": {
     "preauth": {
