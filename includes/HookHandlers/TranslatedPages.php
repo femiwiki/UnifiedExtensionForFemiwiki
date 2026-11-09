@@ -5,7 +5,9 @@ namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\HookHandlers;
 use MediaWiki\Extension\Translate\PageTranslation\TranslatablePage;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Output\Hook\BeforePageDisplayHook;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\Title\Title;
 
 /**
  * Tells search engines how the language versions of a translatable page fit together.
@@ -41,14 +43,30 @@ class TranslatedPages implements BeforePageDisplayHook {
 			return;
 		}
 
-		$root = $page->getTitle();
-		$sourceCode = $page->getSourceLanguageCode();
+		self::addLinks(
+			$out,
+			$page->getTitle(),
+			$code,
+			$page->getSourceLanguageCode(),
+			$page->getTranslationPercentages()
+		);
+	}
+
+	/**
+	 * @param OutputPage $out
+	 * @param Title $root The translatable page
+	 * @param ?string $code Language of the subpage shown, null for the translatable page itself
+	 * @param string $sourceCode Source language of the translatable page
+	 * @param array<string,float|string> $percentages As for getLanguageVersions()
+	 */
+	public static function addLinks(
+		OutputPage $out, Title $root, ?string $code, string $sourceCode, array $percentages
+	): void {
 		if ( $code === $sourceCode ) {
 			$out->setCanonicalUrl( $root->getCanonicalURL() );
 		}
 
-		$versions = self::getLanguageVersions( $sourceCode, $page->getTranslationPercentages() );
-		foreach ( $versions as $hreflang => $subpage ) {
+		foreach ( self::getLanguageVersions( $sourceCode, $percentages ) as $hreflang => $subpage ) {
 			$target = $subpage === null ? $root : $root->getSubpage( $subpage );
 			if ( !$target ) {
 				continue;
