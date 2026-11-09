@@ -9,6 +9,7 @@ $cfg['directory_list'] = array_merge(
 		'../../extensions/CategoryTree',
 		'../../extensions/Echo',
 		'../../extensions/SpamBlacklist',
+		'../../extensions/Translate',
 		'../../extensions/Wikibase',
 	]
 );
@@ -20,6 +21,7 @@ $cfg['exclude_analysis_directory_list'] = array_merge(
 		'../../extensions/CategoryTree',
 		'../../extensions/Echo',
 		'../../extensions/SpamBlacklist',
+		'../../extensions/Translate',
 		'../../extensions/Wikibase',
 	]
 );
