@@ -68,12 +68,15 @@
     "ShareCard": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\ShareCard",
       "services": ["MainConfig", "PageProps", "NamespaceInfo", "UrlUtils"]
+    },
+    "TranslatedPages": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\TranslatedPages"
     }
   },
   "Hooks": {
     "BeforeCreateAchievement": "RankingAchievement",
     "BeforeCreateEchoEvent": "ManualNotification",
-    "BeforePageDisplay": "ShareCard",
+    "BeforePageDisplay": ["ShareCard", "TranslatedPages"],
     "ContentAlterParserOutput": "FlowBoards",
     "GetMagicVariableIDs": "NumberOfEmails",
     "HtmlPageLinkRendererBegin": "main",
