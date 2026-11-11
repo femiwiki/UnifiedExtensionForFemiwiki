@@ -3,33 +3,37 @@
 [![Github checks status]][github checks link]
 [![codecov.io status]][codecov.io link]
 
-이것은 페미위키에 필요한 각종 기능들을 위한 종합적인 확장기능으로 다음을
-제공합니다.
+An all-in-one extension for the various features FemiWiki needs. It provides
+the following.
 
-- 회원가입 시 "나는 페미니스트입니다"라는 문구를 입력 받게 함
-- 사이트 푸터에 이용약관과 권리 침해 신고를 추가
-- 문서 내용과 사이드바에서 `https://femiwiki.com`로 시작하는 링크, 혹은 사이트에
-  설정에 따라 같은 도메인으로 시작하는 링크를 내부 링크처럼 표시
-- 모든 문서에 구글 태그 매니저 스크립트 추가
-- 모든 문서의 관련 항목으로 해당 문서에서 가리키는 문서와 해당 문서를 가리키는
-  문서 추가
-- 사용자 이메일을 페미위키 테마로 변경
-- 중복을 뺀 이메일 주소 수를 보여 주는 `{{NUMBEROFEMAILS}}`(`{{이메일수}}`) 마법
-  낱말. `{{NUMBEROFEMAILS:authenticated}}`(`{{이메일수:인증됨}}`)는 인증된 주소만,
-  `R`을 더하면 쉼표 없는 숫자를 보여 줍니다. 인증된 주소 수는 `[[특수:통계]]`에도
-  나옵니다.
-- 문서 그림이 없는 일반 문서에 제목과 첫 문단을 그린 공유 카드를 og:image로
-  붙임(`$wgUnifiedExtensionForFemiwikiShareCard`). PHP GD와 `rsvg-convert`,
-  `$wgUnifiedExtensionForFemiwikiShareCardFonts`의 글꼴이 필요합니다.
+- Asks new users to type the sentence "나는 페미니스트입니다" ("I am a
+  feminist") when they sign up
+- Adds the terms of use and an infringement report link to the site footer
+- Shows links in page content and the sidebar that start with
+  `https://femiwiki.com`, or with the same domain depending on the site's
+  configuration, as internal links
+- Adds the Google Tag Manager script to every page
+- Adds the pages a page links to, and the pages linking to it, as its related
+  articles
+- Gives user emails the FemiWiki theme
+- The `{{NUMBEROFEMAILS}}` (`{{이메일수}}`) magic word, which shows the number
+  of distinct email addresses. `{{NUMBEROFEMAILS:authenticated}}`
+  (`{{이메일수:인증됨}}`) counts only confirmed addresses, and adding `R` shows
+  the number without commas. The number of confirmed addresses also appears on
+  `[[Special:Statistics]]`.
+- Attaches a share card with the title and first paragraph drawn on it as
+  og:image to content pages that have no page image
+  (`$wgUnifiedExtensionForFemiwikiShareCard`). This needs PHP GD,
+  `rsvg-convert` and the fonts in `$wgUnifiedExtensionForFemiwikiShareCardFonts`.
 
-Breaking change가 모든 릴리즈에서 있을 수 있습니다. 페미위키를 제외한 위키에서의
-사용을 권하지 않습니다.
+Any release may contain breaking changes. Using it on wikis other than FemiWiki
+is not recommended.
 
-## 설치
+## Installation
 
-1. 파일들을 다운로드 받아 `extensions/` 폴더 아래 `UnifiedExtensionForFemiwiki`
-   디렉토리에 넣으십시오.
-2. LocalSettings.php에 다음을 추가하십시오.
+1. Download the files and put them in a directory called
+   `UnifiedExtensionForFemiwiki` in your `extensions/` folder.
+2. Add the following to LocalSettings.php.
 
 ```php
 wfLoadExtension( 'UnifiedExtensionForFemiwiki' );
