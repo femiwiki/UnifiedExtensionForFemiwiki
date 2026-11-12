@@ -65,5 +65,12 @@
 	"logentry-manualnotification-all": "$1{{GENDER:$2|发送了}}通知“$4”，链接到$3，发送给所有用户（{{PLURAL:$5|一个用户|$5个用户}}）",
 	"logentry-manualnotification-group": "$1{{GENDER:$2|发送了}}通知“$4”，链接到$3，发送给用户组$6（{{PLURAL:$5|一个用户|$5个用户}}）",
 	"unifiedextensionforfemiwiki-export-time-limit": "此次导出已达到其{{PLURAL:$1|一秒|$1秒}}的时间限制。{{SITENAME}}的完整历史已通过转储形式发布在https://archive.org/search?query=identifier%3Afemiwiki-dump-%2A",
-	"unifiedextensionforfemiwiki-statistics-emails-authenticated": "已确认的电子邮件地址"
+	"unifiedextensionforfemiwiki-statistics-emails-authenticated": "已确认的电子邮件地址",
+	"achievementbadges-achievement-name-femiwiki-ranking": "进入排行榜",
+	"achievementbadges-achievement-hint-femiwiki-ranking": "因持续编辑而出现在[[Project:활동적인 사용자|活跃用户]]排行榜中。",
+	"achievementbadges-achievement-description-femiwiki-ranking": "{{GENDER:$1|您}}已进入活跃用户排行榜。感谢您的持续编辑。",
+	"achievementbadges-achievement-name-femiwiki-ranking-first": "位列第一",
+	"achievementbadges-achievement-hint-femiwiki-ranking-first": "因持续编辑而在[[Project:활동적인 사용자|活跃用户]]排行榜中排名第一。",
+	"achievementbadges-achievement-description-femiwiki-ranking-first": "{{GENDER:$1|您}}在活跃用户排行榜中排名第一。非常感谢您的辛勤编辑。",
+	"unifiedextensionforfemiwiki-share-card-disabled": "本wiki上的分享卡片功能已关闭。"
 }

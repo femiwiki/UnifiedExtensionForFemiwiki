@@ -62,5 +62,12 @@
 	"logentry-manualnotification-all": "$1 {{GENDER:$2|diray}} ogeysiiska \"$4\", oo xiriirinaya $3, dhammaan isticmaalayaasha ({{PLURAL:$5|hal isticmaale|$5 isticmaale}})",
 	"logentry-manualnotification-group": "$1 {{GENDER:$2|diray}} ogeysiiska \"$4\", oo xiriirinaya $3, kooxda $6 ({{PLURAL:$5|hal isticmaale|$5 isticmaale}})",
 	"unifiedextensionforfemiwiki-export-time-limit": "Dhoofintan waxay joogsatay markii ay gaartay xadka waqtiga ee {{PLURAL:$1|hal ilbiriqsi|$1 ilbiriqsi}}. Taariikhda buuxda ee {{SITENAME}} waxaa lagu daabacay kayd ahaan halkan: https://archive.org/search?query=identifier%3Afemiwiki-dump-%2A",
-	"unifiedextensionforfemiwiki-statistics-emails-authenticated": "Cinwaannada iimaylka ee la xaqiijiyay"
+	"unifiedextensionforfemiwiki-statistics-emails-authenticated": "Cinwaannada iimaylka ee la xaqiijiyay",
+	"achievementbadges-achievement-name-femiwiki-ranking": "Ku jira qiimaynta",
+	"achievementbadges-achievement-hint-femiwiki-ranking": "Si joogto ah wax uga beddel si aad uga soo muuqato qiimaynta [[Project:활동적인 사용자|isticmaaleyaasha firfircoon]].",
+	"achievementbadges-achievement-description-femiwiki-ranking": "{{GENDER:$1|Waxaad}} gashay qiimaynta isticmaaleyaasha firfircoon. Waad ku mahadsan tahay wax ka beddelka joogtada ah.",
+	"achievementbadges-achievement-name-femiwiki-ranking-first": "Meesha koowaad",
+	"achievementbadges-achievement-hint-femiwiki-ranking-first": "Si joogto ah wax uga beddel si aad kaalinta koowaad uga gasho qiimaynta [[Project:활동적인 사용자|isticmaaleyaasha firfircoon]].",
+	"achievementbadges-achievement-description-femiwiki-ranking-first": "{{GENDER:$1|Waxaad}} kaalinta koowaad ka gashay qiimaynta isticmaaleyaasha firfircoon. Waad ku mahadsan tahay wax ka beddelka badan ee aad samaysay.",
+	"unifiedextensionforfemiwiki-share-card-disabled": "Kaararka wadaagista waa laga dansan yahay wikigan."
 }
