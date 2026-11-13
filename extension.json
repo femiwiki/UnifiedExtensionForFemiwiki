@@ -54,9 +54,6 @@
     "ManualNotification": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\ManualNotification"
     },
-    "FlowBoards": {
-      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\FlowBoards"
-    },
     "NumberOfEmails": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\NumberOfEmails",
       "services": ["ConnectionProvider", "MainWANObjectCache", "MagicWordFactory"]
@@ -77,7 +74,6 @@
     "BeforeCreateAchievement": "RankingAchievement",
     "BeforeCreateEchoEvent": "ManualNotification",
     "BeforePageDisplay": ["ShareCard", "TranslatedPages"],
-    "ContentAlterParserOutput": "FlowBoards",
     "GetMagicVariableIDs": "NumberOfEmails",
     "HtmlPageLinkRendererBegin": "main",
     "isValidEmailAddr": "SpamEmail",
