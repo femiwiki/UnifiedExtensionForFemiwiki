@@ -1,0 +1,6 @@
+[
+	{
+		"resourceModule": "ext.unifiedExtensionForFemiwiki.loggedOutEditLimit",
+		"maxSize": "3 KB"
+	}
+]
