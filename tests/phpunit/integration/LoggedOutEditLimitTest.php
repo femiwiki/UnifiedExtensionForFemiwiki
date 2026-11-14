@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\Tests\Integration;
 
+use MediaWiki\Extension\UnifiedExtensionForFemiwiki\HookHandlers\LoggedOutEditLimit;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
@@ -133,5 +134,20 @@ class LoggedOutEditLimitTest extends MediaWikiIntegrationTestCase {
 		$this->setLimit( 0 );
 
 		$this->assertTrue( $this->canEdit( $this->getTestUser()->getUser() ) );
+	}
+
+	public function testWithoutTheProviderNothingIsRefused() {
+		$services = $this->getServiceContainer();
+		$handler = new LoggedOutEditLimit(
+			$services->getConnectionProvider(),
+			$services->getActorNormalization(),
+			$services->getTempUserConfig()
+		);
+		$result = null;
+
+		$this->assertTrue( $handler->onGetUserPermissionsErrorsExpensive(
+			Title::makeTitle( NS_TALK, 'LoggedOutEditLimitTest' ), $this->newTempUser(), 'edit', $result
+		) );
+		$this->assertNull( $result );
 	}
 }
