@@ -15,7 +15,8 @@ use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
- * Turns away an edit without an account once the day's allowance is spent.
+ * Turns away an edit without an account outside the main namespace, or once the day's
+ * allowance is spent.
  *
  * The check is a permission, so the editor says why before anything is typed: the wikitext
  * editor shows it in place of the edit form and VisualEditor shows it when it loads. A rate
@@ -33,6 +34,8 @@ class LoggedOutEditLimit implements BeforePageDisplayHook, GetUserPermissionsErr
 	public const LIMITED = 'unifiedextensionforfemiwiki-logged-out-edit-limit';
 
 	public const CLOSED = 'unifiedextensionforfemiwiki-logged-out-editing-closed';
+
+	public const NAMESPACE_CLOSED = 'unifiedextensionforfemiwiki-logged-out-editing-namespace';
 
 	private const PERIOD = 86400;
 
@@ -66,13 +69,18 @@ class LoggedOutEditLimit implements BeforePageDisplayHook, GetUserPermissionsErr
 			return true;
 		}
 		$limit = $this->getLimit();
-		if ( $limit === null ) {
-			return true;
-		}
 		if ( $limit === 0 ) {
 			// Closed on the wiki, without a deploy
 			$result = MessageValue::new( self::CLOSED );
 			return false;
+		}
+		if ( !$title->inNamespace( NS_MAIN ) ) {
+			// Talk pages, templates, project pages and the rest need an account
+			$result = MessageValue::new( self::NAMESPACE_CLOSED );
+			return false;
+		}
+		if ( $limit === null ) {
+			return true;
 		}
 		if ( $this->countEdits( $user ) < $limit ) {
 			return true;

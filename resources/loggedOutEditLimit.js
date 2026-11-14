@@ -5,6 +5,9 @@
 (() => {
 	const LIMITED = "unifiedextensionforfemiwiki-logged-out-edit-limit";
 	const CLOSED = "unifiedextensionforfemiwiki-logged-out-editing-closed";
+	const NAMESPACE_CLOSED =
+		"unifiedextensionforfemiwiki-logged-out-editing-namespace";
+	const CODES = [LIMITED, CLOSED, NAMESPACE_CLOSED];
 	const CHECKED = "ueffEditLimitChecked";
 	let windowManager = null;
 	// Loaded only when an edit link is followed, to keep page views light
@@ -65,9 +68,7 @@
 			.then((data) => {
 				const page = data.query?.pages?.[0];
 				const errors = page?.actions?.edit || [];
-				return (
-					errors.find((e) => e.code === LIMITED || e.code === CLOSED) || null
-				);
+				return errors.find((e) => CODES.includes(e.code)) || null;
 			});
 	}
 
@@ -84,8 +85,7 @@
 		const returnTo = { returnto: mw.config.get("wgPageName") };
 		windowManager
 			.openWindow(dialog, {
-				// Messages: unifiedextensionforfemiwiki-logged-out-edit-limit-title,
-				// unifiedextensionforfemiwiki-logged-out-editing-closed-title
+				// Message keys are the refusal code with -title or -dialog appended
 				title: mw.msg(`${error.code}-title`),
 				message:
 					error.code === LIMITED
@@ -93,7 +93,7 @@
 								`${LIMITED}-dialog`,
 								mw.language.convertNumber(Number(error.params[0].num)),
 							)
-						: mw.msg(`${CLOSED}-dialog`),
+						: mw.msg(`${error.code}-dialog`),
 				actions: [
 					{
 						action: "createaccount",

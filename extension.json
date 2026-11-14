@@ -153,6 +153,8 @@
         "unifiedextensionforfemiwiki-logged-out-edit-limit-dialog",
         "unifiedextensionforfemiwiki-logged-out-editing-closed-title",
         "unifiedextensionforfemiwiki-logged-out-editing-closed-dialog",
+        "unifiedextensionforfemiwiki-logged-out-editing-namespace-title",
+        "unifiedextensionforfemiwiki-logged-out-editing-namespace-dialog",
         "createaccount",
         "login"
       ]

@@ -103,6 +103,22 @@ class LoggedOutEditLimitTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $this->canEdit( $user ) );
 	}
 
+	public function testOtherNamespacesNeedAnAccount() {
+		$this->setLimit( 5 );
+		$talk = Title::makeTitle( NS_TALK, 'LoggedOutEditLimitTest' );
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+
+		$this->assertStatusError(
+			'unifiedextensionforfemiwiki-logged-out-editing-namespace',
+			$permissionManager->getPermissionStatus(
+				'edit', $this->newTempUser(), $talk, PermissionManager::RIGOR_FULL
+			)
+		);
+		$this->assertStatusGood( $permissionManager->getPermissionStatus(
+			'edit', $this->getTestUser()->getUser(), $talk, PermissionManager::RIGOR_FULL
+		) );
+	}
+
 	public function testZeroClosesLoggedOutEditing() {
 		$this->setLimit( 0 );
 		$status = $this->getServiceContainer()->getPermissionManager()->getPermissionStatus(
