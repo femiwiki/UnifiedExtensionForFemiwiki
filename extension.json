@@ -42,6 +42,11 @@
         "MainWANObjectCache"
       ]
     },
+    "LoggedOutEditLimit": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\LoggedOutEditLimit",
+      "services": ["ConnectionProvider", "ActorNormalization", "TempUserConfig"],
+      "optional_services": ["CommunityConfiguration.ProviderFactory"]
+    },
     "Services": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\Services"
     },
@@ -73,8 +78,9 @@
   "Hooks": {
     "BeforeCreateAchievement": "RankingAchievement",
     "BeforeCreateEchoEvent": "ManualNotification",
-    "BeforePageDisplay": ["ShareCard", "TranslatedPages"],
+    "BeforePageDisplay": ["ShareCard", "TranslatedPages", "LoggedOutEditLimit"],
     "GetMagicVariableIDs": "NumberOfEmails",
+    "getUserPermissionsErrorsExpensive": "LoggedOutEditLimit",
     "HtmlPageLinkRendererBegin": "main",
     "isValidEmailAddr": "SpamEmail",
     "LinkerMakeExternalLink": "main",
@@ -135,6 +141,23 @@
   "MessagesDirs": {
     "UnifiedExtensionForFemiwiki": ["i18n"]
   },
+  "ResourceFileModulePaths": {
+    "localBasePath": "resources",
+    "remoteExtPath": "UnifiedExtensionForFemiwiki/resources"
+  },
+  "ResourceModules": {
+    "ext.unifiedExtensionForFemiwiki.loggedOutEditLimit": {
+      "packageFiles": ["loggedOutEditLimit.js"],
+      "messages": [
+        "unifiedextensionforfemiwiki-logged-out-edit-limit-title",
+        "unifiedextensionforfemiwiki-logged-out-edit-limit-dialog",
+        "unifiedextensionforfemiwiki-logged-out-editing-closed-title",
+        "unifiedextensionforfemiwiki-logged-out-editing-closed-dialog",
+        "createaccount",
+        "login"
+      ]
+    }
+  },
   "ExtensionMessagesFiles": {
     "UnifiedExtensionForFemiwikiAlias": "UnifiedExtensionForFemiwiki.i18n.alias.php",
     "UnifiedExtensionForFemiwikiMagic": "UnifiedExtensionForFemiwiki.i18n.magic.php"
@@ -150,6 +173,17 @@
           "validator": {
             "type": "jsonschema",
             "args": ["MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\GrowthExperiments\\TopicsSchema"]
+          },
+          "type": "data"
+        },
+        "FemiwikiLoggedOutEditing": {
+          "store": {
+            "type": "wikipage",
+            "args": ["MediaWiki:FemiwikiLoggedOutEditing.json"]
+          },
+          "validator": {
+            "type": "jsonschema",
+            "args": ["MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\LoggedOutEditing\\LoggedOutEditingSchema"]
           },
           "type": "data"
         }
