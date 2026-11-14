@@ -68,6 +68,10 @@ class LoggedOutEditLimit implements BeforePageDisplayHook, GetUserPermissionsErr
 		) {
 			return true;
 		}
+		if ( !$this->providerFactory || !$this->providerFactory->isProviderSupported( self::PROVIDER ) ) {
+			// Not set up on this wiki, as when other extensions run their tests
+			return true;
+		}
 		$limit = $this->getLimit();
 		if ( $limit === 0 ) {
 			// Closed on the wiki, without a deploy
@@ -92,12 +96,9 @@ class LoggedOutEditLimit implements BeforePageDisplayHook, GetUserPermissionsErr
 
 	/**
 	 * @return int|null Edits allowed in 24 hours, 0 when logged-out editing is closed, or null
-	 *  for no limit
+	 *  for no limit or an invalid configuration
 	 */
 	private function getLimit(): ?int {
-		if ( !$this->providerFactory || !$this->providerFactory->isProviderSupported( self::PROVIDER ) ) {
-			return null;
-		}
 		$status = $this->providerFactory->newProvider( self::PROVIDER )->loadValidConfiguration();
 		if ( !$status->isOK() ) {
 			// The provider logs the reason
