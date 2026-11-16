@@ -350,6 +350,13 @@
 			section.removeAttribute( 'aria-busy' );
 		};
 		batch.then( ( pages ) => {
+			if ( !pages.length ) {
+				// Every page of a small wiki has been shown
+				settle();
+				stopped = true;
+				pending.hidden = true;
+				return;
+			}
 			const list = element( 'ul', 'fw-explore-list' );
 			pagesOf.set( list, pages );
 			list.append( ...pages.map( card ) );

@@ -260,21 +260,24 @@ class ExploreFeed {
 		SelectQueryBuilder $queryBuilder,
 		int $limit
 	): array {
+		// DISTINCT needs the column it orders by
 		$queryBuilder->select( [ 'page_id', 'page_random' ] )->caller( __METHOD__ );
 		$random = wfRandom();
-		$ids = ( clone $queryBuilder )
-			->andWhere( $dbr->expr( 'page_random', '>=', $random ) )
-			->orderBy( 'page_random' )
-			->limit( $limit )
-			->fetchFieldValues();
-		if ( count( $ids ) < $limit ) {
-			$ids = array_merge( $ids, ( clone $queryBuilder )
-				->andWhere( $dbr->expr( 'page_random', '<', $random ) )
+		$ids = [];
+		foreach ( [ '>=', '<' ] as $op ) {
+			$rows = ( clone $queryBuilder )
+				->andWhere( $dbr->expr( 'page_random', $op, $random ) )
 				->orderBy( 'page_random' )
 				->limit( $limit - count( $ids ) )
-				->fetchFieldValues() );
+				->fetchResultSet();
+			foreach ( $rows as $row ) {
+				$ids[] = (int)$row->page_id;
+			}
+			if ( count( $ids ) >= $limit ) {
+				break;
+			}
 		}
-		return array_values( array_unique( array_map( 'intval', $ids ) ) );
+		return array_values( array_unique( $ids ) );
 	}
 
 	/**
