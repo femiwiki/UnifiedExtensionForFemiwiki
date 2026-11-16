@@ -61,7 +61,7 @@ class Main implements
 	}
 
 	/**
-	 * Treat external links to FemiWiki as internal links.
+	 * Treat external links to Femiwiki as internal links.
 	 *
 	 * @inheritDoc
 	 */
@@ -155,7 +155,7 @@ class Main implements
 	}
 
 	/**
-	 * Treat external links to FemiWiki as internal links in the Sidebar.
+	 * Treat external links to Femiwiki as internal links in the Sidebar.
 	 * @param array &$bar
 	 * @return void
 	 */

@@ -3,7 +3,7 @@
 [![Github checks status]][github checks link]
 [![codecov.io status]][codecov.io link]
 
-An all-in-one extension for the various features FemiWiki needs. It provides
+An all-in-one extension for the various features Femiwiki needs. It provides
 the following.
 
 - Asks new users to type the sentence "나는 페미니스트입니다" ("I am a
@@ -15,7 +15,7 @@ the following.
 - Adds the Google Tag Manager script to every page
 - Adds the pages a page links to, and the pages linking to it, as its related
   articles
-- Gives user emails the FemiWiki theme
+- Gives user emails the Femiwiki theme
 - The `{{NUMBEROFEMAILS}}` (`{{이메일수}}`) magic word, which shows the number
   of distinct email addresses. `{{NUMBEROFEMAILS:authenticated}}`
   (`{{이메일수:인증됨}}`) counts only confirmed addresses, and adding `R` shows
@@ -26,7 +26,7 @@ the following.
   (`$wgUnifiedExtensionForFemiwikiShareCard`). This needs PHP GD,
   `rsvg-convert` and the fonts in `$wgUnifiedExtensionForFemiwikiShareCardFonts`.
 
-Any release may contain breaking changes. Using it on wikis other than FemiWiki
+Any release may contain breaking changes. Using it on wikis other than Femiwiki
 is not recommended.
 
 ## Installation
