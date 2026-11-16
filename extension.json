@@ -29,6 +29,10 @@
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\Main",
       "services": ["MainConfig"]
     },
+    "Explore": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\Explore",
+      "services": ["MainConfig"]
+    },
     "DefaultOptions": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\DefaultOptions",
       "services": ["MainConfig", "UserOptionsManager"]
@@ -78,8 +82,9 @@
   "Hooks": {
     "BeforeCreateAchievement": "RankingAchievement",
     "BeforeCreateEchoEvent": "ManualNotification",
-    "BeforePageDisplay": ["ShareCard", "TranslatedPages", "LoggedOutEditLimit"],
+    "BeforePageDisplay": ["ShareCard", "TranslatedPages", "LoggedOutEditLimit", "Explore"],
     "GetMagicVariableIDs": "NumberOfEmails",
+    "GetPreferences": "Explore",
     "getUserPermissionsErrorsExpensive": "LoggedOutEditLimit",
     "HtmlPageLinkRendererBegin": "main",
     "isValidEmailAddr": "SpamEmail",
@@ -89,6 +94,7 @@
     "MessageCacheFetchOverrides": "GrowthMessages",
     "ParserFirstCallInit": "NumberOfEmails",
     "ParserGetVariableValueSwitch": "NumberOfEmails",
+    "ResourceLoaderGetConfigVars": "Explore",
     "SidebarBeforeOutput": "main",
     "SkinAddFooterLinks": "main",
     "SpecialStatsAddExtra": "NumberOfEmails",
@@ -107,6 +113,19 @@
         "ConnectionProvider",
         "JobQueueGroup",
         "MainObjectStash"
+      ]
+    }
+  },
+  "APIListModules": {
+    "femiwikiexplore": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\Explore\\ApiQueryExplore",
+      "services": [
+        "MainConfig",
+        "ConnectionProvider",
+        "LinkTargetLookup",
+        "MainWANObjectCache",
+        "UserOptionsLookup",
+        "PageStore"
       ]
     }
   },
@@ -136,7 +155,9 @@
     "manualnotification/*": "MediaWiki\\Logging\\LogFormatter"
   },
   "DefaultUserOptions": {
-    "echo-subscriptions-email-write-manual-notification": false
+    "echo-subscriptions-email-write-manual-notification": false,
+    "femiwiki-explore-more": "[]",
+    "femiwiki-explore-less": "[]"
   },
   "MessagesDirs": {
     "UnifiedExtensionForFemiwiki": ["i18n"]
@@ -146,6 +167,30 @@
     "remoteExtPath": "UnifiedExtensionForFemiwiki/resources"
   },
   "ResourceModules": {
+    "ext.unifiedExtensionForFemiwiki.explore.styles": {
+      "class": "MediaWiki\\ResourceLoader\\CodexModule",
+      "codexStyleOnly": true,
+      "codexComponents": ["CdxCard", "CdxThumbnail"],
+      "styles": ["explore/explore.less"]
+    },
+    "ext.unifiedExtensionForFemiwiki.explore": {
+      "packageFiles": ["explore/index.js"],
+      "dependencies": ["mediawiki.api", "mediawiki.user", "mediawiki.util"],
+      "messages": [
+        "unifiedextensionforfemiwiki-explore-heading",
+        "unifiedextensionforfemiwiki-explore-retry",
+        "unifiedextensionforfemiwiki-explore-back",
+        "unifiedextensionforfemiwiki-explore-topics",
+        "unifiedextensionforfemiwiki-explore-menu-more",
+        "unifiedextensionforfemiwiki-explore-menu-less",
+        "unifiedextensionforfemiwiki-explore-menu-normal",
+        "unifiedextensionforfemiwiki-explore-menu-category",
+        "unifiedextensionforfemiwiki-explore-saved-more",
+        "unifiedextensionforfemiwiki-explore-saved-less",
+        "unifiedextensionforfemiwiki-explore-saved-normal",
+        "unifiedextensionforfemiwiki-explore-save-failed"
+      ]
+    },
     "ext.unifiedExtensionForFemiwiki.loggedOutEditLimit": {
       "packageFiles": ["loggedOutEditLimit.js"],
       "messages": [
@@ -231,6 +276,14 @@
       },
       "merge_strategy": "array_replace_recursive",
       "description": "Font files the share card measures text with: regular and bold, and han and hanBold for Hanja. family is the font-family list naming the same fonts to rsvg-convert, which finds them through fontconfig."
+    },
+    "UnifiedExtensionForFemiwikiExplore": {
+      "value": false,
+      "description": "Shows \"more to explore\" below articles: the articles the page links to and that link to it, then articles in the topics the reader asked to see more of, then random articles without end. Turn RelatedArticles off with it."
+    },
+    "UnifiedExtensionForFemiwikiExploreTopicPrefix": {
+      "value": "",
+      "description": "Categories whose names start with this are topics, shown as tags on the cards of the explore feed. Signed-in readers can ask to see more or less of a topic. Empty turns topics off."
     },
     "UnifiedExtensionForFemiwikiRankingPages": {
       "value": [],
