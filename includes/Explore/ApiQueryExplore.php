@@ -136,6 +136,12 @@ class ApiQueryExplore extends ApiQueryGeneratorBase {
 	}
 
 	/** @inheritDoc */
+	public function isInternal() {
+		// Only the "More to explore" section below articles uses this module
+		return true;
+	}
+
+	/** @inheritDoc */
 	protected function getAllowedParams() {
 		return [
 			'title' => [
