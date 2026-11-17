@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\Tests\Integration;
+namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\Tests\Integration\Explore;
 
 use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Extension\UnifiedExtensionForFemiwiki\Explore\ApiQueryExplore;

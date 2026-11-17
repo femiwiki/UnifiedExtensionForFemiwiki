@@ -1,9 +1,8 @@
 <?php
 
-namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\HookHandlers;
+namespace MediaWiki\Extension\UnifiedExtensionForFemiwiki\Explore;
 
 use MediaWiki\Config\Config;
-use MediaWiki\Extension\UnifiedExtensionForFemiwiki\Explore\ApiQueryExplore;
 use MediaWiki\Output\Hook\BeforePageDisplayHook;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook;
@@ -11,7 +10,7 @@ use MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook;
 /**
  * Puts "더 둘러보기" below articles. See ExploreFeed.
  */
-class Explore implements BeforePageDisplayHook, GetPreferencesHook, ResourceLoaderGetConfigVarsHook {
+class Hooks implements BeforePageDisplayHook, GetPreferencesHook, ResourceLoaderGetConfigVarsHook {
 
 	public function __construct(
 		private Config $config

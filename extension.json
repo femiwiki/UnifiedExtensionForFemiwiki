@@ -30,7 +30,7 @@
       "services": ["MainConfig"]
     },
     "Explore": {
-      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\Explore",
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\Explore\\Hooks",
       "services": ["MainConfig"]
     },
     "DefaultOptions": {
