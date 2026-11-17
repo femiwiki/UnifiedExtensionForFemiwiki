@@ -73,6 +73,17 @@ class ApiQueryExploreTest extends ApiTestCase {
 		$this->assertTrue( $result['paraminfo']['modules'][0]['internal'] ?? false );
 	}
 
+	public function testHelp() {
+		[ $result ] = $this->doApiRequest( [
+			'action' => 'help',
+			'modules' => 'query+moretoexplore',
+			'wrap' => true,
+		] );
+
+		// The examples
+		$this->assertStringContainsString( 'gmtetitle=Main', $result['help']['help'] );
+	}
+
 	public function testMissingTitle() {
 		$this->expectException( ApiUsageException::class );
 		$this->doApiRequest( [
