@@ -265,10 +265,7 @@
 		}
 		if (page.topics?.length) {
 			const tags = element("span", "moretoexplore-tags");
-			tags.setAttribute(
-				"aria-label",
-				mw.msg("moretoexplore-topics"),
-			);
+			tags.setAttribute("aria-label", mw.msg("moretoexplore-topics"));
 			tags.append(...page.topics.map(topicTag));
 			text.append(tags);
 		}
@@ -409,10 +406,7 @@
 				list.append(...pages.map(card));
 				batches.append(list);
 				unloader.observe(list);
-				mw.hook("ext.moreToExplore.batch").fire(
-					list,
-					pages,
-				);
+				mw.hook("ext.moreToExplore.batch").fire(list, pages);
 				settle();
 				// Look again: the sentinel may still be in range
 				observer.unobserve(sentinel);
