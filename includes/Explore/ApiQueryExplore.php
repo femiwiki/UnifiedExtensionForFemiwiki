@@ -18,12 +18,12 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
- * list=femiwikiexplore: the pages "더 둘러보기" shows below an article. See ExploreFeed.
+ * list=moretoexplore: the pages "더 둘러보기" shows below an article. See ExploreFeed.
  */
 class ApiQueryExplore extends ApiQueryGeneratorBase {
 
-	public const MORE_OPTION = 'femiwiki-explore-more';
-	public const LESS_OPTION = 'femiwiki-explore-less';
+	public const MORE_OPTION = 'moretoexplore-more';
+	public const LESS_OPTION = 'moretoexplore-less';
 
 	/** TextExtracts gives at most 20 extracts a request */
 	private const MAX_LIMIT = 20;
@@ -40,12 +40,12 @@ class ApiQueryExplore extends ApiQueryGeneratorBase {
 		private UserOptionsLookup $userOptionsLookup,
 		private PageStore $pageStore
 	) {
-		parent::__construct( $query, $moduleName, 'fwe' );
+		parent::__construct( $query, $moduleName, 'mte' );
 		$this->feed = new ExploreFeed(
 			$connectionProvider,
 			$linkTargetLookup,
 			$cache,
-			str_replace( ' ', '_', $config->get( 'UnifiedExtensionForFemiwikiExploreTopicPrefix' ) )
+			str_replace( ' ', '_', $config->get( 'MoreToExploreTopicPrefix' ) )
 		);
 	}
 
@@ -173,10 +173,10 @@ class ApiQueryExplore extends ApiQueryGeneratorBase {
 	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
-			'action=query&list=femiwikiexplore&fwetitle=Main%20Page'
-				=> 'apihelp-query+femiwikiexplore-example-simple',
-			'action=query&generator=femiwikiexplore&gfwetitle=Main%20Page&prop=pageimages|extracts'
-				=> 'apihelp-query+femiwikiexplore-example-generator',
+			'action=query&list=moretoexplore&mtetitle=Main%20Page'
+				=> 'apihelp-query+moretoexplore-example-simple',
+			'action=query&generator=moretoexplore&gmtetitle=Main%20Page&prop=pageimages|extracts'
+				=> 'apihelp-query+moretoexplore-example-generator',
 		];
 	}
 }

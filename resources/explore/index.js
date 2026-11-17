@@ -1,7 +1,7 @@
 /**
  * "더 둘러보기" below the footer: linked articles first, then articles in the topics the reader
  * asked to see more of, then random articles without end. The list comes from
- * list=femiwikiexplore; see ExploreFeed.
+ * list=moretoexplore; see ExploreFeed.
  */
 (() => {
 	const footer = document.querySelector("#footer, .mw-footer");
@@ -14,22 +14,22 @@
 	// Each batch is a grid of its own, so one that fills its last row in one,
 	// two or three columns leaves no gap before the next
 	const ROW_MULTIPLE = 6;
-	const MORE_OPTION = "femiwiki-explore-more";
-	const LESS_OPTION = "femiwiki-explore-less";
+	const MORE_OPTION = "moretoexplore-more";
+	const LESS_OPTION = "moretoexplore-less";
 	const MENU_MESSAGES = {
-		more: "unifiedextensionforfemiwiki-explore-menu-more",
-		less: "unifiedextensionforfemiwiki-explore-menu-less",
-		normal: "unifiedextensionforfemiwiki-explore-menu-normal",
+		more: "moretoexplore-menu-more",
+		less: "moretoexplore-menu-less",
+		normal: "moretoexplore-menu-normal",
 	};
 	const SAVED_MESSAGES = {
-		more: "unifiedextensionforfemiwiki-explore-saved-more",
-		less: "unifiedextensionforfemiwiki-explore-saved-less",
-		normal: "unifiedextensionforfemiwiki-explore-saved-normal",
+		more: "moretoexplore-saved-more",
+		less: "moretoexplore-saved-less",
+		normal: "moretoexplore-saved-normal",
 	};
 
 	const api = new mw.Api();
 	const pageName = mw.config.get("wgPageName");
-	const topicPrefix = mw.config.get("wgFemiwikiExploreTopicPrefix", "");
+	const topicPrefix = mw.config.get("wgMoreToExploreTopicPrefix", "");
 	const canTune = mw.user.isNamed() && topicPrefix !== "";
 	const seen = new Set([mw.config.get("wgTitle")]);
 	const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -70,10 +70,10 @@
 		const request = api.get({
 			action: "query",
 			formatversion: 2,
-			generator: "femiwikiexplore",
-			gfwetitle: pageName,
-			gfweoffset: offset,
-			gfwelimit: BATCH_SIZE,
+			generator: "moretoexplore",
+			gmtetitle: pageName,
+			gmteoffset: offset,
+			gmtelimit: BATCH_SIZE,
 			prop: "pageimages|extracts",
 			piprop: "thumbnail",
 			pithumbsize: 250,
@@ -133,7 +133,7 @@
 
 	const updateTags = (topic) => {
 		const state = getTopicState(topic);
-		for (const tag of document.querySelectorAll(".fw-explore-tag")) {
+		for (const tag of document.querySelectorAll(".moretoexplore-tag")) {
 			if (tag.dataset.topic === topicKey(topic)) {
 				tag.dataset.state = state;
 			}
@@ -159,7 +159,7 @@
 				mw.notify(mw.msg(SAVED_MESSAGES[state], topicLabel(topic)));
 			},
 			() => {
-				mw.notify(mw.msg("unifiedextensionforfemiwiki-explore-save-failed"), {
+				mw.notify(mw.msg("moretoexplore-save-failed"), {
 					type: "error",
 				});
 			},
@@ -168,7 +168,7 @@
 
 	const openTopicMenu = (tag, topic) => {
 		const current = getTopicState(topic);
-		const menu = element("div", "fw-explore-menu");
+		const menu = element("div", "moretoexplore-menu");
 		menu.setAttribute("role", "menu");
 		const items = [];
 		for (const state of ["more", "less", "normal"]) {
@@ -177,7 +177,7 @@
 			}
 			const item = element(
 				"button",
-				"fw-explore-menu-item",
+				"moretoexplore-menu-item",
 				mw.msg(MENU_MESSAGES[state], topicLabel(topic)),
 			);
 			item.type = "button";
@@ -190,8 +190,8 @@
 		}
 		const category = element(
 			"a",
-			"fw-explore-menu-item",
-			mw.msg("unifiedextensionforfemiwiki-explore-menu-category"),
+			"moretoexplore-menu-item",
+			mw.msg("moretoexplore-menu-category"),
 		);
 		category.href = mw.util.getUrl(
 			`Category:${topicPrefix}${topicLabel(topic)}`,
@@ -217,7 +217,7 @@
 		const text = `#${topicLabel(topic)}`;
 		let tag;
 		if (canTune) {
-			tag = element("button", "fw-explore-tag", text);
+			tag = element("button", "moretoexplore-tag", text);
 			tag.type = "button";
 			tag.setAttribute("aria-haspopup", "menu");
 			tag.setAttribute("aria-expanded", "false");
@@ -230,7 +230,7 @@
 				}
 			});
 		} else {
-			tag = element("a", "fw-explore-tag", text);
+			tag = element("a", "moretoexplore-tag", text);
 			tag.href = mw.util.getUrl(`Category:${topicPrefix}${topicLabel(topic)}`);
 		}
 		tag.dataset.topic = topicKey(topic);
@@ -238,7 +238,7 @@
 	};
 
 	const card = (page) => {
-		const li = element("li", "fw-explore-item");
+		const li = element("li", "moretoexplore-item");
 		li.dataset.source = page.source;
 		const body = element("div", "cdx-card");
 		const thumbnail = element("span", "cdx-card__thumbnail cdx-thumbnail");
@@ -255,7 +255,7 @@
 		// The title link covers the whole card; the topic tags sit above it
 		const link = element(
 			"a",
-			"cdx-card__text__title fw-explore-link",
+			"cdx-card__text__title moretoexplore-link",
 			page.title,
 		);
 		link.href = mw.util.getUrl(page.title);
@@ -264,11 +264,8 @@
 			text.append(element("span", "cdx-card__text__description", page.extract));
 		}
 		if (page.topics?.length) {
-			const tags = element("span", "fw-explore-tags");
-			tags.setAttribute(
-				"aria-label",
-				mw.msg("unifiedextensionforfemiwiki-explore-topics"),
-			);
+			const tags = element("span", "moretoexplore-tags");
+			tags.setAttribute("aria-label", mw.msg("moretoexplore-topics"));
 			tags.append(...page.topics.map(topicTag));
 			text.append(tags);
 		}
@@ -278,14 +275,14 @@
 	};
 
 	const skeleton = () => {
-		const li = element("li", "fw-explore-skeleton");
+		const li = element("li", "moretoexplore-skeleton");
 		li.setAttribute("aria-hidden", "true");
 		const body = element("span", "cdx-card");
 		const thumbnail = element("span", "cdx-card__thumbnail cdx-thumbnail");
 		thumbnail.append(element("span", "cdx-thumbnail__placeholder"));
 		const text = element("span", "cdx-card__text");
 		for (let i = 0; i < 3; i++) {
-			text.append(element("span", "fw-explore-bar"));
+			text.append(element("span", "moretoexplore-bar"));
 		}
 		body.append(thumbnail, text);
 		li.append(body);
@@ -293,24 +290,24 @@
 	};
 
 	// The section goes in at once, so the random page link has a target
-	const section = element("section", "fw-explore noprint");
-	section.setAttribute("aria-labelledby", "fw-explore-heading");
+	const section = element("section", "moretoexplore noprint");
+	section.setAttribute("aria-labelledby", "moretoexplore-heading");
 	const heading = element(
 		"h2",
-		"fw-explore-heading",
-		mw.msg("unifiedextensionforfemiwiki-explore-heading"),
+		"moretoexplore-heading",
+		mw.msg("moretoexplore-heading"),
 	);
-	heading.id = "fw-explore-heading";
+	heading.id = "moretoexplore-heading";
 	heading.tabIndex = -1;
-	const batches = element("div", "fw-explore-batches");
-	const pending = element("ul", "fw-explore-list fw-explore-pending");
+	const batches = element("div", "moretoexplore-batches");
+	const pending = element("ul", "moretoexplore-list moretoexplore-pending");
 	pending.append(skeleton(), skeleton());
-	const sentinel = element("div", "fw-explore-sentinel");
+	const sentinel = element("div", "moretoexplore-sentinel");
 	// Only after a failed request, to try again
 	const retry = element(
 		"button",
-		"fw-explore-retry",
-		mw.msg("unifiedextensionforfemiwiki-explore-retry"),
+		"moretoexplore-retry",
+		mw.msg("moretoexplore-retry"),
 	);
 	retry.type = "button";
 	retry.hidden = true;
@@ -404,15 +401,12 @@
 					pending.hidden = true;
 					return;
 				}
-				const list = element("ul", "fw-explore-list");
+				const list = element("ul", "moretoexplore-list");
 				pagesOf.set(list, pages);
 				list.append(...pages.map(card));
 				batches.append(list);
 				unloader.observe(list);
-				mw.hook("ext.unifiedExtensionForFemiwiki.explore.batch").fire(
-					list,
-					pages,
-				);
+				mw.hook("ext.moreToExplore.batch").fire(list, pages);
 				settle();
 				// Look again: the sentinel may still be in range
 				observer.unobserve(sentinel);
@@ -457,25 +451,25 @@
 	});
 
 	section.addEventListener("click", (ev) => {
-		const link = ev.target.closest(".fw-explore-link");
+		const link = ev.target.closest(".moretoexplore-link");
 		if (!link) {
 			return;
 		}
-		const links = Array.from(section.querySelectorAll(".fw-explore-link"));
-		const item = link.closest(".fw-explore-item");
-		mw.hook("ext.unifiedExtensionForFemiwiki.explore.click").fire({
+		const links = Array.from(section.querySelectorAll(".moretoexplore-link"));
+		const item = link.closest(".moretoexplore-item");
+		mw.hook("ext.moreToExplore.click").fire({
 			position: links.indexOf(link) + 1,
 			source: item?.dataset.source,
 		});
 	});
 
 	// While the feed fills the screen, a bubble leads back to the footer
-	const back = element("button", "fw-explore-back");
+	const back = element("button", "moretoexplore-back");
 	back.type = "button";
 	back.hidden = true;
 	const arrow = element("span", null, "↑");
 	arrow.setAttribute("aria-hidden", "true");
-	back.append(arrow, ` ${mw.msg("unifiedextensionforfemiwiki-explore-back")}`);
+	back.append(arrow, ` ${mw.msg("moretoexplore-back")}`);
 	document.body.append(back);
 	footer.tabIndex = -1;
 	back.addEventListener("click", () => {

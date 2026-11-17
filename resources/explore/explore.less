@@ -1,6 +1,6 @@
 @import "mediawiki.skin.variables.less";
 
-.fw-explore {
+.moretoexplore {
 	box-sizing: border-box;
 	margin-top: @spacing-150;
 	padding-top: @spacing-150;
@@ -8,11 +8,11 @@
 }
 
 // Nothing to show without JavaScript
-.client-nojs .fw-explore {
+.client-nojs .moretoexplore {
 	display: none;
 }
 
-.fw-explore-heading {
+.moretoexplore-heading {
 	margin: 0 0 @spacing-75;
 	padding: 0;
 	border: 0;
@@ -28,7 +28,7 @@
 	}
 }
 
-.fw-explore-list {
+.moretoexplore-list {
 	display: grid;
 	gap: @spacing-75;
 	margin: 0;
@@ -63,7 +63,7 @@
 }
 
 // The title link covers the whole card, so the card reads as one link
-.fw-explore-link {
+.moretoexplore-link {
 	color: inherit;
 	text-decoration: none;
 
@@ -90,7 +90,7 @@
 	}
 }
 
-.fw-explore-tags {
+.moretoexplore-tags {
 	display: flex;
 	flex-wrap: wrap;
 	gap: @spacing-25 @spacing-50;
@@ -98,7 +98,7 @@
 }
 
 // Above the title link's cover, so it can be clicked on its own
-.fw-explore-tag {
+.moretoexplore-tag {
 	position: relative;
 	z-index: 1;
 	margin: 0;
@@ -125,7 +125,7 @@
 	}
 }
 
-.fw-explore-menu {
+.moretoexplore-menu {
 	position: absolute;
 	z-index: 2;
 	display: flex;
@@ -139,7 +139,7 @@
 	box-shadow: @box-shadow-medium;
 }
 
-.fw-explore-menu-item {
+.moretoexplore-menu-item {
 	padding: @spacing-50 @spacing-75;
 	border: 0;
 	background: none;
@@ -158,22 +158,22 @@
 }
 
 // Each batch is a list of its own, so one far off screen can be emptied
-.fw-explore-batches > ul + ul,
-.fw-explore-pending {
+.moretoexplore-batches > ul + ul,
+.moretoexplore-pending {
 	margin-top: @spacing-75;
 }
 
-.fw-explore-batches:empty + .fw-explore-pending {
+.moretoexplore-batches:empty + .moretoexplore-pending {
 	margin-top: 0;
 }
 
-.fw-explore-pending[hidden],
-.fw-explore-retry[hidden],
-.fw-explore-back[hidden] {
+.moretoexplore-pending[hidden],
+.moretoexplore-retry[hidden],
+.moretoexplore-back[hidden] {
 	display: none;
 }
 
-.fw-explore-bar {
+.moretoexplore-bar {
 	display: block;
 	height: 0.75em;
 	margin: 0.375em 0;
@@ -194,18 +194,18 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-	.fw-explore-skeleton .cdx-card {
-		animation: fw-explore-pulse 1.4s ease-in-out infinite;
+	.moretoexplore-skeleton .cdx-card {
+		animation: moretoexplore-pulse 1.4s ease-in-out infinite;
 	}
 }
 
-@keyframes fw-explore-pulse {
+@keyframes moretoexplore-pulse {
 	50% {
 		opacity: 0.5;
 	}
 }
 
-.fw-explore-retry {
+.moretoexplore-retry {
 	display: block;
 	margin: @spacing-100 auto 0;
 	padding: @spacing-50 @spacing-150;
@@ -218,7 +218,7 @@
 }
 
 // Floats at the bottom while the feed fills the screen
-.fw-explore-back {
+.moretoexplore-back {
 	position: fixed;
 	z-index: 3;
 	bottom: var(--fw-floating-button-inset, 1rem);
