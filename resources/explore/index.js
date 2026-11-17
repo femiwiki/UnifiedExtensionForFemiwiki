@@ -470,7 +470,11 @@
 	});
 
 	// While the feed fills the screen, a bubble leads back to the footer
-	const back = element("button", "moretoexplore-back");
+	// A primary button, so the skin's colors for one keep the label readable
+	const back = element(
+		"button",
+		"moretoexplore-back cdx-button cdx-button--action-progressive cdx-button--weight-primary",
+	);
 	back.type = "button";
 	back.hidden = true;
 	const arrow = element("span", null, "↑");
