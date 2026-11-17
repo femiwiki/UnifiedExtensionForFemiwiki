@@ -19,7 +19,7 @@ class Hooks implements BeforePageDisplayHook, GetPreferencesHook, ResourceLoader
 
 	/** @inheritDoc */
 	public function onBeforePageDisplay( $out, $skin ): void {
-		if ( !$this->config->get( 'UnifiedExtensionForFemiwikiExplore' ) ) {
+		if ( !$this->config->get( 'MoreToExploreEnabled' ) ) {
 			return;
 		}
 		$title = $out->getTitle();
@@ -30,8 +30,8 @@ class Hooks implements BeforePageDisplayHook, GetPreferencesHook, ResourceLoader
 		) {
 			return;
 		}
-		$out->addModuleStyles( [ 'ext.unifiedExtensionForFemiwiki.explore.styles' ] );
-		$out->addModules( [ 'ext.unifiedExtensionForFemiwiki.explore' ] );
+		$out->addModuleStyles( [ 'ext.moreToExplore.styles' ] );
+		$out->addModules( [ 'ext.moreToExplore' ] );
 	}
 
 	/** @inheritDoc */
@@ -43,9 +43,9 @@ class Hooks implements BeforePageDisplayHook, GetPreferencesHook, ResourceLoader
 
 	/** @inheritDoc */
 	public function onResourceLoaderGetConfigVars( array &$vars, $skin, $config ): void {
-		if ( $this->config->get( 'UnifiedExtensionForFemiwikiExplore' ) ) {
-			$vars['wgFemiwikiExploreTopicPrefix'] = str_replace( '_', ' ',
-				$this->config->get( 'UnifiedExtensionForFemiwikiExploreTopicPrefix' ) );
+		if ( $this->config->get( 'MoreToExploreEnabled' ) ) {
+			$vars['wgMoreToExploreTopicPrefix'] = str_replace( '_', ' ',
+				$this->config->get( 'MoreToExploreTopicPrefix' ) );
 		}
 	}
 }

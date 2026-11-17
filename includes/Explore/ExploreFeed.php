@@ -101,7 +101,7 @@ class ExploreFeed {
 		sort( $less );
 		return $this->cache->getWithSetCallback(
 			$this->cache->makeKey(
-				'femiwiki-explore', $page->getId(), md5( json_encode( [ $more, $less ] ) )
+				'moretoexplore', $page->getId(), md5( json_encode( [ $more, $less ] ) )
 			),
 			self::TTL,
 			function () use ( $page, $more, $less ) {
