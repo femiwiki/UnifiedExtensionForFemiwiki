@@ -92,7 +92,7 @@
   "unifiedextensionforfemiwiki-explore-saved-less": "Pages in #$1 will be left out of the random pages, from the next page you open.",
   "unifiedextensionforfemiwiki-explore-saved-normal": "Pages in #$1 will be shown as usual, from the next page you open.",
   "unifiedextensionforfemiwiki-explore-save-failed": "Your choice could not be saved. Please try again.",
-  "apihelp-query+femiwikiexplore-summary": "Lists the pages \"more to explore\" shows below an article: the articles it links to and that link to it, then articles in the topics the user asked to see more of, then random articles. The list never ends.",
+  "apihelp-query+femiwikiexplore-summary": "Lists the pages shown in the \"More to explore\" section below an article: first the articles it links to and the articles that link to it, then articles in the topics the user asked to see more of, then random articles. Further requests keep returning random articles, so the list never ends.",
   "apihelp-query+femiwikiexplore-param-title": "The article the list is shown below.",
   "apihelp-query+femiwikiexplore-param-limit": "How many pages to return.",
   "apihelp-query+femiwikiexplore-param-exclude": "IDs of pages not to return among the random pages.",

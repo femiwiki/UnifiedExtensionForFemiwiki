@@ -92,7 +92,7 @@
 	"unifiedextensionforfemiwiki-explore-saved-less": "Notification after choosing to see less of a topic.\n\nParameters:\n* $1 - topic name",
 	"unifiedextensionforfemiwiki-explore-saved-normal": "Notification after undoing a choice about a topic.\n\nParameters:\n* $1 - topic name",
 	"unifiedextensionforfemiwiki-explore-save-failed": "Notification when a choice about a topic could not be saved.",
-	"apihelp-query+femiwikiexplore-summary": "{{doc-apihelp-summary|query+femiwikiexplore}}",
+	"apihelp-query+femiwikiexplore-summary": "{{doc-apihelp-summary|query+femiwikiexplore}}\n\n\"More to explore\" is the section shown below articles, titled {{msg-mw|unifiedextensionforfemiwiki-explore-heading}}.",
 	"apihelp-query+femiwikiexplore-param-title": "{{doc-apihelp-param|query+femiwikiexplore|title}}",
 	"apihelp-query+femiwikiexplore-param-limit": "{{doc-apihelp-param|query+femiwikiexplore|limit}}",
 	"apihelp-query+femiwikiexplore-param-exclude": "{{doc-apihelp-param|query+femiwikiexplore|exclude}}",
