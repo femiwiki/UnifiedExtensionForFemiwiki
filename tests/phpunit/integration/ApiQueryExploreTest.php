@@ -64,6 +64,15 @@ class ApiQueryExploreTest extends ApiTestCase {
 		$this->assertSame( [ 'link', 'topic' ], array_column( $pages, 'source' ) );
 	}
 
+	public function testIsInternal() {
+		[ $result ] = $this->doApiRequest( [
+			'action' => 'paraminfo',
+			'modules' => 'query+femiwikiexplore',
+		] );
+
+		$this->assertTrue( $result['paraminfo']['modules'][0]['internal'] ?? false );
+	}
+
 	public function testMissingTitle() {
 		$this->expectException( ApiUsageException::class );
 		$this->doApiRequest( [
