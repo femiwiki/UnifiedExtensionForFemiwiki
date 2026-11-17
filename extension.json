@@ -170,7 +170,7 @@
     "ext.unifiedExtensionForFemiwiki.explore.styles": {
       "class": "MediaWiki\\ResourceLoader\\CodexModule",
       "codexStyleOnly": true,
-      "codexComponents": ["CdxCard", "CdxThumbnail"],
+      "codexComponents": ["CdxButton", "CdxCard", "CdxThumbnail"],
       "styles": ["explore/explore.less"]
     },
     "ext.unifiedExtensionForFemiwiki.explore": {
