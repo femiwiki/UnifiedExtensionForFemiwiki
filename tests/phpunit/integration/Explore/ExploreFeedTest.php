@@ -18,12 +18,16 @@ class ExploreFeedTest extends MediaWikiIntegrationTestCase {
 	public function addDBDataOnce() {
 		$this->editPage( 'Category:Topic/People', 'x' );
 		$this->editPage( 'Category:Topic/Places', 'x' );
-		$this->editPage( 'Center', '[[Linked]] [[Linked redirect]] [[Linked disambiguation]] [[Talk:Linked]]' );
+		$this->editPage(
+			'Center',
+			'[[Linked]] [[Linked redirect]] [[Linked disambiguation]] [[Talk:Linked]] [[Linked/styles.css]]'
+		);
 		$this->editPage( 'Linked', 'x [[Category:Topic/People]] [[Category:Topic/People/Women]]' );
 		$this->editPage( 'Linking', '[[Center]] [[Category:Topic/Places]]' );
 		$this->editPage( 'Linked redirect', '#REDIRECT [[Linked]]' );
 		$this->editPage( 'Linked disambiguation', 'x' );
 		$this->editPage( 'Talk:Linked', 'x' );
+		$this->editPage( 'Linked/styles.css', 'x' );
 		$this->editPage( 'Person', 'x [[Category:Topic/People]]' );
 		$this->editPage( 'Place', 'x [[Category:Topic/Places]]' );
 		$this->editPage( 'Unrelated', 'x [[Category:Other]]' );
@@ -36,6 +40,13 @@ class ExploreFeedTest extends MediaWikiIntegrationTestCase {
 				'pp_propname' => 'disambiguation',
 				'pp_value' => '',
 			] )
+			->caller( __METHOD__ )
+			->execute();
+		// Such as a TemplateStyles style sheet
+		$this->getDb()->newUpdateQueryBuilder()
+			->update( 'page' )
+			->set( [ 'page_content_model' => CONTENT_MODEL_CSS ] )
+			->where( [ 'page_id' => Title::newFromText( 'Linked/styles.css' )->getId() ] )
 			->caller( __METHOD__ )
 			->execute();
 	}
@@ -65,6 +76,12 @@ class ExploreFeedTest extends MediaWikiIntegrationTestCase {
 			$pages,
 			'Articles linked either way, without redirects, disambiguation pages or talk pages'
 		);
+	}
+
+	public function testOnlyWikitext() {
+		$pages = self::titles( $this->newFeed()->getPages( Title::newFromText( 'Center' ), 0, 20, [], [] ) );
+
+		$this->assertArrayNotHasKey( 'Linked/styles.css', $pages );
 	}
 
 	public function testRandomPagesFollow() {

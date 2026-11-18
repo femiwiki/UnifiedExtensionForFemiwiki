@@ -214,8 +214,8 @@ class ExploreFeed {
 	}
 
 	/**
-	 * Articles that are neither redirects nor disambiguation pages, and in none of the given
-	 * categories.
+	 * Wikitext articles that are neither redirects nor disambiguation pages, and in none of the
+	 * given categories. Style sheets and data pages under articles are left out.
 	 *
 	 * @param IReadableDatabase $dbr
 	 * @param int[] $excludedCategoryIds
@@ -234,7 +234,10 @@ class ExploreFeed {
 				'page_namespace' => NS_MAIN,
 				'page_is_redirect' => 0,
 				'pp_page' => null,
-			] );
+			] )
+			// Rows from before content models were stored may hold none: those are wikitext
+			->andWhere( $dbr->expr( 'page_content_model', '=', CONTENT_MODEL_WIKITEXT )
+				->or( 'page_content_model', '=', null ) );
 		if ( $excludedCategoryIds ) {
 			$queryBuilder
 				->leftJoin( 'categorylinks', 'excluded_cl', [
