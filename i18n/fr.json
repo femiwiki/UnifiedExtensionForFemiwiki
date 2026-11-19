@@ -3,6 +3,7 @@
 		"authors": [
 			"SleaY",
 			"Thibaut120094",
+			"Uriel",
 			"Verdy p"
 		]
 	},
@@ -14,6 +15,14 @@
 	"unifiedextensionforfemiwiki-createaccount": "Entrez « I am a feminist » ci-dessous ([[Special:Captcha/help|plus d’infos]]) :",
 	"unifiedextensionforfemiwiki-createaccount-fail": "Entrez « I am a feminist » dans le dernier formulaire",
 	"communityconfiguration-femiwikisuggestededitstopics-topics-label-label": "Nom",
+	"communityconfiguration-femiwikiloggedoutediting-title": "Effectuer des modifications sans compte",
+	"communityconfiguration-femiwikiloggedoutediting-description": "Des restrictions s'appliquent aux personnes qui effectuent des modifications sans avoir de compte, via des comptes temporaires. Les modifications sont décomptées par comptes temporaires et par adresses IP  pour tous les comptes temporaires associés.",
+	"communityconfiguration-femiwikiloggedoutediting-dailyeditlimit-label": "Les modifications sont autorisées pendant 24 heures ( O désactive la fonction modification sans avoir besoin de se connecter)",
+	"unifiedextensionforfemiwiki-logged-out-edit-limit-title": "Limite de modification atteinte",
+	"unifiedextensionforfemiwiki-logged-out-editing-closed-title": "Modification restreinte",
+	"unifiedextensionforfemiwiki-logged-out-editing-closed-dialog": "La fonction modification sans connexion est désactivée. Pour effectuer une modification, connectez-vous ou créez un compte.",
+	"unifiedextensionforfemiwiki-logged-out-editing-namespace-title": "Modification restreinte",
+	"unifiedextensionforfemiwiki-logged-out-editing-namespace-dialog": "Sans vous connecter, vous ne pouvez modifier que des articles. Pour modifier les pages de discussion, les modèles ou toutes autres pages, connectez-vous ou créez un compte.",
 	"writemanualnotification-label-header": "Titre",
 	"writemanualnotification-send": "Envoyer",
 	"echo-category-title-write-manual-notification": "Annonce des administrateurs",

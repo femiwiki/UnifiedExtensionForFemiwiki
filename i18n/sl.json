@@ -10,5 +10,18 @@
 	"femiwiki-support-label": "Podpora",
 	"femiwiki-support-page": "Project:Podpora",
 	"unifiedextensionforfemiwiki-createaccount": "Spodaj vnesite »Sem feministka« ([[Special:Captcha/help|več o tem]]):",
-	"unifiedextensionforfemiwiki-createaccount-fail": "V zadnji obrazec vnesite »Sem feministka«"
+	"unifiedextensionforfemiwiki-createaccount-fail": "V zadnji obrazec vnesite »Sem feministka«",
+	"communityconfiguration-femiwikiloggedoutediting-title": "Urejanje brez računa",
+	"communityconfiguration-femiwikiloggedoutediting-description": "Omejitve za osebe, ki urejajo brez računa, prek začasnih računov. Urejanja se štejejo glede na začasni račun in glede na IP-naslov v vseh njegovih začasnih računih.",
+	"communityconfiguration-femiwikiloggedoutediting-dailyeditlimit-label": "Urejanja dovoljena v 24 urah (0 izklopi urejanje brez prijave)",
+	"unifiedextensionforfemiwiki-logged-out-edit-limit": "Brez prijave lahko urejate do {{PLURAL:$1|enkrat|$1-krat}} v 24 urah. Spremembe z istega IP-naslova se štejejo skupaj. Če želite nadaljevati z urejanjem, se [[Special:UserLogin|prijavite]] ali si  [[Special:CreateAccount|ustvarite račun]].",
+	"unifiedextensionforfemiwiki-logged-out-edit-limit-title": "Dosežena omejitev urejanja",
+	"unifiedextensionforfemiwiki-logged-out-edit-limit-dialog": "Brez prijave lahko urejate do {{PLURAL:$1|enkrat|$1-krat}} v 24 urah. Spremembe z istega IP-naslova se štejejo skupaj. Če želite nadaljevati z urejanjem, se prijavite ali si ustvarite račun.",
+	"unifiedextensionforfemiwiki-logged-out-editing-closed": "Urejanje brez prijave je izklopljeno. Za urejanje se [[Special:UserLogin|prijavite]] ali si [[Special:CreateAccount|ustvarite račun]].",
+	"unifiedextensionforfemiwiki-logged-out-editing-closed-title": "Urejanje omejeno",
+	"unifiedextensionforfemiwiki-logged-out-editing-closed-dialog": "Urejanje brez prijave je izklopljeno. Za urejanje se prijavite ali si ustvarite račun.",
+	"unifiedextensionforfemiwiki-logged-out-editing-namespace": "Brez prijave lahko urejate samo članke. Za urejanje pogovornih strani, predlog in drugih strani se [[Special:UserLogin|prijavite]] ali si [[Special:CreateAccount|ustvarite račun]].",
+	"unifiedextensionforfemiwiki-logged-out-editing-namespace-title": "Urejanje omejeno",
+	"unifiedextensionforfemiwiki-logged-out-editing-namespace-dialog": "Brez prijave lahko urejate samo članke. Če želite urejati pogovorne strani, predloge in druge strani, se prijavite ali si ustvarite račun.",
+	"apihelp-query+moretoexplore-summary": "Prikaže seznam strani, ki so prikazane v razdelku »Več za raziskovanje« pod člankom: najprej članki, s katerimi se povezuje, in članki, ki se povezujejo z njim, nato članki iz tem, o katerih si je uporabnik želel videti več, nato naključni članki. Pri nadaljnjih zahtevkih se vedno prikazujejo naključni članki, zato se seznam nikoli ne konča."
 }
