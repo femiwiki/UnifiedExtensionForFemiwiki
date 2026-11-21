@@ -94,5 +94,7 @@
 	"moretoexplore-saved-more": "#$1 문서를 더 보여 줍니다. 다음에 여는 문서부터 바뀝니다.",
 	"moretoexplore-saved-less": "임의 문서에서 #$1 문서를 뺍니다. 다음에 여는 문서부터 바뀝니다.",
 	"moretoexplore-saved-normal": "#$1 문서를 원래대로 보여 줍니다. 다음에 여는 문서부터 바뀝니다.",
-	"moretoexplore-save-failed": "설정을 저장하지 못했습니다. 다시 시도해 주세요."
+	"moretoexplore-save-failed": "설정을 저장하지 못했습니다. 다시 시도해 주세요.",
+	"unifiedextensionforfemiwiki-pagetitle": "$1 - 페미위키",
+	"unifiedextensionforfemiwiki-pagetitle-view-mainpage": "페미위키"
 }
