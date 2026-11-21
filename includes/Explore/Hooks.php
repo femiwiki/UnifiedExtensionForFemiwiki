@@ -8,7 +8,7 @@ use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook;
 
 /**
- * Puts "더 둘러보기" below articles. See ExploreFeed.
+ * Puts "더 둘러보기" below articles and project pages. See ExploreFeed.
  */
 class Hooks implements BeforePageDisplayHook, GetPreferencesHook, ResourceLoaderGetConfigVarsHook {
 
@@ -26,7 +26,9 @@ class Hooks implements BeforePageDisplayHook, GetPreferencesHook, ResourceLoader
 		$request = $out->getRequest();
 		if ( !$title || !$out->isArticle() || ( $request->getRawVal( 'action' ) ?? 'view' ) !== 'view'
 			|| $request->getCheck( 'diff' ) || $request->getCheck( 'oldid' )
-			|| !$title->inNamespace( NS_MAIN ) || $title->isMainPage() || !$title->exists()
+			// Opened straight into VisualEditor. The script hides the feed when it opens later.
+			|| $request->getCheck( 'veaction' )
+			|| !$title->inNamespaces( NS_MAIN, NS_PROJECT ) || $title->isMainPage() || !$title->exists()
 		) {
 			return;
 		}
