@@ -97,5 +97,7 @@
 	"apihelp-query+moretoexplore-param-limit": "{{doc-apihelp-param|query+moretoexplore|limit}}",
 	"apihelp-query+moretoexplore-param-exclude": "{{doc-apihelp-param|query+moretoexplore|exclude}}",
 	"apihelp-query+moretoexplore-example-simple": "{{doc-apihelp-example|query+moretoexplore}}",
-	"apihelp-query+moretoexplore-example-generator": "{{doc-apihelp-example|query+moretoexplore}}"
+	"apihelp-query+moretoexplore-example-generator": "{{doc-apihelp-example|query+moretoexplore}}",
+	"unifiedextensionforfemiwiki-pagetitle": "Replaces [[MediaWiki:Pagetitle]] so that the wiki's name in the browser title follows the interface language.\n\nParameters:\n* $1 - page title",
+	"unifiedextensionforfemiwiki-pagetitle-view-mainpage": "Replaces [[MediaWiki:Pagetitle-view-mainpage]]: the browser title of the main page, which is the wiki's name in the interface language."
 }

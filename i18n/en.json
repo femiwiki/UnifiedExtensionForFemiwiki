@@ -97,5 +97,7 @@
   "apihelp-query+moretoexplore-param-limit": "How many pages to return.",
   "apihelp-query+moretoexplore-param-exclude": "IDs of pages not to return among the random pages.",
   "apihelp-query+moretoexplore-example-simple": "List the first pages to explore below <kbd>Main Page</kbd>.",
-  "apihelp-query+moretoexplore-example-generator": "Get images and extracts of the first pages to explore below <kbd>Main Page</kbd>."
+  "apihelp-query+moretoexplore-example-generator": "Get images and extracts of the first pages to explore below <kbd>Main Page</kbd>.",
+  "unifiedextensionforfemiwiki-pagetitle": "$1 - Femiwiki",
+  "unifiedextensionforfemiwiki-pagetitle-view-mainpage": "Femiwiki"
 }

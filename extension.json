@@ -75,6 +75,9 @@
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\ShareCard",
       "services": ["MainConfig", "PageProps", "NamespaceInfo", "UrlUtils"]
     },
+    "SiteNameMessages": {
+      "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\SiteNameMessages"
+    },
     "TranslatedPages": {
       "class": "MediaWiki\\Extension\\UnifiedExtensionForFemiwiki\\HookHandlers\\TranslatedPages"
     }
@@ -91,7 +94,7 @@
     "LinkerMakeExternalLink": "main",
     "LinksUpdateComplete": "RankingAchievement",
     "MediaWikiServices": "Services",
-    "MessageCacheFetchOverrides": "GrowthMessages",
+    "MessageCacheFetchOverrides": ["GrowthMessages", "SiteNameMessages"],
     "ParserFirstCallInit": "NumberOfEmails",
     "ParserGetVariableValueSwitch": "NumberOfEmails",
     "ResourceLoaderGetConfigVars": "Explore",
