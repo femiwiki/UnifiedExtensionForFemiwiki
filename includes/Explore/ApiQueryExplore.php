@@ -16,6 +16,7 @@ use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * list=moretoexplore: the pages "더 둘러보기" shows below an article. See ExploreFeed.
@@ -88,7 +89,8 @@ class ApiQueryExplore extends ApiQueryGeneratorBase {
 			$params['limit'],
 			$this->getTopicOption( self::MORE_OPTION ),
 			$this->getTopicOption( self::LESS_OPTION ),
-			$params['exclude'] ?? []
+			$params['exclude'] ?? [],
+			ExploreFeed::getWindow( ConvertibleTimestamp::time() )
 		);
 		$topics = $this->feed->getTopics( array_keys( $pages ) );
 		// The feed never ends: random pages follow the rest

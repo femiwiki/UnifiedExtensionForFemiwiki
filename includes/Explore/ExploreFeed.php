@@ -19,9 +19,12 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  * 2. Articles in the topics the reader asked to see more of, at random.
  * 3. Any article at random, except those in the topics the reader asked to see less of.
  *
- * Topics are the categories whose names start with a prefix, such as `문서_주제/`. The first two
- * parts are cached for each page and set of preferences; the third is endless and is drawn
- * anew for every request.
+ * Topics are the categories whose names start with a prefix, such as `문서_주제/`. The third
+ * part is endless.
+ *
+ * Every "random" choice is seeded by the page and a twelve hour window, so the feed under a page
+ * stays the same through the window for everyone with the same preferences: a reader who goes
+ * back to a page finds the feed they left, and logged-out responses can be cached.
  */
 class ExploreFeed {
 
@@ -29,8 +32,8 @@ class ExploreFeed {
 	public const SOURCE_TOPIC = 'topic';
 	public const SOURCE_RANDOM = 'random';
 
-	/** How long the first two parts are kept */
-	private const TTL = 12 * WANObjectCache::TTL_HOUR;
+	/** How long the feed under a page stays the same */
+	public const WINDOW = 12 * WANObjectCache::TTL_HOUR;
 
 	/** Most linked and linking articles taken in */
 	private const MAX_LINKS = 60;
@@ -50,6 +53,14 @@ class ExploreFeed {
 	}
 
 	/**
+	 * @param int $time Unix time
+	 * @return string The window $time falls in, for getPages()
+	 */
+	public static function getWindow( int $time ): string {
+		return (string)intdiv( $time, self::WINDOW );
+	}
+
+	/**
 	 * @return string Topic category names start with this, as a DB key; empty if topics are off
 	 */
 	public function getTopicPrefix(): string {
@@ -65,6 +76,7 @@ class ExploreFeed {
 	 * @param string[] $more Topics to see more of, without the prefix
 	 * @param string[] $less Topics to see less of, without the prefix
 	 * @param int[] $excludeIds Pages not to show again in the random part
+	 * @param string $window Seeds the random choices with the page; see getWindow()
 	 * @return array<int,string> Sources keyed by page ID, in order
 	 */
 	public function getPages(
@@ -73,16 +85,20 @@ class ExploreFeed {
 		int $limit,
 		array $more,
 		array $less,
-		array $excludeIds = []
+		array $excludeIds = [],
+		string $window = ''
 	): array {
 		$more = $this->normalizeTopics( $more );
 		$less = array_diff( $this->normalizeTopics( $less ), $more );
-		$head = array_slice( $this->getHead( $page, $more, $less ), $offset, $limit, true );
+		$seed = $page->getId() . '|' . $window;
+		$fullHead = $this->getHead( $page, $more, $less, $seed );
+		$head = array_slice( $fullHead, $offset, $limit, true );
 		if ( count( $head ) >= $limit ) {
 			return $head;
 		}
-		$exclude = array_merge( $excludeIds, array_keys( $head ), [ $page->getId() ] );
-		foreach ( $this->getRandomPageIds( $limit - count( $head ), $less, $exclude ) as $id ) {
+		$exclude = array_merge( $excludeIds, array_keys( $fullHead ), [ $page->getId() ] );
+		$skip = max( 0, $offset - count( $fullHead ) );
+		foreach ( $this->getRandomPageIds( $skip, $limit - count( $head ), $less, $exclude, $seed ) as $id ) {
 			$head[$id] = self::SOURCE_RANDOM;
 		}
 		return $head;
@@ -94,23 +110,24 @@ class ExploreFeed {
 	 * @param PageIdentity $page
 	 * @param string[] $more
 	 * @param string[] $less
+	 * @param string $seed
 	 * @return array<int,string> Sources keyed by page ID, in order
 	 */
-	private function getHead( PageIdentity $page, array $more, array $less ): array {
+	private function getHead( PageIdentity $page, array $more, array $less, string $seed ): array {
 		sort( $more );
 		sort( $less );
 		return $this->cache->getWithSetCallback(
 			$this->cache->makeKey(
-				'moretoexplore', $page->getId(), md5( json_encode( [ $more, $less ] ) )
+				'moretoexplore', 'v2', $page->getId(), md5( json_encode( [ $more, $less, $seed ] ) )
 			),
-			self::TTL,
-			function () use ( $page, $more, $less ) {
+			self::WINDOW,
+			function () use ( $page, $more, $less, $seed ) {
 				$head = [];
-				foreach ( $this->getLinkedPageIds( $page ) as $id ) {
+				foreach ( $this->getLinkedPageIds( $page, $seed ) as $id ) {
 					$head[$id] = self::SOURCE_LINK;
 				}
 				$exclude = array_merge( array_keys( $head ), [ $page->getId() ] );
-				foreach ( $this->getTopicPageIds( $more, $less, $exclude ) as $id ) {
+				foreach ( $this->getTopicPageIds( $more, $less, $exclude, $seed ) as $id ) {
 					$head[$id] = self::SOURCE_TOPIC;
 				}
 				return $head;
@@ -140,9 +157,10 @@ class ExploreFeed {
 	 * Articles the page links to and articles that link to it, shuffled.
 	 *
 	 * @param PageIdentity $page
+	 * @param string $seed
 	 * @return int[]
 	 */
-	private function getLinkedPageIds( PageIdentity $page ): array {
+	private function getLinkedPageIds( PageIdentity $page, string $seed ): array {
 		$dbr = $this->connectionProvider->getReplicaDatabase();
 		$ids = $this->newArticleQueryBuilder( $dbr )
 			->join( 'linktarget', null, [ 'lt_namespace = page_namespace', 'lt_title = page_title' ] )
@@ -165,8 +183,7 @@ class ExploreFeed {
 		}
 
 		$ids = array_values( array_diff( array_unique( array_map( 'intval', $ids ) ), [ $page->getId() ] ) );
-		shuffle( $ids );
-		return array_slice( $ids, 0, self::MAX_LINKS );
+		return array_slice( self::shuffle( $ids, $seed ), 0, self::MAX_LINKS );
 	}
 
 	/**
@@ -175,9 +192,10 @@ class ExploreFeed {
 	 * @param string[] $more
 	 * @param string[] $less
 	 * @param int[] $exclude
+	 * @param string $seed
 	 * @return int[]
 	 */
-	private function getTopicPageIds( array $more, array $less, array $exclude ): array {
+	private function getTopicPageIds( array $more, array $less, array $exclude, string $seed ): array {
 		$dbr = $this->connectionProvider->getReplicaDatabase();
 		$lessIds = $this->getCategoryIds( $less );
 		$ids = [];
@@ -188,20 +206,29 @@ class ExploreFeed {
 			if ( $exclude ) {
 				$queryBuilder->andWhere( $dbr->expr( 'page_id', '!=', $exclude ) );
 			}
-			$ids = array_merge( $ids, $this->fetchRandomIds( $dbr, $queryBuilder, self::PER_TOPIC ) );
+			$ids = array_merge( $ids, $this->fetchRandomIds(
+				$dbr, $queryBuilder, 0, self::PER_TOPIC, "$seed|$categoryId"
+			) );
 		}
 		$ids = array_values( array_unique( $ids ) );
-		shuffle( $ids );
-		return array_slice( $ids, 0, self::MAX_TOPIC_PAGES );
+		return array_slice( self::shuffle( $ids, $seed ), 0, self::MAX_TOPIC_PAGES );
 	}
 
 	/**
+	 * @param int $skip Random pages already shown
 	 * @param int $limit
 	 * @param string[] $less
 	 * @param int[] $exclude
+	 * @param string $seed
 	 * @return int[]
 	 */
-	private function getRandomPageIds( int $limit, array $less, array $exclude ): array {
+	private function getRandomPageIds(
+		int $skip,
+		int $limit,
+		array $less,
+		array $exclude,
+		string $seed
+	): array {
 		if ( $limit <= 0 ) {
 			return [];
 		}
@@ -210,7 +237,7 @@ class ExploreFeed {
 		if ( $exclude ) {
 			$queryBuilder->andWhere( $dbr->expr( 'page_id', '!=', array_values( array_unique( $exclude ) ) ) );
 		}
-		return $this->fetchRandomIds( $dbr, $queryBuilder, $limit );
+		return $this->fetchRandomIds( $dbr, $queryBuilder, $skip, $limit, $seed );
 	}
 
 	/**
@@ -250,29 +277,57 @@ class ExploreFeed {
 	}
 
 	/**
-	 * Random rows the way Special:Random picks them: start at a random page_random and wrap
-	 * around, which avoids ORDER BY RAND().
+	 * Random rows the way Special:Random picks them: start at a page_random and wrap around,
+	 * which avoids ORDER BY RAND(). The start comes from the seed, so the same seed walks the
+	 * same rows, and $skip goes further along that walk.
 	 *
 	 * @param IReadableDatabase $dbr
 	 * @param SelectQueryBuilder $queryBuilder
+	 * @param int $skip Rows of the walk to pass over
 	 * @param int $limit
+	 * @param string $seed
 	 * @return int[]
 	 */
 	private function fetchRandomIds(
 		IReadableDatabase $dbr,
 		SelectQueryBuilder $queryBuilder,
-		int $limit
+		int $skip,
+		int $limit,
+		string $seed
 	): array {
 		// DISTINCT needs the column it orders by
 		$queryBuilder->select( [ 'page_id', 'page_random' ] )->caller( __METHOD__ );
-		$random = wfRandom();
+		$start = self::unitInterval( $seed );
+		$after = ( clone $queryBuilder )->andWhere( $dbr->expr( 'page_random', '>=', $start ) );
+		$before = ( clone $queryBuilder )->andWhere( $dbr->expr( 'page_random', '<', $start ) );
+
+		if ( $skip > 0 ) {
+			$afterCount = ( clone $after )->clearFields()->select( 'page_id' )->fetchRowCount();
+			$total = $afterCount + ( clone $before )->clearFields()->select( 'page_id' )->fetchRowCount();
+			if ( $total === 0 ) {
+				return [];
+			}
+			// An endless feed goes round again
+			$skip %= $total;
+			if ( $skip >= $afterCount ) {
+				// The walk is already past the end and into the rows before the start
+				$skip -= $afterCount;
+				$segments = [ $before, $after ];
+			} else {
+				$segments = [ $after, $before ];
+			}
+		} else {
+			$segments = [ $after, $before ];
+		}
+
 		$ids = [];
-		foreach ( [ '>=', '<' ] as $op ) {
-			$rows = ( clone $queryBuilder )
-				->andWhere( $dbr->expr( 'page_random', $op, $random ) )
+		foreach ( $segments as $segment ) {
+			$rows = $segment
 				->orderBy( 'page_random' )
+				->offset( $skip )
 				->limit( $limit - count( $ids ) )
 				->fetchResultSet();
+			$skip = 0;
 			foreach ( $rows as $row ) {
 				$ids[] = (int)$row->page_id;
 			}
@@ -281,6 +336,28 @@ class ExploreFeed {
 			}
 		}
 		return array_values( array_unique( $ids ) );
+	}
+
+	/**
+	 * @param string $seed
+	 * @return float In [0, 1), the same for the same seed
+	 */
+	private static function unitInterval( string $seed ): float {
+		return hexdec( substr( md5( $seed ), 0, 8 ) ) / 0x100000000;
+	}
+
+	/**
+	 * @param int[] $ids
+	 * @param string $seed
+	 * @return int[] The same IDs in an order that only the seed decides
+	 */
+	private static function shuffle( array $ids, string $seed ): array {
+		$keys = [];
+		foreach ( $ids as $id ) {
+			$keys[$id] = md5( "$seed|$id" );
+		}
+		asort( $keys );
+		return array_keys( $keys );
 	}
 
 	/**

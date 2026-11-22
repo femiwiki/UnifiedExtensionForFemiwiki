@@ -95,6 +95,28 @@ class ExploreFeedTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayHasKey( 'Unrelated', $pages );
 	}
 
+	public function testSameWindowSameFeed() {
+		$center = Title::newFromText( 'Center' );
+		$first = $this->newFeed()->getPages( $center, 0, 10, [ 'People' ], [], [], 'w1' );
+		$again = $this->newFeed()->getPages( $center, 0, 10, [ 'People' ], [], [], 'w1' );
+
+		$this->assertSame( $first, $again, 'The same order, even with a cold cache' );
+	}
+
+	public function testRandomPagesWalkOn() {
+		$center = Title::newFromText( 'Center' );
+		$feed = $this->newFeed();
+		// After the two linked articles, one random article a batch, from Person, Place and Unrelated
+		$ids = [];
+		foreach ( [ 2, 3, 4 ] as $offset ) {
+			$batch = $feed->getPages( $center, $offset, 1, [], [], [], 'w1' );
+			$this->assertSame( [ ExploreFeed::SOURCE_RANDOM ], array_values( $batch ) );
+			$ids[] = array_key_first( $batch );
+		}
+
+		$this->assertCount( 3, array_unique( $ids ), 'Each batch goes on along the walk' );
+	}
+
 	public function testMoreTopicsComeAfterLinks() {
 		$pages = self::titles(
 			$this->newFeed()->getPages( Title::newFromText( 'Center' ), 0, 3, [ 'People' ], [] )
