@@ -282,7 +282,7 @@
     },
     "MoreToExploreEnabled": {
       "value": false,
-      "description": "Shows \"more to explore\" below articles: the articles the page links to and that link to it, then articles in the topics the reader asked to see more of, then random articles without end. Turn RelatedArticles off with it."
+      "description": "Shows \"more to explore\" below articles and project pages: the articles the page links to and that link to it, then articles in the topics the reader asked to see more of, then random articles without end. Turn RelatedArticles off with it."
     },
     "MoreToExploreTopicPrefix": {
       "value": "",

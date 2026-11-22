@@ -21,6 +21,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	public function addDBDataOnce() {
 		$this->editPage( 'Article', 'x' );
 		$this->editPage( 'Talk:Article', 'x' );
+		$this->editPage( 'Project:Policy', 'x' );
 	}
 
 	private function newHooks( bool $enabled ): Hooks {
@@ -42,10 +43,14 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	public static function provideBeforePageDisplay() {
 		yield 'article' => [ true, 'Article', [], true ];
 		yield 'turned off' => [ false, 'Article', [], false ];
+		yield 'project page' => [ true, 'Project:Policy', [], true ];
 		yield 'talk page' => [ true, 'Talk:Article', [], false ];
 		yield 'missing page' => [ true, 'Missing', [], false ];
 		yield 'history' => [ true, 'Article', [ 'action' => 'history' ], false ];
 		yield 'old revision' => [ true, 'Article', [ 'oldid' => '1' ], false ];
+		yield 'editing' => [ true, 'Article', [ 'action' => 'edit' ], false ];
+		yield 'visual editor' => [ true, 'Article', [ 'veaction' => 'edit' ], false ];
+		yield 'source editor' => [ true, 'Article', [ 'veaction' => 'editsource' ], false ];
 	}
 
 	/**

@@ -487,7 +487,7 @@
 	const updateBack = () => {
 		ticking = false;
 		// Once the footer has gone off the top, the feed fills the screen
-		back.hidden = footer.getBoundingClientRect().bottom > 0;
+		back.hidden = section.hidden || footer.getBoundingClientRect().bottom > 0;
 	};
 	window.addEventListener(
 		"scroll",
@@ -499,6 +499,17 @@
 		},
 		{ passive: true },
 	);
+
+	// Out of the way while VisualEditor is open on the page. Hidden, the
+	// sentinel stays off screen, so no more batches load meanwhile.
+	mw.hook("ve.activationStart").add(() => {
+		section.hidden = true;
+		back.hidden = true;
+	});
+	mw.hook("ve.deactivationComplete").add(() => {
+		section.hidden = false;
+		updateBack();
+	});
 
 	// The random page link scrolls down to the feed instead. New tabs, other
 	// pages and readers without JavaScript still get Special:Random.
@@ -513,7 +524,7 @@
 		) {
 			return;
 		}
-		if (!ev.target.closest("li.random a, #n-randompage a")) {
+		if (section.hidden || !ev.target.closest("li.random a, #n-randompage a")) {
 			return;
 		}
 		ev.preventDefault();
