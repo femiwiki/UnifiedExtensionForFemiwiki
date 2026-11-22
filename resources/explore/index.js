@@ -66,23 +66,29 @@
 		return getTopicOption(LESS_OPTION).indexOf(key) !== -1 ? "less" : "normal";
 	};
 
+	// The feed stays the same for twelve hours (ExploreFeed::WINDOW), so logged-out batches
+	// may be cached; logged-in readers' topic choices change theirs
+	const cacheAge = mw.user.isAnon() ? { maxage: 3600, smaxage: 3600 } : {};
+
 	const fetchBatch = () => {
-		const request = api.get({
-			action: "query",
-			formatversion: 2,
-			generator: "moretoexplore",
-			gmtetitle: pageName,
-			gmteoffset: offset,
-			gmtelimit: BATCH_SIZE,
-			prop: "pageimages|extracts",
-			piprop: "thumbnail",
-			pithumbsize: 250,
-			pilimit: BATCH_SIZE,
-			exintro: 1,
-			explaintext: 1,
-			exsentences: 1,
-			exlimit: BATCH_SIZE,
-		});
+		const request = api.get(
+			Object.assign({}, cacheAge, {
+				action: "query",
+				formatversion: 2,
+				generator: "moretoexplore",
+				gmtetitle: pageName,
+				gmteoffset: offset,
+				gmtelimit: BATCH_SIZE,
+				prop: "pageimages|extracts",
+				piprop: "thumbnail",
+				pithumbsize: 250,
+				pilimit: BATCH_SIZE,
+				exintro: 1,
+				explaintext: 1,
+				exsentences: 1,
+				exlimit: BATCH_SIZE,
+			}),
+		);
 		offset += BATCH_SIZE;
 		return request.then((data) => {
 			const fresh = (data.query?.pages || [])
