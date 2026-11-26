@@ -99,5 +99,7 @@
 	"apihelp-query+moretoexplore-param-limit": "Cantas páxinas devolver.",
 	"apihelp-query+moretoexplore-param-exclude": "Identificadores das páxinas que non se devolverán entre as páxinas aleatorias.",
 	"apihelp-query+moretoexplore-example-simple": "Listar as primeiras páxinas para explorar debaixo de <kbd>Main Page</kbd>.",
-	"apihelp-query+moretoexplore-example-generator": "Obter imaxes e extractos das primeiras páxinas para explorar debaixo de <kbd>Main Page</kbd>."
+	"apihelp-query+moretoexplore-example-generator": "Obter imaxes e extractos das primeiras páxinas para explorar debaixo de <kbd>Main Page</kbd>.",
+	"unifiedextensionforfemiwiki-pagetitle": "$1 - Femiwiki",
+	"unifiedextensionforfemiwiki-pagetitle-view-mainpage": "Femiwiki"
 }

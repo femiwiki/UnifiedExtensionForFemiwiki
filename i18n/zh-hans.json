@@ -102,5 +102,7 @@
 	"apihelp-query+moretoexplore-param-limit": "返回多少页面。",
 	"apihelp-query+moretoexplore-param-exclude": "不是从随机页面中返回的页面ID。",
 	"apihelp-query+moretoexplore-example-simple": "列出在<kbd>Main Page</kbd>下方供探索的首批页面。",
-	"apihelp-query+moretoexplore-example-generator": "获取<kbd>Main Page</kbd>下方供探索的首批页面的图像和摘录。"
+	"apihelp-query+moretoexplore-example-generator": "获取<kbd>Main Page</kbd>下方供探索的首批页面的图像和摘录。",
+	"unifiedextensionforfemiwiki-pagetitle": "$1 - Femiwiki",
+	"unifiedextensionforfemiwiki-pagetitle-view-mainpage": "Femiwiki"
 }

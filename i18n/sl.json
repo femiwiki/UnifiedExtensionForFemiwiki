@@ -23,5 +23,7 @@
 	"unifiedextensionforfemiwiki-logged-out-editing-namespace": "Brez prijave lahko urejate samo članke. Za urejanje pogovornih strani, predlog in drugih strani se [[Special:UserLogin|prijavite]] ali si [[Special:CreateAccount|ustvarite račun]].",
 	"unifiedextensionforfemiwiki-logged-out-editing-namespace-title": "Urejanje omejeno",
 	"unifiedextensionforfemiwiki-logged-out-editing-namespace-dialog": "Brez prijave lahko urejate samo članke. Če želite urejati pogovorne strani, predloge in druge strani, se prijavite ali si ustvarite račun.",
-	"apihelp-query+moretoexplore-summary": "Prikaže seznam strani, ki so prikazane v razdelku »Več za raziskovanje« pod člankom: najprej članki, s katerimi se povezuje, in članki, ki se povezujejo z njim, nato članki iz tem, o katerih si je uporabnik želel videti več, nato naključni članki. Pri nadaljnjih zahtevkih se vedno prikazujejo naključni članki, zato se seznam nikoli ne konča."
+	"apihelp-query+moretoexplore-summary": "Prikaže seznam strani, ki so prikazane v razdelku »Več za raziskovanje« pod člankom: najprej članki, s katerimi se povezuje, in članki, ki se povezujejo z njim, nato članki iz tem, o katerih si je uporabnik želel videti več, nato naključni članki. Pri nadaljnjih zahtevkih se vedno prikazujejo naključni članki, zato se seznam nikoli ne konča.",
+	"unifiedextensionforfemiwiki-pagetitle": "$1 – Femiwiki",
+	"unifiedextensionforfemiwiki-pagetitle-view-mainpage": "Femiwiki"
 }
